@@ -1,0 +1,158 @@
+.headerShopBox {
+  // background: url('../../../img/shop/rust\ 1.jpg') lightgray 50%;
+  height: 315px;
+  width: 100%;
+  @media (max-width: $largeScreens) {
+    height: 236px;
+  }
+  position: relative;
+  z-index: 11;
+  // top: 90px;
+  right: 0;
+  left: 0;
+}
+.headerShopBoxShadow {
+  -moz-box-shadow: 0 0 10px #000;
+  -webkit-box-shadow: 0 0 10px #000;
+  box-shadow: 0 0 10px #000;
+}
+.filterHeader {
+  position: relative;
+  // top: 90px;
+  top: -320px;
+  height: 315px;
+  left: 0;
+  right: 0;
+  @media (max-width: $largeScreens) {
+    height: 236px;
+    top: -236px;
+  }
+}
+.contentHeaderShopBox {
+  position: absolute;
+  top: 0;
+  height: 315px;
+  left: 0;
+  right: 0;
+  display: flex;
+  @media (max-width: $largeScreens) {
+    height: 236px;
+  }
+  .textHeaderShopBox {
+    // margin-left: 20px;
+    @media (max-width: $miniWebScreens) {
+      padding-left: 20px;
+    }
+    @media (max-width: $mobileScreens) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+  }
+}
+.centerHeaderShopBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 56px;
+  @media (max-width: $largeScreens) {
+    margin-top: 32px;
+    width: 100%;
+  }
+  h1 {
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 22px;
+    @media (max-width: $largeScreens) {
+      font-size: 24px;
+    }
+  }
+  p {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: normal;
+    @media (max-width: $largeScreens) {
+      font-size: 14px;
+      color: #8774b8;
+    }
+  }
+}
+.dopInfoHeaderShopBox {
+  margin-top: 32px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  p {
+    margin-left: 8px;
+    color: #8774b8;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    @media (max-width: $largeScreens) {
+      font-size: 14px;
+    }
+  }
+}
+.menuHeaderShopBox {
+  display: flex;
+  justify-content: center;
+  @media (max-width: $largeScreens) {
+    font-size: 14px;
+    padding-left: 12px;
+  }
+}
+.sectionMenuHeaderShopBox {
+  width: 256px;
+  // padding-bottom: 17px;
+  // padding-top: 11px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-justify: center;
+  text-align: center;
+  opacity: 0.7;
+  cursor: pointer;
+  @media (max-width: $largeScreens) {
+    width: 88px;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.activeSectionMenuHeaderShopBox {
+  background-color: #171226;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  opacity: 1;
+  &:hover {
+    opacity: 1;
+  }
+}
+.purrple-effect {
+  // background: 30% 100% / 30% 110% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: #ffffff81;
+
+  animation: reveal 400ms ease-in-out forwards 400ms, glow 3000ms linear infinite 100ms;
+
+  @keyframes glow {
+    0% {
+      color: #fff;
+    }
+    50% {
+      color: #ffffff82;
+    }
+    80% {
+      color: #fff;
+    }
+    100% {
+      color: #fff;
+    }
+  }
+}

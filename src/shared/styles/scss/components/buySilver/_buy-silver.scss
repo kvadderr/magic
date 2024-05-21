@@ -1,0 +1,191 @@
+@import '../../variables';
+
+.buySilver {
+  &Modal {
+    width: 482px;
+    // height: 600px;
+    max-width: 100%;
+    max-height: 900px;
+
+    &Inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @media (max-width: 425px) {
+        height: calc(100vh - 94px);
+        height: calc(var(--vh, 1vh) * 100 - 94px);
+      }
+    }
+  }
+
+  &Text {
+    color: $white;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 425px) {
+    height: 100%;
+  }
+}
+
+.selectAPackageBlock {
+  margin-top: 32px;
+
+  h4 {
+    color: $lightPurple;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+}
+
+.selectAPackageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.selectAPackageItem {
+  opacity: 0.8;
+  cursor: pointer;
+  // border: 2px solid transparent; //для дизайна из фигмы
+  border: 2px solid #3a2964;
+  border-radius: 12px;
+  &:hover {
+    opacity: 1;
+  }
+  &Active {
+    opacity: 1;
+    border: 2px solid #4063f1;
+  }
+}
+
+.inputSumBlock {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  h4 {
+    color: $lightPurple;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+}
+.inputSum {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &WrapDisabled,
+  &Wrap {
+    width: 216px;
+    height: 50px;
+    position: relative;
+    border-radius: 12px;
+    background-color: $purple;
+
+    input {
+      width: 100%;
+      height: 50px;
+      border-radius: 12px;
+      background-color: $purple;
+      padding: 13px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+    }
+
+    svg {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+    }
+  }
+  &WrapDisabled {
+    input {
+      background-color: $tableLidhtDark;
+    }
+  }
+}
+
+.silverBonus {
+  margin-top: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &Text {
+    color: $orange;
+    font-size: 14px;
+    font-weight: 600;
+
+    span {
+      color: $white;
+    }
+  }
+
+  &Count {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.buySilverBtn {
+  width: 100%;
+  height: 50px;
+  // margin-top: 32px;
+
+  @media (max-width: 425px) {
+    align-self: flex-end;
+  }
+}
+.labelPackageItem {
+  position: absolute;
+  width: 100%;
+  height: 158px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 45px;
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  // opacity: 1;
+  z-index: 1;
+  -webkit-text-stroke: 0.5px black;
+}
+.packageItem {
+  cursor: pointer;
+  position: relative;
+}
+.boxChangeServer {
+  margin-top: 50px;
+}
+.boxProgressBar {
+  margin-top: 19px;
+}
+.percentages {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  border-radius: 6px;
+  background-color: rgba(255, 184, 0, 0.1);
+  padding: 4px;
+  margin-left: 12px;
+
+  div {
+    height: 12px;
+    color: $orange;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 708px) {
+    display: none;
+  }
+}

@@ -1,0 +1,226 @@
+@import "../../styles/global-styles";
+@import "../../styles/variables";
+
+.oneColumnCard {
+  position: relative;
+  width: 100%;
+  max-width: 311px;
+  cursor: pointer;
+  box-sizing: border-box;
+  grid-column: span 1;
+  padding-top: 19px;
+  height: 100%;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: $mobileScreens) {
+    width: 170px;
+    height: 254px;
+    padding-bottom: 0;
+  }
+  p.nameOneColumnCard {
+    position: absolute;
+    bottom: 20%;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    @media (max-width: $mobileScreens) {
+      top: 150px;
+      font-size: 14px;
+    }
+  }
+  .oneColumnBtn {
+    max-width: 271px;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    font-weight: 600;
+    font-size: 16px;
+    @media (max-width: $mobileScreens) {
+      padding: 10px 0px 13px 0px;
+      width: 150px;
+      font-size: 14px;
+    }
+  }
+}
+.bottomOneColumnCard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageOneColumnCard {
+  padding-bottom: 20px;
+  max-width: 311px;
+  width: 100%;
+  height: auto;
+  @media (max-width: $mobileScreens) {
+    height: 170px;
+  }
+}
+
+.imageCardHaveBack {
+  max-width: 236px;
+  width: 100%;
+  height: 100%;
+  max-height: 218px;
+  @media (max-width: $miniWebScreens) {
+    width: 138px;
+    height: 128px;
+  }
+  @media (max-width: $mobileScreens) {
+    width: 138px;
+    height: 128px;
+  }
+}
+.oneColumnCardHaveBack {
+  border-radius: 12px;
+  background-color: #221939;
+  grid-column: span 1;
+  padding-top: 19px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: space-between;
+  @media (max-width: $miniWebScreens) {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  p {
+    margin-top: 31px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 25px;
+    @media (max-width: $largeScreens) {
+      margin-top: 0px;
+    }
+    @media (max-width: $mobileScreens) {
+      font-size: 14px;
+      margin-bottom: 0px;
+    }
+  }
+  .lightBtn {
+    @media (max-width: $mobileScreens) {
+      height: 40px;
+    }
+  }
+}
+
+.resizingCard {
+  position: relative;
+  border-radius: 12px;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  .resizingCardBtn {
+    width: 271px;
+    height: 50px;
+    box-sizing: border-box;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    @media (max-width: $largeScreens) {
+      width: 100%;
+      margin-left: 0px;
+    }
+  }
+  // background: linear-gradient(180deg, rgba(35, 27, 58, 0) 0%, #231b3a 100%);
+}
+.labelResizingCard {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  padding-top: 20px;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  @media (max-width: $largeScreens) {
+    font-size: 22px;
+    text-align: center;
+    padding-left: 0px;
+  }
+}
+.descriptionResizingCard {
+  color: rgba(255, 255, 255, 0.615);
+  font-size: 16px;
+
+  font-weight: 600;
+  line-height: normal;
+  padding-left: 20px;
+  @media (max-width: $largeScreens) {
+    font-size: 14px;
+    text-align: center;
+    padding-left: 0px;
+  }
+  white-space: pre-wrap;
+}
+
+.resizingOneColumnCard {
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0;
+  .resizingCardBtn {
+    width: 271px;
+    padding: 15px 0 16px 0;
+    margin-left: 0;
+    margin-bottom: 20px;
+    @media (max-width: $largeScreens) {
+      width: 150px;
+      margin-left: 0;
+    }
+  }
+  .labelResizingCard {
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 31px;
+  }
+}
+.contentBtnNotificationCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dopInfoResizingCard {
+  width: 100%;
+  color: #fff;
+  opacity: 0.6;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  padding-left: 20px;
+  white-space: pre-wrap;
+  margin-top: 2ch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  p {
+    padding-left: 8px;
+  }
+  @media (max-width: $miniWebScreens) {
+    margin-top: 12px;
+    font-size: 14px;
+    justify-content: center;
+  }
+
+  @media (max-width: $largeScreens) {
+    font-size: 14px;
+    text-align: center;
+    padding-left: 0px;
+  }
+}
+.labelOneCard {
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: normal;
+}

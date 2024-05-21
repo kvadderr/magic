@@ -1,0 +1,117 @@
+@import '../mixins';
+@import '../variables';
+.profile-top {
+  background: linear-gradient(180deg, #140f21 0%, #201f4e 74.48%);
+  height: 315px;
+  width: 100%;
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &_inner {
+    @include displayFlexAIC;
+    justify-content: space-between;
+    @media (max-width: $largeScreens) {
+      justify-content: center;
+    }
+  }
+  @media (max-width: $largeScreens) {
+    height: 166px;
+  }
+}
+
+.left-side {
+  @include displayFlexAIC;
+  margin: 64px 0;
+  @media (max-width: $largeScreens) {
+    margin: 37px 0;
+  }
+}
+
+.logo {
+  height: 135px;
+  width: 135px;
+  cursor: pointer;
+  border-radius: 50%;
+  @media (max-width: $largeScreens) {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.user {
+  @include displayFlexAIC;
+  margin-left: 21px;
+  @media (max-width: $largeScreens) {
+    margin-left: 12px;
+  }
+
+  &-name {
+    font-size: 32px;
+    font-weight: 700;
+    @media (max-width: $largeScreens) {
+      font-size: 24px;
+    }
+  }
+
+  svg {
+    margin-left: 8px;
+  }
+}
+
+.exitBtn {
+  width: 160px;
+  height: 50px;
+
+  span {
+    height: 12px;
+  }
+}
+
+.profile-nav {
+  @include displayFlexAIC;
+  justify-content: space-between;
+
+  &__btn {
+    padding: 15px;
+    font-size: 20px;
+    width: 50%;
+    text-align: center;
+    border-radius: 12px 12px 0px 0px;
+    background-color: transparent;
+    cursor: pointer;
+
+    @media (max-width: $largeScreens) {
+      font-size: 16px;
+    }
+
+    &__active {
+      background-color: $darkBlue;
+    }
+  }
+}
+.avatarInProfile {
+  border-radius: 50%;
+  width: 135px;
+  height: 135px;
+  @media (max-width: $largeScreens) {
+    width: 40px;
+    height: 40px;
+  }
+}
+.steam-logo {
+  width: 32px;
+  height: 32px;
+  @media (max-width: $largeScreens) {
+    width: 24px;
+    height: 24px;
+  }
+}
+.avatar-in-navbar {
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+}

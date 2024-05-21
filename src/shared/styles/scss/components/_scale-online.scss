@@ -1,0 +1,59 @@
+@import '../variables';
+@import '../mixins';
+
+.boxScaleWithTitle {
+  max-width: 268px;
+  width: 100%;
+  @media (max-width: $largeScreens) {
+    width: 100%;
+  }
+}
+.headerScale {
+  @include displayFlexAIC;
+  justify-content: space-between;
+  margin-bottom: 9px;
+}
+p {
+  padding: 0;
+  margin: 0;
+}
+.titleScale {
+  font-weight: 600;
+  @media (max-width: 800px) {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+.boxScale {
+  background-color: #251d3c;
+  height: 24px;
+  max-width: 268px;
+  width: 100%;
+
+  border-radius: 6px;
+  @media (max-width: $largeScreens) {
+    width: 100%;
+  }
+}
+.activeScale {
+  @include displayFlexAIC;
+  background: -webkit-linear-gradient(left, rgba(64, 70, 235, 1), rgba(65, 159, 255, 1));
+  width: 50%;
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  padding-left: 12px;
+}
+.labelScale {
+  font-weight: 600;
+  font-size: 14px;
+  text-justify: center;
+}
+.iconCopy {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+}

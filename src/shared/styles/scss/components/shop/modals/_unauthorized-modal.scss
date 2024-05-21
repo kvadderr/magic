@@ -1,0 +1,9 @@
+.unauthorizedModal {
+  width: 482px;
+  max-width: 100%;
+  @media (max-width: 425px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

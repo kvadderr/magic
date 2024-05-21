@@ -1,0 +1,69 @@
+.containerCustomPage {
+  height: 100%;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (max-width: $miniWebScreens) {
+    padding-left: 20px;
+  }
+  @media (max-width: $tabletScreens) {
+    padding-left: 0px;
+  }
+}
+.boxWithSection {
+  display: grid;
+  grid-template-columns: 0.2fr 0.8fr;
+  grid-column-gap: 60px;
+  align-items: start;
+  @media (max-width: $tabletScreens) {
+    grid-template-columns: 1fr;
+    gap: 0px;
+  }
+  // overflow-x: hidden;
+}
+.boxNoSection {
+  width: 100%;
+}
+.labelSectionCustomPage {
+  margin-bottom: 20px;
+}
+
+.labelSectionCustomPageWithIcon {
+  @include displayFlexAIC;
+  flex-direction: row;
+  margin-bottom: 20px;
+  @media (max-width: $largeScreens) {
+    // padding-left: 12px;
+  }
+}
+.iconSectionCustomPage {
+  margin-right: 12px;
+}
+.sectionCustomPage {
+  margin-bottom: 64px;
+  box-sizing: border-box;
+  @media (max-width: $tabletScreens) {
+    width: 100vw;
+    box-sizing: border-box;
+    margin-bottom: 0px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 32px;
+    padding-bottom: 0px;
+    // border-top: 1px solid #8774b84a;
+  }
+  @media (max-width: $miniWebScreens) {
+    padding-right: 12px;
+
+    // border-top: 1px solid #8774b84a;
+  }
+}
+.iconCustomPage {
+  height: 32px;
+  width: 32px;
+}
+.boxContentCustomPage {
+  width: 80%;
+  max-width: 1280px;
+}

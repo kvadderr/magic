@@ -1,0 +1,42 @@
+.container-shop {
+  display: grid;
+  padding-top: 64px;
+  row-gap: 12px;
+  column-gap: 12px;
+
+  justify-content: center;
+
+  grid-template-columns: repeat(4, auto);
+  padding-right: 20px;
+  padding-left: 20px;
+  align-items: center;
+  @media (max-width: $miniWebScreens) {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  @media (max-width: $largeScreens) {
+    grid-template-columns: repeat(2, auto);
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(2, 170px);
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+}
+
+.blackoutWindows {
+  background-color: rgba(128, 128, 128, 0.469);
+  position: fixed;
+  z-index: 10;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  filter: blur(5px);
+  -webkit-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
