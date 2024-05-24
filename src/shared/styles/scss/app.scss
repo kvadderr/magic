@@ -9,6 +9,7 @@
 @import './pages/profile';
 @import './pages/information';
 @import './pages/main';
+@import "./pages/ban-list";
 //компоненты
 
 @import './components/megaBuilderKitModal/megaBuilderKitModal';
@@ -20,6 +21,7 @@
 @import './components/customPage/custom-page';
 @import './components/profile/inventory';
 @import './components/leaders/pedestal-item';
+@import "./components/UI/search-input";
 // @import './components/shop/modals/product-item';
 @import './components/buySilver/buy-silver';
 @import './components/select-server-modal/select-server-modal';

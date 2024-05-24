@@ -17,7 +17,7 @@ export const CustomPage = (props: Props) => {
             <section key={item.id} className="sectionCustomPage" id={String(item.id)}>
               <div className={`${item.icon === null ? 'labelSectionCustomPage' : 'labelSectionCustomPageWithIcon'}`}>
                 <div className="iconSectionCustomPage">
-                  {item.icon !== null && <img src={item.icon} className="iconCustomPage"/>}
+                  {item.icon !== null && <img src={item.icon} className="iconCustomPage" alt="qweasd" />}
                 </div>
                 <h2>
                   {' '}
