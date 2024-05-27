@@ -1,5 +1,9 @@
 @import '../mixins';
 @import '../variables';
+@import "../components/leaders/leader-table-item";
+@import "../components/leaders/pedestal";
+@import "../components/leaders/pedestal-item";
+@import "../components/leaders/select-server";
 
 .containerPedestal {
   @include displayFlexAIC;

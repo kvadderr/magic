@@ -6,7 +6,10 @@ type Props = {
   label: string
 }
 export const CustomPage = (props: Props) => {
-  const {label, sections} = props
+  const {label, sections} = props;
+
+
+
   return (
     <div className="containerCustomPage">
       <h1 className="titlePage">{label}</h1>

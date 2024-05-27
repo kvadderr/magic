@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {IBanListItem} from "@/api/banlist/types";
 import BanListTable from "@/app/banlist/ui/banlist-table/BanListTable";
 import {BanListApi} from "@/api/banlist/banlist.api";
+import {banListMock} from "@/api/banlist/mock";
 
 const BanListContent = () => {
     const [data, set] = useState<IBanListItem[]>([]);
@@ -10,8 +11,12 @@ const BanListContent = () => {
     const [filtered, setFiltered] = useState<IBanListItem[]>([]);
 
     const asyncData = async () => {
-        const {data}= await BanListApi.getBanList(1);
-        set(data.banlist);
+        try {
+            const {data} = await BanListApi.getBanList(1);
+            set(data.banlist);
+        } catch (error) {
+            set(banListMock);
+        }
     }
 
     useEffect(() => {

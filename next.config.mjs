@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    images: {
+        domains: ['avatars.steamstatic.com', 'avatars.akamai.steamstatic.com'],
+    },
+};
 
 export default nextConfig;
