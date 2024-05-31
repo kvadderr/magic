@@ -1,15 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import {StoreHeaderTabs} from "@/shared/components/StoreHeader/Tabs/StoreHeaderTabs";
-import {IGetTypesRes} from "@/api/store/types";
 import './style.scss'
+import {IGetTypesRes} from "@/api/store/types";
 
-type Props = {
-  storeTypes: IGetTypesRes[]
-}
-export default async function StoreHeader(props: Props) {
-
-  const {storeTypes} = props
+export default async function StoreHeader({types, tab}: {types: IGetTypesRes[], tab: number}) {
 
   return (
     <div className="headerShopBox">
@@ -25,7 +20,7 @@ export default async function StoreHeader(props: Props) {
               </div>
             </Link>
           </div>
-          <StoreHeaderTabs types={storeTypes}/>
+          <StoreHeaderTabs tab={tab} storeTypes={types}/>
         </div>
       </div>
     </div>

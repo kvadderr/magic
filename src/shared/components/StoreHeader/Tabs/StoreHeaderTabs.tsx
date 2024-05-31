@@ -1,20 +1,20 @@
-"use client"
 import {IGetTypesRes} from "@/api/store/types";
+import Link from "next/link";
 
-type Props = {
-  types: IGetTypesRes[]
-}
 
-export const StoreHeaderTabs = ({types}: Props) => {
+
+
+export const StoreHeaderTabs = ({ storeTypes, tab }: {storeTypes: IGetTypesRes[], tab: number}) => {
   return (
     <div className="menuHeaderShopBox">
-      {types?.map((item, index) => (
-        <div
+      {storeTypes?.map((item, index) => (
+        <Link
           key={item.id}
-          className={"sectionMenuHeaderShopBox"}
+          href={`/?tab=${item.id}`}
+          className={`sectionMenuHeaderShopBox ${tab === item.id && "activeSectionMenuHeaderShopBox"}`}
         >
           {item.name}
-        </div>
+        </Link>
       ))}
     </div>
   )
