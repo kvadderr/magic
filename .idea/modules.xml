@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../magic-spa/.idea/magic-spa.iml" filepath="$PROJECT_DIR$/../magic-spa/.idea/magic-spa.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/magicfront.iml" filepath="$PROJECT_DIR$/.idea/magicfront.iml" />
     </modules>
   </component>

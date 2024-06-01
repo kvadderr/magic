@@ -17,6 +17,7 @@ export default function RootLayout({
     <html lang="en">
     <body>
     <div id='root'>
+      <div id="modal-portal"></div>
       <Navbar/>
       {children}
     </div>
