@@ -17,7 +17,7 @@ export const NoBackgroundCard = (props: Props) => {
     return (
         <div className="oneColumnCard">
             <div>
-                {/*<img src={product.image} className="imageOneColumnCard"/>*/}
+                <img src={product.image} className="imageOneColumnCard"/>
             </div>
             <p className="nameOneColumnCard">{product.name}</p>
             <button className="lightBtn btn oneColumnBtn" onClick={() => set(true)}>{product.price} ₽</button>
