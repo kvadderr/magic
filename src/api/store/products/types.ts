@@ -12,6 +12,7 @@ interface ProductContentData {
 }
 
 interface ProductContent {
+  link?: string;
   data: ProductContentData[];
   rade: number;
   delay: number;

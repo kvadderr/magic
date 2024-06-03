@@ -2,6 +2,7 @@ import {StoreApi} from "@/api/store/store.api";
 import StoreHeader from "@/shared/components/StoreHeader/StoreHeader";
 import {NoBackgroundCard} from "@/shared/components/Card/NoBackgroundCard";
 import {ServersListApi} from "@/api/serversList/serversList.api";
+import CardCurrency from "@/shared/components/CardCurrency/CardCurrency";
 
 export default async function StorePage(props: {searchParams: {tab: string}}) {
     const id = 1; // Initial ID value
@@ -15,8 +16,8 @@ export default async function StorePage(props: {searchParams: {tab: string}}) {
             <div className="container container-shop">
                 {products.map((item, index) => {
                     switch (item.type) {
-                        case "CURRENCY": return "CARD CURRENCY";
-                        case "HTTP_REQUEST": return "HTTP CURRENCY";
+                        case "CURRENCY": return <CardCurrency product={item} key={index}/>;
+                        case "HTTP_REQUEST": return <CardCurrency product={item} key={index}/>;
                         default: return <NoBackgroundCard product={item} key={index} servers={servers}/>
                     }
                 })}
