@@ -2,6 +2,7 @@ import React from "react";
 import type {Metadata} from "next";
 import Navbar from "@/widgets/NavBar/NavBar";
 import '../shared/styles/scss/app.scss'
+import {Footer} from "@/widgets/footer/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next",
@@ -20,6 +21,7 @@ export default function RootLayout({
       <div id="modal-portal"></div>
       <Navbar/>
       {children}
+      <Footer />
     </div>
     </body>
     </html>
