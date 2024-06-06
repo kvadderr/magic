@@ -49,7 +49,7 @@ export const Footer = () => {
                 </div>
                 <div className="bottomFooter bottomDopInfo">
                     <div>
-                        <p>INTERNATIONAL BUSINESS SYSTEMS S.R.L.<br/>Reg. number:<br/>3-102-693823<br/>Beneficiary's
+                        <p>INTERNATIONAL BUSINESS SYSTEMS S.R.L.<br/>Reg. number:<br/>3-102-693823<br/>
                             address:<br/>SAN JOSE-SANTA ANA,THREE HUNDRED AND FIFTY METERS OF THE RESTAURANT CEVICHE DEL
                             REY,<br/>COSTA-RICA
                         </p>
