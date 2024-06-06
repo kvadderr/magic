@@ -1,7 +1,7 @@
 import {StoreApi} from "@/api/store/store.api";
+import {ServersListApi} from "@/api/serversList/serversList.api";
 import StoreHeader from "@/shared/components/StoreHeader/StoreHeader";
 import {NoBackgroundCard} from "@/shared/components/Card/NoBackgroundCard";
-import {ServersListApi} from "@/api/serversList/serversList.api";
 import CardCurrency from "@/shared/components/CardCurrency/CardCurrency";
 
 export default async function StorePage(props: {searchParams: {tab: string}}) {

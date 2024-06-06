@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Image from "next/image";
 
 import {menu} from "@/shared/constants/menu";
-import './style.scss'
 import {useState} from "react";
 import {NavbarModal} from "@/shared/components/NavbarModal/NavbarModal";
 

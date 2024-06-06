@@ -1,6 +1,4 @@
-// import '../../assets/scss/components/UI/_custom-select.scss';
-
-import Select, { components } from 'react-select';
+import Select, {components} from 'react-select';
 import dropDown from '../../../assets/custom-select/arrow-down.png';
 
 interface optionsItem {
@@ -123,7 +121,6 @@ const CustomSelect = ({
     };
 
     return (
-        <>
             <Select
                 defaultValue={value}
                 components={{ DropdownIndicator, IndicatorSeparator }}
@@ -137,7 +134,6 @@ const CustomSelect = ({
                 styles={customStyles}
                 // menuShouldScrollIntoView = {false}
             />
-        </>
     );
 };
 

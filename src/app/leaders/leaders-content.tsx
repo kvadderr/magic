@@ -1,7 +1,5 @@
 "use client"
 import {useEffect, useState} from "react";
-import {IBanListItem} from "@/api/banlist/types";
-import BanListTable from "@/app/banlist/ui/banlist-table/BanListTable";
 import {LeaderboardApi} from "@/api/leaderboard/leaderboard.api";
 import {ILeaderboardItem} from "@/api/leaderboard/types";
 import LeaderboardTable from "@/app/leaders/ui/leaderboard-table/LeaderboardTable";
@@ -12,7 +10,6 @@ import {useLeaderboardProvider} from "@/app/leaders/api";
 const LeaderboardContent = () => {
     const {modal, setModal, page, serverId} = useLeaderboardProvider();
     const [data, set] = useState<ILeaderboardItem[]>([]);
-    const [search, setSearch] = useState<string>("");
 
     const asyncData = async () => {
         try {

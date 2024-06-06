@@ -5,7 +5,7 @@ import '../shared/styles/scss/app.scss'
 import {Footer} from "@/widgets/footer/Footer";
 
 export const metadata: Metadata = {
-  title: "Create Next",
+  title: "MRust",
   description: "w by create next app",
 };
 

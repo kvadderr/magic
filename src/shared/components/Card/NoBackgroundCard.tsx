@@ -3,7 +3,6 @@ import "./style.scss"
 import {useState} from "react";
 import ModalPortal from "@/shared/components/ModalPortal/ModalPortal";
 import {ModalCard} from "@/shared/components/ModalCard/ModalCard";
-import {IGetServersRes} from "@/api/servers/types";
 import {IServersListResponse} from "@/api/serversList/types";
 
 type Props = {
