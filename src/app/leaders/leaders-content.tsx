@@ -1,36 +1,52 @@
 "use client"
 import {useEffect, useState} from "react";
 import {LeaderboardApi} from "@/api/leaderboard/leaderboard.api";
-import {ILeaderboardItem} from "@/api/leaderboard/types";
+import {IGetLeaderBoard, ILeaderboardItem} from "@/api/leaderboard/types";
 import LeaderboardTable from "@/app/leaders/ui/leaderboard-table/LeaderboardTable";
 import {leaderBoardMock} from "@/api/leaderboard/mock";
 import {ServersModal} from "@/app/leaders/ui/servers-modal/ServersModal";
 import {useLeaderboardProvider} from "@/app/leaders/api";
+import Pagination from "@/shared/components/Pagination/Pagination";
 
-const LeaderboardContent = () => {
-    const {modal, setModal, page, serverId} = useLeaderboardProvider();
-    const [data, set] = useState<ILeaderboardItem[]>([]);
+const LeaderboardContent = (props: { page: string }) => {
+  const {modal, setModal, serverId} = useLeaderboardProvider();
+  const [data, set] = useState<IGetLeaderBoard>();
+  const [page, setPage] = useState(
+    props.page && parseInt(props.page) ? parseInt(props.page) : 1
+  );
 
-    const asyncData = async () => {
-        try {
-            const {data} = await LeaderboardApi.getLeaderboard(page, serverId);
-            set(data.leaderboard);
-        } catch (error) {
-            set(leaderBoardMock);
-        }
+  const asyncData = async () => {
+    try {
+      const {data} = await LeaderboardApi.getLeaderboard(page, serverId);
+      set(data);
+    } catch (error) {
+      set({leaderboard: leaderBoardMock, pages: 10});
     }
+  }
 
-    useEffect(() => {
-        asyncData()
-    }, [page, serverId]);
+  useEffect(() => {
+    asyncData()
+  }, [page, serverId]);
 
-    return (
+  return (
+    <>
+      <button onClick={() => setModal(true)} className="btn blackBtn"
+              style={{width: "200px", height: "50px", margin: "20px auto"}}>Select a server
+      </button>
+      {!(!data || data.leaderboard.length === 0) &&
         <>
-            <button onClick={() => setModal(true)} className="btn blackBtn" style={{width:"200px", height:"50px", margin:"20px auto"}}>Select a server</button>
-            <LeaderboardTable items={data}/>
-            {modal && <ServersModal />}
+          <LeaderboardTable items={data.leaderboard}/>
+          <Pagination
+            currentPage={page}
+            pagesAmount={data.pages}
+            setCurrentPage={setPage}
+            perPage={5}
+          />
         </>
-    )
+      }
+      {modal && <ServersModal/>}
+    </>
+  )
 }
 
 export default LeaderboardContent;

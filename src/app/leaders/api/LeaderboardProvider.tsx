@@ -5,8 +5,6 @@ import {ServersListApi} from "@/api/serversList/serversList.api";
 import {IServersListItem} from "@/api/serversList/types";
 
 interface ILeaderboardProvider {
-    page: number,
-    setPage: Dispatch<SetStateAction<number>>,
     serverId: number,
     setServerId: Dispatch<SetStateAction<number>>,
     serversList: IServersListItem[],
@@ -20,7 +18,6 @@ export const useLeaderboardProvider = () => useContext<ILeaderboardProvider>(Con
 export const LeaderboardProvider: FC<PropsWithChildren> = ({children}) => {
     const [modal, setModal] = useState<boolean>(false);
     const [serversList, set] = useState<IServersListItem[]>([]);
-    const [page, setPage] = useState<number>(1);
     const [serverId, setServerId] = useState<number>(1);
 
     const asyncData = async () => {
@@ -39,8 +36,6 @@ export const LeaderboardProvider: FC<PropsWithChildren> = ({children}) => {
     return <Context.Provider value={{
         serverId,
         setServerId,
-        page,
-        setPage,
         serversList,
         modal,
         setModal
