@@ -5,6 +5,7 @@ import Image from "next/image";
 import {menu} from "@/shared/constants/menu";
 import {useState} from "react";
 import {NavbarModal} from "@/shared/components/NavbarModal/NavbarModal";
+import {handleSteamLogin} from "@/shared/hooks/handleSteamLogin";
 
 const Navbar = () => {
     const [modal, set] = useState<boolean>(false);
@@ -43,7 +44,7 @@ const Navbar = () => {
                                 </Link>
                             ))}
                         </nav>
-                        <div className="profile" style={{cursor: 'pointer'}}>
+                        <div className="profile" style={{cursor: 'pointer'}} onClick={handleSteamLogin}>
                             Войти
                         </div>
                     </div>
