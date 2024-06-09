@@ -5,7 +5,6 @@ export const StoreApi = {
     async getTypes() {
         return apiInstance.get<IGetTypesRes[]>('/store/types')
     },
-    // id: number
     async getProducts(id: number) {
         return apiInstance.get<Product[]>('/store/catalog/' + id)
     }
