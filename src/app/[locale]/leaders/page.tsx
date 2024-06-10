@@ -1,5 +1,5 @@
-import LeaderboardContent from "@/app/leaders/leaders-content";
-import {LeaderboardProvider} from "@/app/leaders/api";
+import LeaderboardContent from "@/app/[locale]/leaders/leaders-content";
+import {LeaderboardProvider} from "@/app/[locale]/leaders/api";
 
 export default function LeadersPage (props: {searchParams: { page: string }}) {
   return (

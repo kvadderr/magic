@@ -2,10 +2,10 @@
 import {useEffect, useState} from "react";
 import {LeaderboardApi} from "@/api/leaderboard/leaderboard.api";
 import {IGetLeaderBoard, ILeaderboardItem} from "@/api/leaderboard/types";
-import LeaderboardTable from "@/app/leaders/ui/leaderboard-table/LeaderboardTable";
+import LeaderboardTable from "@/app/[locale]/leaders/ui/leaderboard-table/LeaderboardTable";
 import {leaderBoardMock} from "@/api/leaderboard/mock";
-import {ServersModal} from "@/app/leaders/ui/servers-modal/ServersModal";
-import {useLeaderboardProvider} from "@/app/leaders/api";
+import { ServersModal} from "@/app/[locale]/leaders/ui/servers-modal/ServersModal";
+import { useLeaderboardProvider} from "@/app/[locale]/leaders/api";
 import Pagination from "@/shared/components/Pagination/Pagination";
 
 const LeaderboardContent = (props: { page: string }) => {

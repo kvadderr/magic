@@ -1,4 +1,4 @@
-import BanListContent from "@/app/banlist/banlist-content";
+import BanListContent from "@/app/[locale]/banlist/banlist-content";
 
 export default function BanListPage(props: {searchParams: { page: string }}) {
     return (

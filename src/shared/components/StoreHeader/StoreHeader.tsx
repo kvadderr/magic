@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import {getTranslations} from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 import {StoreHeaderTabs} from "@/shared/components/StoreHeader/Tabs/StoreHeaderTabs";
 import {IGetTypesRes} from "@/api/store/types";
 
@@ -8,9 +8,9 @@ type StoreHeaderProps = {
   types: IGetTypesRes[],
   tab: number
 }
-export default async function StoreHeader(props: StoreHeaderProps) {
+export default function StoreHeader(props: StoreHeaderProps) {
   const { types, tab } = props;
-  const t = await getTranslations('Index');
+  const t = useTranslations('Footer');
   return (
     <div className="headerShopBox">
       <Image src='/image/shop_header_img.png' alt="bg" width={1200} height={400}/>

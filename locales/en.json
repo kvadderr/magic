@@ -1,5 +1,9 @@
 {
   "Index": {
     "title": "Hello world!"
+  },
+  "Footer": {
+    "online": "Online",
+    "description": "LOOOL"
   }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import type {Metadata} from "next";
 import Navbar from "@/widgets/navbar/NavBar";
 import '../../shared/styles/scss/app.scss'
-import {Footer} from "@/widgets/footer/Footer";
+import {Footer} from "@/widgets/Footer";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 

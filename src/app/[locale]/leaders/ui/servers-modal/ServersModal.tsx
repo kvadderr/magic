@@ -1,5 +1,5 @@
 "use client"
-import {useLeaderboardProvider} from "@/app/leaders/api";
+import { useLeaderboardProvider} from "@/app/[locale]/leaders/api";
 import {Fragment, useEffect, useState} from "react";
 import {v4} from "uuid";
 
