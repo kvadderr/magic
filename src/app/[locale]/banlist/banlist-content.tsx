@@ -1,7 +1,7 @@
 "use client"
 import {useEffect, useState} from "react";
 import {IBanListItem, IGetBanList} from "@/api/banlist/types";
-import BanListTable from "@/app/banlist/ui/banlist-table/BanListTable";
+import BanListTable from "@/app/[locale]/banlist/ui/banlist-table/BanListTable";
 import {BanListApi} from "@/api/banlist/banlist.api";
 import {SearchIcon} from "@/shared/assets";
 import Pagination from "@/shared/components/Pagination/Pagination";

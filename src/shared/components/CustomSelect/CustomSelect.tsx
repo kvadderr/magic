@@ -1,5 +1,6 @@
 import Select, {components} from 'react-select';
 import dropDown from '../../../assets/custom-select/arrow-down.png';
+import Image from "next/image";
 
 interface optionsItem {
     label: string;
@@ -25,7 +26,7 @@ interface CustomSelectProps {
 const DropdownIndicator = (props: any) => {
     return (
         <components.DropdownIndicator {...props}>
-            <img src={dropDown.src} className={`${props.selectProps.menuIsOpen ? 'arrowDown' : 'arrowUp'}`} />
+            <Image alt="arrow" width={20} height={20} src={dropDown.src} className={`${props.selectProps.menuIsOpen ? 'arrowDown' : 'arrowUp'}`} />
         </components.DropdownIndicator>
     );
 };
