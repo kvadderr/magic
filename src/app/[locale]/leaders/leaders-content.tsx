@@ -7,8 +7,10 @@ import {leaderBoardMock} from "@/api/leaderboard/mock";
 import { ServersModal} from "@/app/[locale]/leaders/ui/servers-modal/ServersModal";
 import { useLeaderboardProvider} from "@/app/[locale]/leaders/api";
 import Pagination from "@/shared/components/Pagination/Pagination";
+import {useTranslations} from "next-intl";
 
 const LeaderboardContent = (props: { page: string }) => {
+  const t = useTranslations("Leaderboard");
   const {modal, setModal, serverId} = useLeaderboardProvider();
   const [data, set] = useState<IGetLeaderBoard>();
   const [page, setPage] = useState(
@@ -31,7 +33,9 @@ const LeaderboardContent = (props: { page: string }) => {
   return (
     <>
       <button onClick={() => setModal(true)} className="btn blackBtn"
-              style={{width: "200px", height: "50px", margin: "20px auto"}}>Select a server
+              style={{width: "200px", height: "50px", margin: "20px auto"}}
+      >
+        {t("button")}
       </button>
       {!(!data || data.leaderboard.length === 0) &&
         <>

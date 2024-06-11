@@ -5,9 +5,11 @@ import BanListTable from "@/app/[locale]/banlist/ui/banlist-table/BanListTable";
 import {BanListApi} from "@/api/banlist/banlist.api";
 import {SearchIcon} from "@/shared/assets";
 import Pagination from "@/shared/components/Pagination/Pagination";
+import {useTranslations} from "next-intl";
 
 
 const BanListContent = (props: { page: string }) => {
+  const t = useTranslations("Ban_List");
   const [data, set] = useState<IGetBanList>();
   const [search, setSearch] = useState<string>("");
   const [filtered, setFiltered] = useState<IBanListItem[]>([]);
@@ -40,7 +42,7 @@ const BanListContent = (props: { page: string }) => {
           onChange={ev => setSearch(ev.currentTarget.value)}
           type="text"
           className="searchInput"
-          placeholder="Enter nickname or steam id"/>
+          placeholder={t("input")}/>
       </div>
       {!(!data || data.banlist.length === 0) &&
         <>

@@ -4,6 +4,7 @@ import {toLearnMore} from "@/shared/constants/modal";
 import {SilverModal} from "@/shared/components/CardCurrency/modal/SilverModal";
 import ModalPortal from "@/shared/components/ModalPortal/ModalPortal";
 import NotificationModal from "@/shared/components/CardCurrency/modal/Notification";
+import {useTranslations} from "next-intl";
 
 interface ResizingCardProps {
   product: Product;
@@ -11,6 +12,7 @@ interface ResizingCardProps {
 }
 
 const ResizingCard = ({product: item}: ResizingCardProps) => {
+  const t = useTranslations("Card");
   const [dimensions, setDimensions] = useState({
     width: 1920,
     height: 1080,
@@ -72,7 +74,7 @@ const ResizingCard = ({product: item}: ResizingCardProps) => {
                         fill="white"/>
                 </g>
               </svg>
-              <p> {toLearnMore.ru}</p>
+              <p> {t("Silver.learn_more")}</p>
             </div>
           )}
         </div>

@@ -10,7 +10,7 @@ type StoreHeaderProps = {
 }
 export default function StoreHeader(props: StoreHeaderProps) {
   const { types, tab } = props;
-  const t = useTranslations('Footer');
+  const t = useTranslations('Index.Header');
   return (
     <div className="headerShopBox">
       <Image src='/image/shop_header_img.png' alt="bg" width={1200} height={400}/>
@@ -18,10 +18,10 @@ export default function StoreHeader(props: StoreHeaderProps) {
         <div className="centerHeaderShopBox">
           <div className="textHeaderShopBox">
             <h1>{t('title')}</h1>
-            <p>On our project 20 different servers and modes. To buy choose your own.</p>
+            <p>{t("description")}</p>
             <Link href="/servers">
               <div className="dopInfoHeaderShopBox">
-                <p>How do I find out the server mode?</p>
+                <p>{t("link")}</p>
               </div>
             </Link>
           </div>

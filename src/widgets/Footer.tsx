@@ -1,11 +1,12 @@
 import LangSelect from "@/widgets/LangSelect";
 import {OnlineIcon} from "@/shared/assets/icons/footer";
-import {getTranslations} from 'next-intl/server';
+import {getLocale, getTranslations} from 'next-intl/server';
 import Image from "next/image";
 import Link from "next/link";
 export const Footer = async () => {
   
   const t = await getTranslations('Footer');
+  const locale = await getLocale();
   
   return (
     <footer className="container">
@@ -65,14 +66,14 @@ export const Footer = async () => {
             </p>
           </div>
           <div className="listBottom">
-            <Link href="/privacyPolicy">
-              <p className="conditionalsLabel">{t('privacyPolicy')}</p>
+            <Link href={`/${locale}/privacyPolicy`}>
+              <p className="conditionalsLabel">{t('privacy_policy')}</p>
             </Link>
-            <Link href="/termOfUse">
-              <p className="conditionalsLabel">{t('termOfUse')}</p>
+            <Link href={`/${locale}/termOfUse`}>
+              <p className="conditionalsLabel">{t('terms')}</p>
             </Link>
-            <Link href="/conditionsOfUse">
-              <p className="conditionalsLabel">{t('conditionsOfUse')}</p>
+            <Link href={`/${locale}/conditionsOfUse`}>
+              <p className="conditionalsLabel">{t('conditions')}</p>
             </Link>
           </div>
         </div>
