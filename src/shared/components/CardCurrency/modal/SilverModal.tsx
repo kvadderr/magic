@@ -11,6 +11,7 @@ import {SilverPackage} from "@/shared/components/CardCurrency/modal/SilverPackag
 import Image from "next/image";
 import {CurrencyApi} from "@/api/currency/currency.api";
 import {CloseIcon, CoinIcon, EqualsIcon, RubbleIcon} from "@/shared/assets";
+import {useTranslations} from "next-intl";
 
 export interface BuySilverModalProps {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -18,6 +19,7 @@ export interface BuySilverModalProps {
 }
 
 export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
+  const t = useTranslations("Card.Silver");
   useBodyScrollModal();
   const [active, setActive] = useState(true);
   const [rubInput, setRubInput] = useState('');
@@ -83,16 +85,16 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
       <div className="modalContent mountedStyle modalContentActive">
         <div className="modalBackground"></div>
         <div className="buySilverModal">
-          <div className="modalHeaderSmallBottom"><h3 className="modalHeaderTitle">Купить серебро</h3>
+          <div className="modalHeaderSmallBottom"><h3 className="modalHeaderTitle">{t("Modal.title")}</h3>
             <div className="modal-header-with-close"
                  onClick={() => {onClose(false)}}>
               <CloseIcon />
             </div>
           </div>
           <div>
-            <p className="buySilverText">{silverModalSubTitle.ru}</p>
+            <p className="buySilverText">{t("Modal.description")}</p>
             <div className="selectAPackageBlock">
-              <h4>{silverModalSelectAPackage.ru}</h4>
+              <h4>{t("Modal.choose_package")}</h4>
               <div className="selectAPackageContainer">
                 {item.productContent.data.map((el: any, index: any) => (
                   <SilverPackage
@@ -105,13 +107,13 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
               </div>
             </div>
             <div className="inputSumBlock">
-              <h4>{silverModalEnterTheAmount.ru}</h4>
+              <h4>{t("Modal.input_sum")}</h4>
               <div className="inputSum">
                 <div className={`${selectedPack ? 'inputSumWrapDisabled' : 'inputSumWrap'}`}>
                   <input
                     onClick={() => setSelectedPack(undefined)}
                     type="text"
-                    placeholder={silverModalInRubles.ru}
+                    placeholder={t("Modal.in_rubles")}
                     value={rubInput}
                     onChange={e => handlerRubsInput(e.target.value)}
                   />
@@ -122,7 +124,7 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
                   <input
                     onClick={() => setSelectedPack(undefined)}
                     type="text"
-                    placeholder={silverModalInCoins.ru}
+                    placeholder={t("Modal.in_game")}
                     value={coinInput}
                     onChange={e => {
                       handlerSilverInput(e.target.value);

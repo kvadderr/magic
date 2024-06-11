@@ -1,18 +1,17 @@
 "use client"
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from 'next/navigation';
-
-import {menu} from "@/shared/constants/menu";
 import {useState} from "react";
 import {NavbarModal} from "@/shared/components/NavbarModal/NavbarModal";
 import {handleSteamLogin} from "@/shared/hooks/handleSteamLogin";
 import BurgerIcon from "@/shared/assets/icons/BurgerIcon";
 import {createSharedPathnamesNavigation} from 'next-intl/navigation';
+import {useLocale, useTranslations} from "next-intl";
 
 const Navbar = () => {
   const [modal, set] = useState<boolean>(false);
   const {Link, useRouter, usePathname, redirect} = createSharedPathnamesNavigation();
+  const t = useTranslations("Header");
+  const locale = useLocale();
   
   return (
     <>
@@ -28,20 +27,41 @@ const Navbar = () => {
               <Image src='/svg/logo.svg' alt='logo' width={200} height={41}/>
             </Link>
             <nav className="navbar">
-              {menu.map((item) => (
-                <Link
-                  locale='en'
-                  href={item.link}
-                  className="navbar__item"
-                  key={item.id}
-                >
-                  <Image src={item.icon} alt="logo" width={200} height={41} className="navbar__icon"/>
-                  <span>{item.title}</span>
-                </Link>
-              ))}
+              <Link
+                locale={locale}
+                href="/servers"
+                className="navbar__item"
+              >
+                <Image src="https://storage.yandexcloud.net/magicow-rust/ElectricalPlug.svg" alt="logo" width={200} height={41} className="navbar__icon"/>
+                <span>{t("servers")}</span>
+              </Link>
+              <Link
+                locale={locale}
+                href="/info"
+                className="navbar__item"
+              >
+                <Image src="https://storage.yandexcloud.net/magicow-rust/Location.svg" alt="logo" width={200} height={41} className="navbar__icon"/>
+                <span>{t("information")}</span>
+              </Link>
+              <Link
+                locale={locale}
+                href="/leaders"
+                className="navbar__item"
+              >
+                <Image src="https://storage.yandexcloud.net/magicow-rust/Star.svg" alt="logo" width={200} height={41} className="navbar__icon"/>
+                <span>{t("leaderboard")}</span>
+              </Link>
+              <Link
+                locale={locale}
+                href="/banlist"
+                className="navbar__item"
+              >
+                <Image src="https://storage.yandexcloud.net/magicow-rust/View%20List.svg" alt="logo" width={200} height={41} className="navbar__icon"/>
+                <span>{t("ban_list")}</span>
+              </Link>
             </nav>
             <div className="profile" style={{cursor: 'pointer'}} onClick={handleSteamLogin}>
-              Войти
+              {t("login")}
             </div>
           </div>
         </div>

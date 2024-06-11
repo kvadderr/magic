@@ -1,8 +1,13 @@
 import ModalPortal from "@/shared/components/ModalPortal/ModalPortal";
 import {Dispatch, SetStateAction} from "react";
 import Image from "next/image";
+import {useLocale, useTranslations} from "next-intl";
+import Link from "next/link";
 
 export const NavbarModal = ({onClose}: { onClose: Dispatch<SetStateAction<boolean>> }) => {
+    const t = useTranslations("Header");
+    const locale = useLocale();
+
     return (
         <ModalPortal>
             <div className="blurBackgroundColor"></div>
@@ -30,28 +35,28 @@ export const NavbarModal = ({onClose}: { onClose: Dispatch<SetStateAction<boolea
                             </a>
                         </div>
                         <nav className="sidebarNavbar">
-                            <a className="sidebarNavbarItem" href="/servers">
+                            <Link className="sidebarNavbarItem" href={`/${locale}/servers`}>
                                 <Image alt="" width={24} height={24}
                                        src="https://storage.yandexcloud.net/magicow-rust/ElectricalPlug.svg"
                                        className="sidebarNavbarIcon"/>
-                                <span>Servers</span>
-                            </a>
-                            <a className="sidebarNavbarItem" href="/info">
+                                <span>{t("servers")}</span>
+                            </Link>
+                            <Link className="sidebarNavbarItem" href={`/${locale}/info`}>
                                 <Image alt="" width={24} height={24}
                                        src="https://storage.yandexcloud.net/magicow-rust/Location.svg"
                                        className="sidebarNavbarIcon"/>
-                                <span>Information</span></a>
-                            <a className="sidebarNavbarItem" href="/leaders">
+                                <span>{t("information")}</span></Link>
+                            <Link className="sidebarNavbarItem" href={`/${locale}/leaders`}>
                                 <Image alt="" width={24} height={24}
                                        src="https://storage.yandexcloud.net/magicow-rust/Star.svg"
                                        className="sidebarNavbarIcon"/>
-                                <span>Leaders board</span></a>
-                            <a className="sidebarNavbarItem" href="/banlist">
+                                <span>{t("leaderboard")}</span></Link>
+                            <Link className="sidebarNavbarItem" href={`/${locale}/banlist`}>
                                 <Image alt="" width={24} height={24}
                                        src="https://storage.yandexcloud.net/magicow-rust/View%20List.svg"
                                        className="sidebarNavbarIcon"/>
-                                <span>Ban list</span>
-                            </a>
+                                <span>{t("ban_list")}</span>
+                            </Link>
                         </nav>
                     </div>
                     <div className="sidebarBottom">

@@ -2,6 +2,7 @@ import {FC} from "react";
 import {v4} from "uuid";
 import {ILeaderboardItem} from "@/api/leaderboard/types";
 import Image from "next/image";
+import {useTranslations} from "next-intl";
 
 interface IProps {
     items: ILeaderboardItem[];
@@ -9,24 +10,25 @@ interface IProps {
 
 
 const LeaderboardTable: FC<IProps> = ({items}) => {
+  const t = useTranslations("Leaderboard.Table");
     return (
         <table className="tableForLeaders">
             <thead>
             <tr>
                 <th className="col">
-                    Place
+                  {t("place")}
                 </th>
                 <th className="col">
-                    User
+                  {t("user")}
                 </th>
                 <th className="col">
-                    Glasses
+                  {t("glasses")}
                 </th>
                 <th className="col">
-                    Kills
+                  {t("kills")}
                 </th>
                 <th className="col">
-                    Last activity
+                  {t("last_activity")}
                 </th>
             </tr>
             </thead>

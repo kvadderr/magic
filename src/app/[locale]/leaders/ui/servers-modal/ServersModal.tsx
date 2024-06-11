@@ -2,8 +2,10 @@
 import { useLeaderboardProvider} from "@/app/[locale]/leaders/api";
 import {Fragment, useEffect, useState} from "react";
 import {v4} from "uuid";
+import {useTranslations} from "next-intl";
 
 export const ServersModal = () => {
+    const t = useTranslations("Leaderboard.Modal");
     const {
         serversList,
         serverId,
@@ -26,7 +28,7 @@ export const ServersModal = () => {
                 <div className="modalBackground"></div>
                 <div className="selectServerModal">
                     <div className="modalHeader">
-                        <h3 className="modalHeaderTitle">Выберите сервер</h3>
+                        <h3 className="modalHeaderTitle">{t("title")}</h3>
                         <div className="modal-header-with-close" onClick={() => setModal(false)}>
                             <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -55,7 +57,7 @@ export const ServersModal = () => {
                             })
                         }
                     </div>
-                    <button className="btn wideBtn lightBtn" onClick={() => emit()}>Подтвердить</button>
+                    <button className="btn wideBtn lightBtn" onClick={() => emit()}>{t("submit")}</button>
                 </div>
             </div>
         </div>

@@ -1,9 +1,104 @@
 {
   "Index": {
-    "title": "Hello world!"
+    "Header": {
+      "title": "Pick your mode!",
+      "description": "On our project 20 different servers and modes. To buy choose your own.",
+      "link": "How do I find out the server mode?"
+    }
+  },
+  "Servers": {
+    "title": "Servers"
+  },
+  "Information": {
+    "title": "Information"
+  },
+  "Profile": {
+    "logout": "Exit",
+    "Tabs": {
+      "inventory": "Inventory",
+      "detail": "Detail"
+    },
+    "Table": {
+      "empty": "No records"
+    }
+  },
+  "Ban_List": {
+    "title": "Ban list",
+    "input": "Enter nickname or steam id",
+    "Table": {
+      "date": "Date",
+      "player": "Player",
+      "reason": "Reason",
+      "empty": "No records"
+    }
+  },
+  "Leaderboard": {
+    "title": "Leaderboard",
+    "button": "Select a server",
+    "Modal": {
+      "title": "Select a server",
+      "submit": "Submit"
+    },
+    "Table": {
+      "place": "Place",
+      "user": "User",
+      "glasses": "Glasses",
+      "kills": "Kills",
+      "last_activity": "Last activity",
+      "empty": "No records"
+    }
+  },
+  "Header": {
+    "servers": "Servers",
+    "information": "Information",
+    "leaderboard": "Leaderboard",
+    "ban_list": "Ban list",
+    "login": "login"
   },
   "Footer": {
     "online": "Online",
-    "description": "LOOOL"
+    "description": "The information posted on this site is for informational purposes only and under no circumstances is a public offer, as defined by the provisions of Part 2, Art. 437 of the Civil Code of the Russian Federation",
+    "privacy_policy": "Privacy Policy",
+    "conditions": "Conditions of use",
+    "terms": "Terms of use"
+  },
+  "Change_Server": {
+    "server_activation": "Сервер для активации"
+  },
+  "Card": {
+    "Silver": {
+      "title": "Silver",
+      "learn_more": "Learn more",
+      "description": "For these coins you will buy everything you want in our game store on the server. It is easy, fast and very convenient",
+      "button": "Select amount",
+      "Modal": {
+        "title": "Buy silver",
+        "description": "Currency for which you can buy things in the mini-shop. The balance is unique for each server",
+        "choose_package": "Select a package",
+        "input_sum": "Or enter the amount",
+        "in_rubles": "In rubles",
+        "in_game": "In game currency"
+      }
+    },
+    "Notification": {
+      "title": "Raid Notifications",
+      "button": "Connect",
+      "Modal": {
+        "title": "Buy silver",
+        "copy_label": "Copy the code",
+        "description": "Send the code to our social networks to link your account",
+        "button": "Get the code",
+        "warning": "To enable notifications, you first need to visit one of our servers",
+        "link": "Open servers"
+      }
+    },
+    "Package": {
+      "buy": "Buy",
+      "hour": "Hour",
+      "hours": "Hours",
+      "rates": "Rates",
+      "delay": "Delay TP",
+      "home": "Home"
+    }
   }
 }
