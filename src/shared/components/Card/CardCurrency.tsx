@@ -13,10 +13,7 @@ interface ResizingCardProps {
 
 const ResizingCard = ({product: item}: ResizingCardProps) => {
   const t = useTranslations("Card");
-  const [dimensions, setDimensions] = useState({
-    width: 1920,
-    height: 1080,
-  });
+ 
   
   const [modalActive, setModalActive] = useState<boolean>(false);
   
@@ -27,19 +24,6 @@ const ResizingCard = ({product: item}: ResizingCardProps) => {
   
   const gradientOfBigCard = `linear-gradient(to top, rgba(35, 27, 58, 0.00) 0%, #231B3A 100%), url(${item.image}) `;
   
-  const handleResize = () => {
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  };
-  useEffect(() => {
-    window.addEventListener('resize', handleResize, false);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-  
   return (
     <>
       <div
@@ -47,9 +31,8 @@ const ResizingCard = ({product: item}: ResizingCardProps) => {
         style={{
           cursor: "unset",
           backgroundImage: item.blockSize === 1 ? backgroundImageGradient : gradientOfBigCard,
-          gridColumn: `span ${dimensions.width <= 1280 ? 2 : item.blockSize} `,
-          /* @ts-ignore */
-          height: dimensions.width <= 1280 ? 240 : item.height,
+          gridColumn: `span ${2} `,
+          height: 240,
         }}
       >
         {!!item.discount && <div className="discount">{item.discount}%</div>}

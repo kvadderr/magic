@@ -1,9 +1,6 @@
 import {IGetTypesRes} from "@/api/store/types";
 import Link from "next/link";
 
-
-
-
 export const StoreHeaderTabs = ({ storeTypes, tab }: {storeTypes: IGetTypesRes[], tab: number}) => {
   return (
     <div className="menuHeaderShopBox">
