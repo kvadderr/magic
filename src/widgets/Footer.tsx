@@ -3,11 +3,17 @@ import {OnlineIcon} from "@/shared/assets/icons/footer";
 import {getLocale, getTranslations} from 'next-intl/server';
 import Image from "next/image";
 import Link from "next/link";
+import {ServersApi} from "@/api/servers/servers.api";
+import {monitoringServers, serverInfo} from "@/api/servers/types";
+import ScaleOnline from "@/shared/components/ScaleOnline/ScaleOnline";
+import {round} from "@floating-ui/utils";
+import onlineMock from "@/shared/constants/online-mock";
+
 export const Footer = async () => {
-  
+  // const info = await ServersApi.getScaleServers();
   const t = await getTranslations('Footer');
   const locale = await getLocale();
-  
+
   return (
     <footer className="container">
       <div className="containerFooter">
@@ -19,7 +25,7 @@ export const Footer = async () => {
           <p className="labelCountFooter">
             500 / 1000
           </p>
-          <div className="footerBox"></div>
+          <ScaleOnline info={onlineMock}/>
         </div>
         <div className="bottomFooter">
           <p>{t('description')}</p>
@@ -35,7 +41,7 @@ export const Footer = async () => {
                   className="iconContactFooter"/>
               </Link>
               <Link href="https://discord.gg/magicrust"
-                 target="_blank">
+                    target="_blank">
                 <Image
                   width={24}
                   height={24}

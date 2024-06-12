@@ -13,6 +13,7 @@
 @import "./pages/leaders";
 //компоненты
 
+@import "./components/scale-online";
 @import "./components/pagination/pagination";
 @import "./components/footer/footer";
 @import "./components/shop/modals/notification-modal";
@@ -26,7 +27,7 @@
 @import './components/profile/inventory';
 @import './components/leaders/pedestal-item';
 @import "./components/UI/search-input";
-// @import './components/shop/modals/product-item';
+ @import './components/shop/modals/product-item';
 @import './components/buySilver/buy-silver';
 @import './components/select-server-modal/select-server-modal';
 @import './components/funds-transfer-modal/funds-transfer-modal';

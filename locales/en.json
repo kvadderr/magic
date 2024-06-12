@@ -7,7 +7,9 @@
     }
   },
   "Servers": {
-    "title": "Servers"
+    "title": "Servers",
+    "server_monitoring": "Server monitoring",
+    "server_monitoring_open": "Open servers"
   },
   "Information": {
     "title": "Information"
