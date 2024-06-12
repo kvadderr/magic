@@ -21,8 +21,8 @@ const LangSelect = () => {
     });
   };
   const options = [
-    { value: 'en', label: 'English', icon: RuLangIcon },
-    { value: 'ru', label: 'Русский' },
+    { value: 'en', label: 'English', icon: <RuLangIcon /> },
+    { value: 'ru', label: 'Русский', icon: <RuLangIcon /> },
   ]
   return (
     <CustomSelect

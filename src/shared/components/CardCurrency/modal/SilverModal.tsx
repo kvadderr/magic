@@ -46,11 +46,10 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
     setSelectedPack(undefined);
     CurrencyApi.getCurrency(value)
       .then(response => {
-        // Обработка ответа от API
+        console.log(response.data)
         setCoinInput(response.data.amount)
       })
       .catch(error => {
-        // Обработка ошибок
         console.error(error);
       });
     checkSilver(value);
