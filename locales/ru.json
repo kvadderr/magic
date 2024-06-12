@@ -7,7 +7,9 @@
     }
   },
   "Servers": {
-    "title": "Серверы"
+    "title": "Серверы",
+    "server_monitoring": "Мониторинг серверов",
+    "server_monitoring_open": "Открыть сервера"
   },
   "Information": {
     "title": "Информация"
