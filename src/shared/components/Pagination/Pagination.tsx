@@ -46,6 +46,7 @@ const Pagination = ({ currentPage, pagesAmount, setCurrentPage, perPage = 10 }: 
     });
   };
   useEffect(() => {
+    handleResize();
     window.addEventListener('resize', handleResize, false);
     return () => {
       window.removeEventListener('resize', handleResize);

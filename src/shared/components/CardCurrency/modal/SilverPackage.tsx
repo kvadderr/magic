@@ -1,4 +1,5 @@
-import {Dispatch, SetStateAction} from "react";
+"use client"
+import {Dispatch, SetStateAction, useEffect} from "react";
 import Image from "next/image";
 
 interface SilverPackageProps {
@@ -18,7 +19,7 @@ export const SilverPackage = ({item, selected, onChange}: SilverPackageProps) =>
   };
   
   return (
-    <div className="packageItem" onClick={emit}>
+    <div className="packageItem" onClick={() => emit()}>
       <div className="percentages">
         <div>+ {item.procent}%</div>
       </div>
