@@ -91,7 +91,8 @@
         "description": "Send the code to our social networks to link your account",
         "button": "Get the code",
         "warning": "To enable notifications, you first need to visit one of our servers",
-        "link": "Open servers"
+        "link": "Open servers",
+        "bind": "Bind"
       }
     },
     "Package": {
