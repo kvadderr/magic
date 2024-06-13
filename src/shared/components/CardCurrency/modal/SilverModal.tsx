@@ -12,16 +12,19 @@ import Image from "next/image";
 import {CurrencyApi} from "@/api/currency/currency.api";
 import {CloseIcon, CoinIcon, EqualsIcon, RubbleIcon} from "@/shared/assets";
 import {useTranslations} from "next-intl";
+import {StoreApi} from "@/api/store/store.api";
+import {Simulate} from "react-dom/test-utils";
+import select = Simulate.select;
 
 export interface BuySilverModalProps {
   onClose: Dispatch<SetStateAction<boolean>>;
   item: Product;
 }
 
+
 export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
   const t = useTranslations("Card.Silver");
   useBodyScrollModal();
-  const [active, setActive] = useState(true);
   const [rubInput, setRubInput] = useState('');
   const [coinInput, setCoinInput] = useState('');
   const [selectedPack, setSelectedPack] = useState<number | undefined>(undefined);
@@ -32,9 +35,18 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
     setCoinInput('');
     onClose(false);
   };
+
+  const getPriceFC = async (id: number, amount: number) => {
+    const {data} = await StoreApi.getPrice(id, amount);
+    return {
+      finalPrice: data.finalPrice,
+      type: data.type
+    }
+  }
   const checkSilver = (value: any) => {
     if (!value.match(/\D/g) && +value.length < 8) {
       setRubInput(value);
+      // getPriceFC(item.id, Number(value));
       // getPrice({id: item.id, rubs: Number(value), isPack: !!selectedPack});
       if (!value) {
         setCoinInput(value);
@@ -44,13 +56,11 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
   
   const handlerRubsInput = (value: any) => {
     setSelectedPack(undefined);
-    CurrencyApi.getCurrency(value)
+    CurrencyApi.getCurrency({id: item.id, rubs: value})
       .then(response => {
-        // Обработка ответа от API
         setCoinInput(response.data.amount)
       })
       .catch(error => {
-        // Обработка ошибок
         console.error(error);
       });
     checkSilver(value);
@@ -65,20 +75,30 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
     const value = String(val);
     if (!value.match(/\D/g) && +value.length < 8) {
       setCoinInput(value);
-      // getPrice({id: item.id, amount: Number(value), isPack: !!selectedPack});
-      if (!value) {
-        setRubInput(value);
-      }
+      CurrencyApi.getCurrency({id: item.id, amount: parseInt(value), isPack: !!selectedPack})
+        .then(response => {
+          setRubInput(response.data.finalPrice)
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
   };
+
+  useEffect(() => {
+    if (typeof selectedPack === "number") {
+      // @ts-ignore
+      const count = item.productContent.data.filter(el => el.id === selectedPack)[0].count;
+      // setCoinInput(count);
+      checkRubs(count)
+      // console.log(count)
+    }
+  }, [selectedPack]);
   
   useEffect(() => {
     setCoinInput('');
     setRubInput('');
   }, []);
-  
-  useEffect(() => {
-  }, [active]);
   
   return (
     <div className="modal modalActive">

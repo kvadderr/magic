@@ -34,6 +34,7 @@ const ResizingCard = ({product: item}: ResizingCardProps) => {
     });
   };
   useEffect(() => {
+    handleResize();
     window.addEventListener('resize', handleResize, false);
     return () => {
       window.removeEventListener('resize', handleResize);

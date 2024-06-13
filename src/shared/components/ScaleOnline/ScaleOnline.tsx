@@ -33,6 +33,7 @@ const ScaleOnline = ({info}: ScaleOnlineProps) => {
     });
   };
   useEffect(() => {
+    handleResize();
     window.addEventListener('resize', handleResize, false);
     return () => {
       window.removeEventListener('resize', handleResize);
