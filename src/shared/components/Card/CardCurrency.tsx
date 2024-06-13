@@ -24,20 +24,6 @@ const ResizingCard = ({product: item}: ResizingCardProps) => {
   
   const gradientOfBigCard = `linear-gradient(to top, rgba(35, 27, 58, 0.00) 0%, #231B3A 100%), url(${item.image}) `;
   
-  const handleResize = () => {
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  };
-  useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize, false);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-  
   return (
     <>
       <div
