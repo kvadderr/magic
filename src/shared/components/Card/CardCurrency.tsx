@@ -13,10 +13,7 @@ interface ResizingCardProps {
 
 const ResizingCard = ({product: item}: ResizingCardProps) => {
   const t = useTranslations("Card");
-  const [dimensions, setDimensions] = useState({
-    width: 1920,
-    height: 1080,
-  });
+ 
   
   const [modalActive, setModalActive] = useState<boolean>(false);
   
@@ -48,9 +45,8 @@ const ResizingCard = ({product: item}: ResizingCardProps) => {
         style={{
           cursor: "unset",
           backgroundImage: item.blockSize === 1 ? backgroundImageGradient : gradientOfBigCard,
-          gridColumn: `span ${dimensions.width <= 1280 ? 2 : item.blockSize} `,
-          /* @ts-ignore */
-          height: dimensions.width <= 1280 ? 240 : item.height,
+          gridColumn: `span ${2} `,
+          height: 240,
         }}
       >
         {!!item.discount && <div className="discount">{item.discount}%</div>}
