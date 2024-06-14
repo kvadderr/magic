@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {NavbarModal} from "@/shared/components/NavbarModal/NavbarModal";
 import {handleSteamLogin} from "@/shared/hooks/handleSteamLogin";
 import BurgerIcon from "@/shared/assets/icons/BurgerIcon";
@@ -10,8 +10,13 @@ import {useLocale, useTranslations} from "next-intl";
 const Navbar = () => {
   const [modal, set] = useState<boolean>(false);
   const {Link, useRouter, usePathname, redirect} = createSharedPathnamesNavigation();
+  const path = usePathname();
   const t = useTranslations("Header");
   const locale = useLocale();
+
+  useEffect(() => {
+    set(false)
+  }, [path]);
   
   return (
     <>

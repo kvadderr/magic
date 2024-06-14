@@ -8,19 +8,23 @@ import { ServersModal} from "@/app/[locale]/leaders/ui/servers-modal/ServersModa
 import { useLeaderboardProvider} from "@/app/[locale]/leaders/api";
 import Pagination from "@/shared/components/Pagination/Pagination";
 import {useTranslations} from "next-intl";
+import Pedestal from "@/shared/components/Pedestal/Pedestal";
 
 const LeaderboardContent = (props: { page: string }) => {
   const t = useTranslations("Leaderboard");
   const {modal, setModal, serverId} = useLeaderboardProvider();
   const [data, set] = useState<IGetLeaderBoard>();
+  const [top, setTop] = useState<IGetLeaderBoard>();
   const [page, setPage] = useState(
     props.page && parseInt(props.page) ? parseInt(props.page) : 1
   );
 
   const asyncData = async () => {
     try {
-      const {data} = await LeaderboardApi.getLeaderboard(page, serverId);
-      set(data);
+      const {data: list} = await LeaderboardApi.getLeaderboard(page, serverId);
+      const {data: top} = await LeaderboardApi.getLeaderboardTop(serverId);
+      set(list);
+      setTop(top);
     } catch (error) {
       set({leaderboard: leaderBoardMock, pages: 10});
     }
@@ -32,6 +36,11 @@ const LeaderboardContent = (props: { page: string }) => {
 
   return (
     <>
+      {top && (
+        <div className="containerPedestal">
+          <Pedestal data={top} />
+        </div>
+      )}
       <button onClick={() => setModal(true)} className="btn blackBtn"
               style={{width: "200px", height: "50px", margin: "20px auto"}}
       >

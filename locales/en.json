@@ -27,7 +27,7 @@
   "Ban_List": {
     "title": "Ban list",
     "input": "Enter nickname or steam id",
-    "Table": {
+    "table": {
       "date": "Date",
       "player": "Player",
       "reason": "Reason",
