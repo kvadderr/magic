@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction} from 'react';
+import {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import {
   notificationModalCopyTheCode,
   notificationModalGetCode,
@@ -9,8 +9,20 @@ import {
 import Link from "next/link";
 import {AlertInfoIcon, CloseIcon} from "@/shared/assets";
 import {useLocale, useTranslations} from "next-intl";
+import {InformationApi} from "@/api/information/information.api";
 
 const NotificationModal = ({onClose}: { onClose: Dispatch<SetStateAction<boolean>> }) => {
+  const [contacts, setContacts] = useState<any>([]);
+
+  const asyncData = async () => {
+    const {data} = await InformationApi.getContactsForNotices();
+    setContacts(data)
+  }
+
+  useEffect(() => {
+    asyncData()
+  }, []);
+
   const t = useTranslations("Card.Notification");
   const locale = useLocale();
   return (
@@ -31,6 +43,21 @@ const NotificationModal = ({onClose}: { onClose: Dispatch<SetStateAction<boolean
           <button className="btn lightBtn codeBtn">
             {t("Modal.button")}
           </button>
+
+          <div className="boxButtons">
+            { // @ts-ignore
+              contacts?.map((it, index) => (
+                <Link href={it.url} target="_blank" key={index}>
+                  <button className="btn blackBtn netWorkBtn">
+                    <img src={it.icon} alt="" className="iconInBtn"/>
+                    <p>
+                      {t("Modal.bind")} {it.name}
+                    </p>
+                  </button>
+                </Link>
+              ))
+            }
+          </div>
           <div className="serviceModalRightContentWarning">
             <AlertInfoIcon/>
             <span className="serviceModalRightContentWarningTitle">

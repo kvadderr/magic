@@ -5,6 +5,7 @@ import '../../shared/styles/scss/app.scss'
 import {Footer} from "@/widgets/Footer";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
+import instance from "@/api/instance/instance";
 
 export const metadata: Metadata = {
   title: "MRust",
@@ -18,6 +19,8 @@ export default async function RootLayout({
   params: { locale: string };
 }>) {
   const messages = await getMessages();
+  // @ts-ignore
+  instance.defaults.headers.language = locale;
   
   return (
     <html lang={locale}>

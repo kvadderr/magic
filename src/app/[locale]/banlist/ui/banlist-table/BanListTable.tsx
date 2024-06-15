@@ -11,6 +11,7 @@ interface IProps {
 const BanListTable: FC<IProps> = ({items}) => {
   const t = useTranslations("Ban_List.table");
   return (
+    <div className="tableWrap">
     <table className="tableForBanList">
       <thead>
       <tr>
@@ -40,6 +41,7 @@ const BanListTable: FC<IProps> = ({items}) => {
       }
       </tbody>
     </table>
+    </div>
   )
 }
 

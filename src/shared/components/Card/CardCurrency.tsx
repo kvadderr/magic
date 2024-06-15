@@ -5,6 +5,7 @@ import {SilverModal} from "@/shared/components/CardCurrency/modal/SilverModal";
 import ModalPortal from "@/shared/components/ModalPortal/ModalPortal";
 import NotificationModal from "@/shared/components/CardCurrency/modal/Notification";
 import {useTranslations} from "next-intl";
+import Image from "next/image";
 
 interface ResizingCardProps {
   product: Product;
@@ -66,7 +67,7 @@ const ResizingCard = ({product: item}: ResizingCardProps) => {
           onClick={() => setModalActive(true)}
           className={`btn ${item.buttonColor === 'GREEN' ? 'greenBtn' : 'lightBtn'} resizingCardBtn`}
         >
-          {item.iconButton && <img src={item.iconButton} style={{width: 24, height: 24, marginRight: 8}}/>}
+          {item.iconButton && <Image src={item.iconButton} width={24} height={24} style={{width: 24, height: 24, marginRight: 8}} alt=""/>}
           {item.textButton ? item.textButton : item.price + ' ₽'}
         </button>
         {modalActive && <ModalPortal>

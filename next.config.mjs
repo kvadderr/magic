@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 import createNextIntlPlugin from 'next-intl/plugin';
+import withSvgr from "next-plugin-svgr";
 const withNextIntl = createNextIntlPlugin();
-const nextConfig = {
+
+
+const nextConfig = withSvgr({
+    svgrOptions: {
+        titleProp: true,
+        icon: true,
+        svgProps: {
+            height: 'auto',
+        },
+    },
     images: {
         remotePatterns: [
             {
@@ -26,6 +36,6 @@ const nextConfig = {
             },
         ],
     },
-};
+});
 
 export default withNextIntl(nextConfig);

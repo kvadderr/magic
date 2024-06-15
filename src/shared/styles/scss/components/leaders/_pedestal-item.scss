@@ -6,6 +6,8 @@
   margin-left: 12px;
 }
 .placeUser {
+  width: inherit;
+  height: inherit;
   position: absolute;
 }
 .containerPedestalItem {
@@ -19,7 +21,7 @@
   justify-content: center;
   width: 209px;
   height: 209px;
-  position: 'relative';
+  position: relative;
 }
 .baseTextPedestalItem {
   text-align: center;
