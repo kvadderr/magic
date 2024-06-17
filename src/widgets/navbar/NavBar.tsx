@@ -106,7 +106,7 @@ const Navbar = () => {
                       </defs>
                     </svg>
                   </div>
-                  <Link href={`${locale}/profile`} className="profile__icon" onClick={() => {}}>
+                  <Link href="/profile" className="profile__icon" onClick={() => {}}>
                     <img src={user?.avatar} alt="" className="avatar-in-navbar"/>
                   </Link>
                 </div> :
