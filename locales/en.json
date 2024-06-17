@@ -21,7 +21,30 @@
       "detail": "Detail"
     },
     "Table": {
-      "empty": "No records"
+      "empty": "No records",
+      "Inventory": {
+        "id": "ID",
+        "title": "Product",
+        "amount": "Amount",
+        "mode": "Mode",
+        "cancel_btn": "Cancel",
+        "activate_btn": "Activate",
+        "wait_btn": "Coming soon",
+        "Modal": {
+          "title": "Are you sure you want to cancel your purchase?",
+          "accept": "Yes",
+          "decline": "No"
+        }
+      },
+      "Detail": {
+        "date": "Date",
+        "id": "ID",
+        "sum": "Sum",
+        "type": "Type operation",
+        "status": "Status",
+        "status_write_off": "Write off",
+        "status_write": "Write"
+      }
     }
   },
   "Ban_List": {

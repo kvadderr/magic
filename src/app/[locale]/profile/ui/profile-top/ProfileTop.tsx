@@ -3,9 +3,11 @@ import Link from "next/link";
 import {useEffect, useState} from "react";
 import {redirect} from "next/navigation";
 import {UserData} from "@/api/auth/types";
+import {useTranslations} from "next-intl";
 
 export const ProfileTop = ({tab}: {tab?: "inventory" | "detail"}) => {
   const [user, setUser] = useState<UserData>();
+  const t = useTranslations("Profile");
 
   useEffect(() => {
     const userStorage = localStorage.getItem("user");
@@ -44,7 +46,7 @@ export const ProfileTop = ({tab}: {tab?: "inventory" | "detail"}) => {
           <div className="right-side">
             <button className="btn blackBtn exitBtn" onClick={() => {
               localStorage.clear()
-              redirect("/")
+              window.location.replace('/')
             }}>
               <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
@@ -61,14 +63,14 @@ export const ProfileTop = ({tab}: {tab?: "inventory" | "detail"}) => {
                   ></path>
                 </g>
               </svg>
-              <span>Выйти</span></button>
+              <span>{t("logout")}</span></button>
           </div>
         </div>
         <div className="profile-nav">
           <Link href="?tab=inventory"
-                className={`profile-nav__btn ${!tab || tab === "inventory" ? "profile-nav__btn__active" : ""}`}>Инвентарь</Link>
+                className={`profile-nav__btn ${!tab || tab === "inventory" ? "profile-nav__btn__active" : ""}`}>{t("Tabs.inventory")}</Link>
           <Link href="?tab=detail"
-                className={`profile-nav__btn ${tab === "detail" ? "profile-nav__btn__active" : ""}`}>Детализация</Link>
+                className={`profile-nav__btn ${tab === "detail" ? "profile-nav__btn__active" : ""}`}>{t("Tabs.detail")}</Link>
         </div>
       </div>
     </div>

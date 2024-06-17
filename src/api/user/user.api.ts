@@ -24,5 +24,12 @@ export const UserApi = {
         authorization: `Bearer ${token}`
       }
     })
+  },
+  async refundProduct(token: string, id: number) {
+    return apiInstance.put(`/profile/refund/${id}`, {}, {
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    })
   }
 }

@@ -21,7 +21,30 @@
       "detail": "Детализация"
     },
     "Table": {
-      "empty": "Нет записей"
+      "empty": "Нет записей",
+      "Inventory": {
+        "id": "ID",
+        "title": "Товар",
+        "amount": "Количество",
+        "mode": "Режим",
+        "cancel_btn": "Отменить",
+        "activate_btn": "Активировать",
+        "wait_btn": "Скоро активируется",
+        "Modal": {
+          "title": "Вы действительно хотите отменить покупку?",
+          "accept": "Да",
+          "decline": "Нет"
+        }
+      },
+      "Detail": {
+        "date": "Дата",
+        "id": "ID",
+        "sum": "Сумма",
+        "type": "Тип операции",
+        "status": "Статус",
+        "status_write_off": "Списание",
+        "status_write": "Зачисление"
+      }
     }
   },
   "Ban_List": {

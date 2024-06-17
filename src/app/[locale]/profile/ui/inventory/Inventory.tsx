@@ -4,8 +4,10 @@ import Pagination from "@/shared/components/Pagination/Pagination";
 import {UserApi} from "@/api/user/user.api";
 import {getInventoryDataItem, getInventoryDataItemMock, IGetInventoryResponse} from "@/api/user/types";
 import InventoryTableItem from "@/app/[locale]/profile/ui/inventory-table-item/InventoryTableItem";
+import {useTranslations} from "next-intl";
 
 export const Inventory = () => {
+  const t = useTranslations("Profile");
   const [data, set] = useState<IGetInventoryResponse>();
   const [currentPage, setCurrentPage] = useState(1);
   const tableRef = useRef<any | null | Ref<HTMLDivElement>>();
@@ -26,7 +28,7 @@ export const Inventory = () => {
     tableRef?.current?.scrollTo({left: 0, behavior: 'smooth'});
   }, [currentPage]);
 
-  return !data?.result[0] ? <h1 className="noRecords">Нет записей</h1> : (
+  return !data?.result[0] ? <h1 className="noRecords">{t("Table.empty")}</h1> : (
     <div className="container">
       <div className="sortBlock">
         {/* <SearchInput placeholder="Введите название предмета" value={value} setValue={setValue} /> */}
@@ -38,10 +40,10 @@ export const Inventory = () => {
         <table className="tableForInventory">
           <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Товар</th>
-            <th scope="col">Количество</th>
-            <th scope="col">Режим</th>
+            <th scope="col">{t("Table.Inventory.id")}</th>
+            <th scope="col">{t("Table.Inventory.title")}</th>
+            <th scope="col">{t("Table.Inventory.amount")}</th>
+            <th scope="col">{t("Table.Inventory.mode")}</th>
             <th scope="col"></th>
           </tr>
           </thead>
@@ -50,7 +52,7 @@ export const Inventory = () => {
           {
             data?.result[0] &&
             data?.result.map((el, index) => {
-              return <InventoryTableItem data={{dataInventory: el, refund: () => {}}} key={index} />;
+              return <InventoryTableItem data={{dataInventory: el}} key={index} />;
             })
           }
           </tbody>
