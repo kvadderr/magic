@@ -28,12 +28,25 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
   const [rubInput, setRubInput] = useState('');
   const [coinInput, setCoinInput] = useState('');
   const [selectedPack, setSelectedPack] = useState<number | undefined>(undefined);
-  
-  
+
+  const sendData = async () => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      return
+    }
+    const res = await StoreApi.buyProduct(token, {
+      productId: item.id,
+      amount: 1,
+      isPack: !!selectedPack,
+    })
+  }
+
   const handlerButton = () => {
     setRubInput('');
     setCoinInput('');
     onClose(false);
+    sendData();
+
   };
 
   const getPriceFC = async (id: number, amount: number) => {
