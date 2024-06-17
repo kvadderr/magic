@@ -16,4 +16,13 @@ export const StoreApi = {
       }
     })
   },
+  async buyProduct(token: string, body: any) {
+    return apiInstance.post("/store/buy", {
+      body,
+    }, {
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    });
+  }
 }
