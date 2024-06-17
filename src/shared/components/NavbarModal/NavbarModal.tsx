@@ -30,9 +30,9 @@ export const NavbarModal = ({onClose}: { onClose: Dispatch<SetStateAction<boolea
                                     </g>
                                 </svg>
                             </div>
-                            <a className="sidebarLogoImg" href="/store">
+                            <Link className="sidebarLogoImg" href={`/${locale}/`}>
                                 <Image src="/svg/logo.svg" width={125.5} height={25.59} alt="Logotype" id="logoMobile"/>
-                            </a>
+                            </Link>
                         </div>
                         <nav className="sidebarNavbar">
                             <Link className="sidebarNavbarItem" href={`/${locale}/servers`}>
