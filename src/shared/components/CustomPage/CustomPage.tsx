@@ -1,5 +1,6 @@
 import {IGetSectionsRes} from "@/api/servers/types";
 import {ListSections} from "@/shared/components/CustomPage/ListSection/ListSections";
+import {CustomPageContent} from "@/shared/components/CustomPage/CustomPageContent";
 
 type Props = {
   sections: IGetSectionsRes[]
@@ -7,7 +8,8 @@ type Props = {
 }
 export const CustomPage = (props: Props) => {
   const {label, sections} = props;
-  
+
+
   return (
     <div className="containerCustomPage">
       <h1 className="titlePage">{label}</h1>
@@ -22,7 +24,7 @@ export const CustomPage = (props: Props) => {
                 </div>
                 <h2>{item.title}</h2>
               </div>
-              <div className="question-text" dangerouslySetInnerHTML={{__html: item.html}}/>
+              <CustomPageContent html={item.html} />
             </section>
           ))}
         </div>

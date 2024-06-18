@@ -9,24 +9,26 @@ import { useLeaderboardProvider} from "@/app/[locale]/leaders/api";
 import Pagination from "@/shared/components/Pagination/Pagination";
 import {useTranslations} from "next-intl";
 import Pedestal from "@/shared/components/Pedestal/Pedestal";
+import chunkArray from "@/shared/hooks/chunkArray";
 
 const LeaderboardContent = (props: { page: string }) => {
   const t = useTranslations("Leaderboard");
   const {modal, setModal, serverId} = useLeaderboardProvider();
-  const [data, set] = useState<IGetLeaderBoard>();
-  const [top, setTop] = useState<IGetLeaderBoard>();
+  const [data, set] = useState<ILeaderboardItem[][]>();
+  const [top, setTop] = useState<ILeaderboardItem[]>();
   const [page, setPage] = useState(
     props.page && parseInt(props.page) ? parseInt(props.page) : 1
   );
 
   const asyncData = async () => {
     try {
-      const {data: list} = await LeaderboardApi.getLeaderboard(page, serverId);
-      const {data: top} = await LeaderboardApi.getLeaderboardTop(serverId);
-      set(list);
-      setTop(top);
+      const [list, top] = await Promise.all([
+        LeaderboardApi.getLeaderboard(serverId),
+        LeaderboardApi.getLeaderboardTop(serverId)
+      ]);
+      set(chunkArray(list.data.leaderboard, 10));
+      setTop(top.data as unknown as ILeaderboardItem[]);
     } catch (error) {
-      set({leaderboard: leaderBoardMock, pages: 10});
     }
   }
 
@@ -46,12 +48,12 @@ const LeaderboardContent = (props: { page: string }) => {
       >
         {t("button")}
       </button>
-      {!(!data || data.leaderboard.length === 0) &&
+      {!(!data || data.length === 0) &&
         <>
-          <LeaderboardTable items={data.leaderboard}/>
+          <LeaderboardTable items={data[page - 1]}/>
           <Pagination
             currentPage={page}
-            pagesAmount={data.pages}
+            pagesAmount={data.length}
             setCurrentPage={setPage}
             perPage={5}
           />

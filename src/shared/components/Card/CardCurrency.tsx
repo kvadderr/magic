@@ -1,6 +1,5 @@
 "use client"
-import {useEffect, useState} from 'react';
-import {toLearnMore} from "@/shared/constants/modal";
+import {useState} from 'react';
 import {SilverModal} from "@/shared/components/CardCurrency/modal/SilverModal";
 import ModalPortal from "@/shared/components/ModalPortal/ModalPortal";
 import NotificationModal from "@/shared/components/CardCurrency/modal/Notification";
@@ -32,8 +31,8 @@ const ResizingCard = ({product: item}: ResizingCardProps) => {
         style={{
           cursor: "unset",
           backgroundImage: item.blockSize === 1 ? backgroundImageGradient : gradientOfBigCard,
-          gridColumn: `span ${2} `,
-          height: 240,
+          gridColumn: `span ${item.type === "CURRENCY" ? 3 : 1} `,
+          height: 340,
         }}
       >
         {!!item.discount && <div className="discount">{item.discount}%</div>}
