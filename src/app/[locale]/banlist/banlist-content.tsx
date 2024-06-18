@@ -6,11 +6,12 @@ import {BanListApi} from "@/api/banlist/banlist.api";
 import {SearchIcon} from "@/shared/assets";
 import Pagination from "@/shared/components/Pagination/Pagination";
 import {useTranslations} from "next-intl";
+import chunkArray from "@/shared/hooks/chunkArray";
 
 
 const BanListContent = (props: { page: string }) => {
   const t = useTranslations("Ban_List");
-  const [data, set] = useState<IGetBanList>();
+  const [data, set] = useState<IBanListItem[][]>([]);
   const [search, setSearch] = useState<string>("");
   const [filtered, setFiltered] = useState<IBanListItem[]>([]);
   const [page, setPage] = useState(
@@ -18,20 +19,21 @@ const BanListContent = (props: { page: string }) => {
   );
 
   const asyncData = async () => {
-    const {data} = await BanListApi.getBanList(page);
-    set(data);
+    const {data} = await BanListApi.getBanList();
+    set(chunkArray(data.banlist, 10));
   }
 
   useEffect(() => {
-    asyncData().then(_ => setSearch(""))
-  }, [page]);
+    asyncData().then(_ => setSearch(""));
+  }, []);
 
   useEffect(() => {
-    if (!data?.banlist) {
+    if (!data.length) {
       return;
     }
-    setFiltered(data?.banlist.filter(el => el.nickname.includes(search)))
-  }, [data, search]);
+    const items = data[page - 1].filter(el => el.nickname.includes(search));
+    setFiltered(items)
+  }, [data, page, search]);
 
   return (
     <>
@@ -44,14 +46,14 @@ const BanListContent = (props: { page: string }) => {
           className="searchInput"
           placeholder={t("input")}/>
       </div>
-      {!(!data || data.banlist.length === 0) &&
+      {!(!data || data.length === 0) &&
         <>
           <BanListTable items={filtered}/>
           <Pagination
             currentPage={page}
-            pagesAmount={data.pages}
+            pagesAmount={data.length}
             setCurrentPage={setPage}
-            perPage={5}
+            perPage={10}
           />
         </>
       }
