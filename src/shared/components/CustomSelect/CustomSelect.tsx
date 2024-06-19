@@ -28,7 +28,8 @@ const DropdownIndicator = (props: any) => {
   return (
     <components.DropdownIndicator {...props}>
       <Image alt="arrow" width={20} height={20} src={dropDown.src}
-             className={`${props.selectProps.menuIsOpen ? 'arrowDown' : 'arrowUp'}`}/>
+             className={`${props.selectProps.menuIsOpen ? 'arrowDown' : 'arrowUp'}`}
+      />
     </components.DropdownIndicator>
   );
 };
@@ -49,7 +50,6 @@ const formatOptionLabel = (item: any, isHaveIcon: boolean) => {
 
 const CustomSelect = (props: CustomSelectProps) => {
   const {
-    label,
     options,
     onChange,
     heightSelect,
@@ -57,7 +57,6 @@ const CustomSelect = (props: CustomSelectProps) => {
     isHaveIcon = false,
     width = '100%',
     maxWidth,
-    alignItemsControl,
     paddingIndicator = 8,
     paddingContainer = 8,
     backgroundColor = '#3a2964',
@@ -67,11 +66,8 @@ const CustomSelect = (props: CustomSelectProps) => {
     container: (defaultStyles: any, state: any) => ({
       ...defaultStyles,
       width: width,
-      // minWidth: '200px',
       maxWidth: maxWidth ? maxWidth : '200px',
       cursor: 'pointer',
-      // display: 'flex',
-      // alignItems: 'center',
     }),
     option: (defaultStyles: any, state: any) => ({
       ...defaultStyles,
@@ -84,7 +80,6 @@ const CustomSelect = (props: CustomSelectProps) => {
     valueContainer: (defaultStyles: any, state: any) => ({
       ...defaultStyles,
       padding: paddingContainer,
-      // paddingLeft: paddingContainer,
       display: 'flex',
       alignItems: 'center',
     }),
@@ -109,8 +104,11 @@ const CustomSelect = (props: CustomSelectProps) => {
       ...defaultStyles,
       backgroundColor: '#3A2964',
       boxSizing: 'min-content',
+      borderRadius: "12px",
+      "&>div": {
+        borderRadius: "12px",
+      },
     }),
-    
     dropdownIndicator: (provided: any) => ({
       ...provided,
       padding: paddingIndicator,
@@ -131,12 +129,11 @@ const CustomSelect = (props: CustomSelectProps) => {
       onChange={onChange}
       options={options}
       menuPlacement={menuPlacement}
+      menuIsOpen={true}
       isSearchable={false}
       formatOptionLabel={item => formatOptionLabel(item, isHaveIcon)}
-      // menuShouldBlockScroll={true}
       maxMenuHeight={150}
       styles={customStyles}
-      // menuShouldScrollIntoView = {false}
     />
   );
 };

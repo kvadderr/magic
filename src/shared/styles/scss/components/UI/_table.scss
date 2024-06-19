@@ -27,6 +27,16 @@ table {
   }
 }
 
+.topRight {
+  position: absolute;
+  right: 0;
+  top: 0;
+  
+  @media screen and (max-width: 1200px) {
+    position: static;
+  }
+}
+
 td {
   padding: 15px 20px;
 }

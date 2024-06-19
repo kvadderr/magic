@@ -4,8 +4,8 @@ import {LeaderboardApi} from "@/api/leaderboard/leaderboard.api";
 import {IGetLeaderBoard, ILeaderboardItem} from "@/api/leaderboard/types";
 import LeaderboardTable from "@/app/[locale]/leaders/ui/leaderboard-table/LeaderboardTable";
 import {leaderBoardMock} from "@/api/leaderboard/mock";
-import { ServersModal} from "@/app/[locale]/leaders/ui/servers-modal/ServersModal";
-import { useLeaderboardProvider} from "@/app/[locale]/leaders/api";
+import {ServersModal} from "@/app/[locale]/leaders/ui/servers-modal/ServersModal";
+import {useLeaderboardProvider} from "@/app/[locale]/leaders/api";
 import Pagination from "@/shared/components/Pagination/Pagination";
 import {useTranslations} from "next-intl";
 import Pedestal from "@/shared/components/Pedestal/Pedestal";
@@ -40,11 +40,13 @@ const LeaderboardContent = (props: { page: string }) => {
     <>
       {top && (
         <div className="containerPedestal">
-          <Pedestal data={top} />
+          <Pedestal data={top}/>
         </div>
       )}
-      <button onClick={() => setModal(true)} className="btn blackBtn"
-              style={{width: "200px", height: "50px", margin: "20px auto"}}
+      <button
+        onClick={() => setModal(true)}
+        className="btn blackBtn topRight"
+        style={{width: "200px", height: "50px", margin: "20px auto"}}
       >
         {t("button")}
       </button>

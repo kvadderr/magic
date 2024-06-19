@@ -15,10 +15,13 @@ export const NoBackgroundCard = (props: Props) => {
   const {product, servers} = props;
   return (
     <div className="oneColumnCard">
-      <Image src={product.image} className="imageOneColumnCard" alt="img" width={200} height={200} onClick={() => set(true)}/>
+      <Image src={product.image} className="imageOneColumnCard" alt="img" width={200} height={200}
+             onClick={() => set(true)}/>
       <p className="nameOneColumnCard">{product.name}</p>
       <button className="lightBtn btn oneColumnBtn" onClick={() => set(true)}>{product.price} ₽</button>
-      {modal && <ModalPortal><ModalCard product={product} onClose={set} servers={servers}/></ModalPortal>}
+      {modal && <ModalPortal>
+        <ModalCard product={product} onClose={set} servers={servers}/>
+      </ModalPortal>}
     </div>
   )
 }
