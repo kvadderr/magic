@@ -25,6 +25,7 @@ const BanListContent = (props: { page: string }) => {
     const items = chunkArray(data.banlist, 10);
     set(items);
     setSearched(items)
+    setFiltered(items[0])
     setPages(items.length)
   }
 
@@ -69,18 +70,15 @@ const BanListContent = (props: { page: string }) => {
           className="searchInput"
           placeholder={t("input")}/>
       </div>
-      {!(!fetched || !pages || fetched.length === 0) &&
+      {!(!fetched || !filtered || !pages || fetched.length === 0) &&
         <>
           <BanListTable items={filtered}/>
-          {
-            search === "" ??
             <Pagination
               currentPage={page}
               pagesAmount={pages}
               setCurrentPage={setPage}
               perPage={10}
             />
-          }
         </>
       }
     </>
