@@ -58,6 +58,7 @@
     }
   },
   "Leaderboard": {
+    "loading": "Loading...",
     "title": "Leaderboard",
     "button": "Select a server",
     "Modal": {
