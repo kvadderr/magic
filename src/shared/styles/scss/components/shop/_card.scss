@@ -143,7 +143,11 @@
       margin-left: 0px;
     }
   }
-  // background: linear-gradient(180deg, rgba(35, 27, 58, 0) 0%, #231b3a 100%);
+}
+@media screen and (max-width: 500px) {
+  .resizingCard {
+    grid-column: span 2 !important;
+  }
 }
 .labelResizingCard {
   font-size: 32px;

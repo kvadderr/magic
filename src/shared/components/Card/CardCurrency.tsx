@@ -47,7 +47,6 @@ const ResizingCard = ({product: item}: ResizingCardProps) => {
           {item?.productContent?.link !== undefined && (
             <div
               className="dopInfoResizingCard"
-              // onClick={() => navigate(item.productContent.link)}
               style={{marginBottom: item.blockSize === 1 ? 8 : 0}}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
