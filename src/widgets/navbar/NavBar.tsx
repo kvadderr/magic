@@ -90,7 +90,7 @@ const Navbar = () => {
             {
               user ?
                 <div className="profile">
-                  <div className="balanse" onClick={() => {}}>
+                  <div className={!userBalance || userBalance < 1000 ? "balanse balanse-center" : "balanse"} onClick={() => {}}>
                     <span>{userBalance} ₽</span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g id="24 Plus" clipPath="url(#clip0_119_5253)">

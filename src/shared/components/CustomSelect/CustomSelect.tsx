@@ -47,21 +47,22 @@ const formatOptionLabel = (item: any, isHaveIcon: boolean) => {
   );
 };
 
-const CustomSelect = ({
-                        label,
-                        options,
-                        onChange,
-                        heightSelect,
-                        value = options[0],
-                        isHaveIcon = false,
-                        width = '100%',
-                        maxWidth,
-                        alignItemsControl,
-                        paddingIndicator = 8,
-                        paddingContainer = 8,
-                        backgroundColor = '#3a2964',
-                        menuPlacement = 'bottom',
-                      }: CustomSelectProps) => {
+const CustomSelect = (props: CustomSelectProps) => {
+  const {
+    label,
+    options,
+    onChange,
+    heightSelect,
+    value = options[0],
+    isHaveIcon = false,
+    width = '100%',
+    maxWidth,
+    alignItemsControl,
+    paddingIndicator = 8,
+    paddingContainer = 8,
+    backgroundColor = '#3a2964',
+    menuPlacement = 'bottom',
+  } = props;
   const customStyles = {
     container: (defaultStyles: any, state: any) => ({
       ...defaultStyles,

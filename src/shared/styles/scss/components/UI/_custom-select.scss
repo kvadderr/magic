@@ -8,7 +8,7 @@
   font-weight: 600;
   border: none;
   padding: 12px;
-  background: url('../../../img/customSelect/arrow-down.png') no-repeat right $purple;
+  background: url("../../../../../assets/custom-select/arrow-down.png") no-repeat right $purple;
 
   option {
     color: #8774b8;
@@ -31,6 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
 }
 .icon-in-option {
   width: 20px;

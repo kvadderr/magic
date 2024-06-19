@@ -1,8 +1,9 @@
 "use client"
 import { useLeaderboardProvider} from "@/app/[locale]/leaders/api";
-import {Fragment, useEffect, useState} from "react";
+import {createRef, Fragment, useEffect, useState} from "react";
 import {v4} from "uuid";
 import {useTranslations} from "next-intl";
+import useOutsideClick from "@/shared/hooks/useOutsideClick";
 
 export const ServersModal = () => {
     const t = useTranslations("Leaderboard.Modal");
@@ -12,6 +13,8 @@ export const ServersModal = () => {
         setServerId,
         setModal
     } = useLeaderboardProvider();
+    const ref = createRef<HTMLDivElement>();
+    useOutsideClick(ref, setModal);
     const [serverIdTemp, set] = useState(serverId);
 
     function emit() {
@@ -24,7 +27,7 @@ export const ServersModal = () => {
             <div
                 style={{width: "100%", height: "100%", position: "fixed", top: "0px", right: "0px"}}
             ></div>
-            <div className="modalContent mountedStyle modalContentActive undefined">
+            <div ref={ref} className="modalContent mountedStyle modalContentActive undefined">
                 <div className="modalBackground"></div>
                 <div className="selectServerModal">
                     <div className="modalHeader">

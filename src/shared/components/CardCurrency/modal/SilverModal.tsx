@@ -5,7 +5,7 @@ import {
   silverModalSelectAPackage,
   silverModalSubTitle
 } from "@/shared/constants/modal";
-import {Dispatch, SetStateAction, useEffect, useState} from "react";
+import {createRef, Dispatch, SetStateAction, useEffect, useState} from "react";
 import {useBodyScrollModal} from "@/shared/hooks/useBodyScrollModal";
 import {SilverPackage} from "@/shared/components/CardCurrency/modal/SilverPackage";
 import Image from "next/image";
@@ -15,6 +15,7 @@ import {useTranslations} from "next-intl";
 import {StoreApi} from "@/api/store/store.api";
 import {Simulate} from "react-dom/test-utils";
 import select = Simulate.select;
+import useOutsideClick from "@/shared/hooks/useOutsideClick";
 
 export interface BuySilverModalProps {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -23,6 +24,8 @@ export interface BuySilverModalProps {
 
 
 export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
+  const ref = createRef<HTMLDivElement>();
+  useOutsideClick(ref, onClose);
   const t = useTranslations("Card.Silver");
   useBodyScrollModal();
   const [rubInput, setRubInput] = useState('');
@@ -113,7 +116,7 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
   
   return (
     <div className="modal modalActive">
-      <div className="modalContent mountedStyle modalContentActive">
+      <div ref={ref} className="modalContent mountedStyle modalContentActive">
         <div className="modalBackground"></div>
         <div className="buySilverModal">
           <div className="modalHeaderSmallBottom"><h3 className="modalHeaderTitle">{t("Modal.title")}</h3>

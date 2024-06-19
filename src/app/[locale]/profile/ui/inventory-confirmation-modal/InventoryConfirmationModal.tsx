@@ -1,9 +1,12 @@
 import ModalPortal from "@/shared/components/ModalPortal/ModalPortal";
-import {Dispatch, SetStateAction} from "react";
+import {createRef, Dispatch, SetStateAction} from "react";
 import {useTranslations} from "next-intl";
+import useOutsideClick from "@/shared/hooks/useOutsideClick";
 
 export const InventoryConfirmationModal = ({onClose, onAccept, modalTitle}: { onClose: Dispatch<SetStateAction<boolean>>, onAccept: () => {}, modalTitle: string }) => {
   const t = useTranslations("Profile.Table.Inventory.Modal");
+  const ref = createRef<HTMLDivElement>();
+  useOutsideClick(ref, onClose);
 
   return (
     <ModalPortal>
@@ -11,7 +14,7 @@ export const InventoryConfirmationModal = ({onClose, onAccept, modalTitle}: { on
         <div
           style={{width: "100%", height: "100%", position: "fixed", top: "0px", right: "0px"}}
         ></div>
-        <div className="modalContent mountedStyle modalContentActive undefined">
+        <div ref={ref} className="modalContent mountedStyle modalContentActive">
           <div className="modalBackground"></div>
           <div className="confirmation">
             <div className="modalHeaderSmallBottom">

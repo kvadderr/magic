@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction, useEffect, useState} from 'react';
+import {createRef, Dispatch, SetStateAction, useEffect, useState} from 'react';
 import {
   notificationModalCopyTheCode,
   notificationModalGetCode,
@@ -10,10 +10,12 @@ import Link from "next/link";
 import {AlertInfoIcon, CloseIcon} from "@/shared/assets";
 import {useLocale, useTranslations} from "next-intl";
 import {InformationApi} from "@/api/information/information.api";
+import useOutsideClick from "@/shared/hooks/useOutsideClick";
 
 const NotificationModal = ({onClose}: { onClose: Dispatch<SetStateAction<boolean>> }) => {
   const [contacts, setContacts] = useState<any>([]);
-
+  const ref = createRef<HTMLDivElement>();
+  useOutsideClick(ref, onClose);
   const asyncData = async () => {
     const {data} = await InformationApi.getContactsForNotices();
     setContacts(data)
@@ -28,7 +30,7 @@ const NotificationModal = ({onClose}: { onClose: Dispatch<SetStateAction<boolean
   return (
     <div className="modal modalActive">
       <div className=""></div>
-      <div className="modalContent mountedStyle modalContentActive">
+      <div ref={ref} className="modalContent mountedStyle modalContentActive">
         <div className="modalBackground"></div>
         <div className="notificationModal">
           <div className="modalHeader"><h3 className="modalHeaderTitle">{t("Modal.title")}</h3>

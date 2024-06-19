@@ -6,7 +6,8 @@ import EqualsIcon from "@/shared/assets/icons/EqualsIcon";
 import CoinIcon from "@/shared/assets/icons/CoinIcon";
 import RubbleIcon from "@/shared/assets/icons/RubbleIcon";
 
-import RuLangIcon from "@/shared/assets/langIcon/RuLangIcon"
+import EnLangIcon from "@/shared/assets/langIcon/EnLangIcon";
+import RuLangIcon from "@/shared/assets/langIcon/RuLangIcon";
 
 export {
   SearchIcon,
@@ -16,6 +17,7 @@ export {
   EqualsIcon,
   CoinIcon,
   RubbleIcon,
-  
+
+  EnLangIcon,
   RuLangIcon
 };
