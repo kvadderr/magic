@@ -27,6 +27,12 @@
   }
 }
 
+@media screen and (max-width: 500px) {
+  .container-shop {
+    justify-content: center;
+  }
+}
+
 .blackoutWindows {
   background-color: rgba(128, 128, 128, 0.469);
   position: fixed;
