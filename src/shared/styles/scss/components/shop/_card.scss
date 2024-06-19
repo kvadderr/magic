@@ -51,18 +51,29 @@
   align-items: center;
 }
 
+.oneColumnCard {
+  &:hover {
+    .imageOneColumnCard {
+      transform: translateY(-20px);
+    }
+    //box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
 .imageOneColumnCard {
   padding-bottom: 20px;
   max-width: 311px;
   width: 100%;
   height: auto;
+  transition: 125ms ease-out;
+
   @media (max-width: $mobileScreens) {
     height: 170px;
   }
-  &:hover {
-    transform: translateY(-20px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
+  //&:hover {
+  //  transform: translateY(-20px);
+  //  //box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  //}
 }
 
 .imageCardHaveBack {

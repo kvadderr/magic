@@ -11,29 +11,52 @@ import chunkArray from "@/shared/hooks/chunkArray";
 
 const BanListContent = (props: { page: string }) => {
   const t = useTranslations("Ban_List");
-  const [data, set] = useState<IBanListItem[][]>([]);
+  const [fetched, set] = useState<IBanListItem[][]>([]);
+  const [searched, setSearched] = useState<IBanListItem[][]>([]);
   const [search, setSearch] = useState<string>("");
   const [filtered, setFiltered] = useState<IBanListItem[]>([]);
   const [page, setPage] = useState(
     props && props.page && parseInt(props.page) ? parseInt(props.page) : 1
   );
+  const [pages, setPages] = useState<number>();
 
   const asyncData = async () => {
     const {data} = await BanListApi.getBanList();
-    set(chunkArray(data.banlist, 10));
+    const items = chunkArray(data.banlist, 10);
+    set(items);
+    setSearched(items)
+    setPages(items.length)
   }
 
   useEffect(() => {
-    asyncData().then(_ => setSearch(""));
+    asyncData();
   }, []);
 
   useEffect(() => {
-    if (!data.length) {
+    if (!fetched.length) return;
+    if (search === "") {
+      setSearched(fetched);
+      setPages(fetched.length);
+      setPage(1);
       return;
     }
-    const items = data[page - 1].filter(el => el.nickname.includes(search));
-    setFiltered(items)
-  }, [data, page, search]);
+    const filteredPages: IBanListItem[] = [];
+    fetched.forEach(
+      page => page.forEach(
+        el => {
+          if (el.nickname.includes(search)) filteredPages.push(el);
+        }
+      )
+    );
+    const items = chunkArray(filteredPages, 10);
+    setSearched(items);
+    setPages(items.length);
+    setPage(1);
+  }, [search]);
+
+  useEffect(() => {
+    setFiltered(searched[page - 1]);
+  }, [page]);
 
   return (
     <>
@@ -46,15 +69,18 @@ const BanListContent = (props: { page: string }) => {
           className="searchInput"
           placeholder={t("input")}/>
       </div>
-      {!(!data || data.length === 0) &&
+      {!(!fetched || !pages || fetched.length === 0) &&
         <>
           <BanListTable items={filtered}/>
-          <Pagination
-            currentPage={page}
-            pagesAmount={data.length}
-            setCurrentPage={setPage}
-            perPage={10}
-          />
+          {
+            search === "" ??
+            <Pagination
+              currentPage={page}
+              pagesAmount={pages}
+              setCurrentPage={setPage}
+              perPage={10}
+            />
+          }
         </>
       }
     </>
