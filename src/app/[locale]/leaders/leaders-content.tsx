@@ -13,6 +13,7 @@ import chunkArray from "@/shared/hooks/chunkArray";
 
 const LeaderboardContent = (props: { page: string }) => {
   const t = useTranslations("Leaderboard");
+  const [isLoading, setIsLoading] = useState(false);
   const {modal, setModal, serverId} = useLeaderboardProvider();
   const [data, set] = useState<ILeaderboardItem[][]>();
   const [top, setTop] = useState<ILeaderboardItem[]>();
@@ -22,12 +23,15 @@ const LeaderboardContent = (props: { page: string }) => {
 
   const asyncData = async () => {
     try {
+      setIsLoading(true);
       const [list, top] = await Promise.all([
         LeaderboardApi.getLeaderboard(serverId),
         LeaderboardApi.getLeaderboardTop(serverId)
       ]);
       set(chunkArray(list.data.leaderboard, 10));
       setTop(top.data as unknown as ILeaderboardItem[]);
+
+      setIsLoading(false);
     } catch (error) {
     }
   }
@@ -36,7 +40,7 @@ const LeaderboardContent = (props: { page: string }) => {
     asyncData()
   }, [page, serverId]);
 
-  return (
+  return isLoading ? <h2 style={{textAlign: "center"}}>{t("loading")}</h2> : (
     <>
       {top && (
         <div className="containerPedestal">
