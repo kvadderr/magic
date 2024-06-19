@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import Select, {components} from 'react-select';
 import { ChangeEvent, useTransition } from 'react';
 import CustomSelect from "@/shared/components/CustomSelect/CustomSelect";
-import {RuLangIcon} from "@/shared/assets";
+import {EnLangIcon} from "@/shared/assets";
+import RuLangIcon from "@/shared/assets/langIcon/RuLangIcon";
 
 const LangSelect = () => {
   const [isPending, startTransition] = useTransition();
@@ -13,7 +14,6 @@ const LangSelect = () => {
   const localActive = useLocale();
   
   const onSelectChange = (e: any) => {
-    console.log('wefwefwef')
     console.log('e.target.value', e.value)
     const nextLocale = e.value;
     startTransition(() => {
@@ -21,8 +21,8 @@ const LangSelect = () => {
     });
   };
   const options = [
-    { value: 'en', label: 'English', icon: <RuLangIcon /> },
-    { value: 'ru', label: 'Русский', icon: <RuLangIcon /> },
+    { value: 'en', label: 'EN', icon: <EnLangIcon /> },
+    { value: 'ru', label: 'RU', icon: <RuLangIcon /> },
   ]
   return (
     <CustomSelect
