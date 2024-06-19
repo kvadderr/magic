@@ -129,7 +129,6 @@ const CustomSelect = (props: CustomSelectProps) => {
       onChange={onChange}
       options={options}
       menuPlacement={menuPlacement}
-      menuIsOpen={true}
       isSearchable={false}
       formatOptionLabel={item => formatOptionLabel(item, isHaveIcon)}
       maxMenuHeight={150}
