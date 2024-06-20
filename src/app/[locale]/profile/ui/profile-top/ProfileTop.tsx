@@ -28,7 +28,7 @@ export const ProfileTop = ({tab}: {tab?: "inventory" | "detail"}) => {
             </div>
             <div className="user">
               <span className="user-name">{user?.name}</span>
-              <Link href="#">
+              <Link href={`https://steamcommunity.com/profiles/${user?.steamId}`}>
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                      xmlns="http://www.w3.org/2000/svg" className="steam-logo">
                   <g id="steam-seeklogo.com 1" opacity="0.7">
@@ -68,8 +68,10 @@ export const ProfileTop = ({tab}: {tab?: "inventory" | "detail"}) => {
         </div>
         <div className="profile-nav">
           <Link href="?tab=inventory"
+                style={{fontWeight: 600}}
                 className={`profile-nav__btn ${!tab || tab === "inventory" ? "profile-nav__btn__active" : ""}`}>{t("Tabs.inventory")}</Link>
           <Link href="?tab=detail"
+                style={{fontWeight: 600}}
                 className={`profile-nav__btn ${tab === "detail" ? "profile-nav__btn__active" : ""}`}>{t("Tabs.detail")}</Link>
         </div>
       </div>

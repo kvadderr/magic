@@ -17,14 +17,16 @@ export const Footer = async () => {
   return (
     <footer className="container">
       <div className="containerFooter">
-        <div>
-          <div className="headerFooter">
-            <OnlineIcon/>
-            <p className="titleFooter">{t('online')}</p>
+        <div className="online-container">
+          <div className="online">
+            <div className="headerFooter">
+              <OnlineIcon/>
+              <p className="titleFooter">{t('online')}</p>
+            </div>
+            <p className="labelCountFooter">
+              500 / 1000
+            </p>
           </div>
-          <p className="labelCountFooter">
-            500 / 1000
-          </p>
           <ScaleOnline info={onlineMock}/>
         </div>
         <div className="bottomFooter">

@@ -1,18 +1,21 @@
 import ModalPortal from "@/shared/components/ModalPortal/ModalPortal";
-import {Dispatch, SetStateAction} from "react";
+import {createRef, Dispatch, SetStateAction} from "react";
 import Image from "next/image";
 import {useLocale, useTranslations} from "next-intl";
 import Link from "next/link";
+import useOutsideClick from "@/shared/hooks/useOutsideClick";
 
 export const NavbarModal = ({onClose}: { onClose: Dispatch<SetStateAction<boolean>> }) => {
     const t = useTranslations("Header");
+    const ref = createRef<HTMLDivElement>();
+    useOutsideClick(ref, onClose);
     const locale = useLocale();
 
     return (
         <ModalPortal>
             <div className="blurBackgroundColor"></div>
             <div className="blurBackground"></div>
-            <div className="sidebar sidebarActive">
+            <div ref={ref} className="sidebar sidebarActive">
                 <div className="sidebarContainer">
                     <div className="sidebarTop">
                         <div className="sidebarLogoBlock">

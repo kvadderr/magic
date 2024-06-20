@@ -8,6 +8,7 @@ export const StoreHeaderTabs = ({ storeTypes, tab }: {storeTypes: IGetTypesRes[]
         <Link
           key={item.id}
           href={`/?tab=${item.id}`}
+          style={{fontWeight: 600}}
           className={`sectionMenuHeaderShopBox ${tab === item.id && "activeSectionMenuHeaderShopBox"}`}
         >
           {item.name}
