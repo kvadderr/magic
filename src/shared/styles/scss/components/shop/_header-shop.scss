@@ -1,4 +1,13 @@
 .headerShopBox {
+  &::before {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+    background: linear-gradient(180deg, #140F21 0%, #201F4E 74.48%);
+    content: "";
+  }
   // background: url('../../../img/shop/rust\ 1.jpg') lightgray 50%;
   height: 315px;
   width: 100%;

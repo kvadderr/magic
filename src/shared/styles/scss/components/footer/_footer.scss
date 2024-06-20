@@ -11,7 +11,6 @@
 .labelCountFooter {
   font-size: 32px;
   font-weight: 700;
-  margin-bottom: 32px;
   // @media (max-width: $largeScreens) {
   //   margin-bottom: 0px;
   // }
@@ -43,6 +42,20 @@
     margin-top: 20px;
     padding-right: 12px;
     padding-left: 12px;
+  }
+  .online {
+    margin-bottom: 32px;
+  }
+  @media (max-width: 700px) {
+    .online {
+      margin-bottom: 0;
+    }
+    .online-container {
+      margin-bottom: 32px;
+      gap: 15px;
+      align-items: center;
+      display: flex;
+    }
   }
 }
 .bottomFooter {
