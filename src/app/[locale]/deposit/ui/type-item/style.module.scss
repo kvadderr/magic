@@ -1,0 +1,40 @@
+.item {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 5px;
+  width: 168px;
+  background: #221939;
+  border-radius: 12px;
+  padding: 20px 0;
+  border: 1px solid #221939;
+  transition: 125ms ease-out;
+  cursor: pointer;
+
+  img {
+    width: 60px;
+    height: 60px;
+  }
+
+  span:first-of-type {
+    font-weight: 600;
+    font-size: 12px;
+    color: #8774B8;
+    text-transform: capitalize;
+  }
+  span:last-of-type {
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+    text-transform: capitalize;
+  }
+
+  &.active {
+    border-color: #3A2964;
+  }
+
+  @media screen and (max-width: 1200px) {
+    flex-grow: 1;
+    width: 100%;
+  }
+}

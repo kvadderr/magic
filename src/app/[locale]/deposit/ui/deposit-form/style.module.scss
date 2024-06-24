@@ -1,0 +1,112 @@
+.form {
+  margin-top: 20px;
+  padding: 32px;
+  border-radius: 12px;
+  background: #221939;
+
+  legend {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 20px;
+  }
+
+  input {
+    padding-right: 40px;
+  }
+
+  .label {
+    position: relative;
+
+    svg {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 0;
+      right: 12px;
+    }
+  }
+
+  small {
+    font-size: 14px;
+    font-weight: 600;
+    color: #8774B8;
+  }
+
+  @media screen and (max-width: 1000px){
+    padding: 12px;
+
+    legend {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.preset-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 20px;
+}
+
+.preset-button {
+  cursor: pointer;
+  color: #8774B8;
+  background: transparent;
+  border-radius: 12px;
+  border: 2px solid #3A2964;
+  padding: 16px;
+}
+
+.result-label {
+  display: block;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.result-value {
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.submit {
+  margin-top: 32px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(270deg, #18BE5A 0.01%, #1C7E26 100%);
+  padding: 16px;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  transition: 125ms ease-out;
+
+  &[disabled] {
+    opacity: .5;
+  }
+
+  @media screen and (max-width: 1000px) {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+.mobile-label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 20px;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+}

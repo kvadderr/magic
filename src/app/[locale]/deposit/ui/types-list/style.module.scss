@@ -1,0 +1,28 @@
+.container {
+  margin-top: 32px;
+  gap: 32px;
+  display: flex;
+  flex-flow: column;
+}
+
+.li {
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+  }
+}
+
+.list {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    margin-top: 0;
+  }
+  .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
