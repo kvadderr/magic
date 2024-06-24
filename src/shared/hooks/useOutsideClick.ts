@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Dispatch, SetStateAction} from 'react';
 
-type UseOutsideClickHook = (ref: React.RefObject<HTMLDivElement>, set: Dispatch<SetStateAction<boolean>>) => boolean;
+type UseOutsideClickHook = (ref: React.RefObject<any>, set: Dispatch<SetStateAction<boolean>>) => boolean;
 
 const useOutsideClick: UseOutsideClickHook = (ref, set) => {
   const [isOutsideClick, setIsOutsideClick] = useState(false);

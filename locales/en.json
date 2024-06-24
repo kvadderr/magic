@@ -1,4 +1,8 @@
 {
+  "Deposit": {
+    "title": "Balance replenishment",
+    "all": "All"
+  },
   "Index": {
     "Header": {
       "title": "Pick your mode!",
@@ -127,5 +131,8 @@
       "delay": "Delay TP",
       "home": "Home"
     }
+  },
+  "UI": {
+    "go-back": "Go back"
   }
 }

@@ -1,0 +1,47 @@
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 20px;
+  gap: 2px;
+
+  .sum {
+    font-size: 14px;
+    transition: 125ms ease-out;
+    opacity: .5;
+  }
+  .sum.active {
+    opacity: 1;
+  }
+
+  .point:first-child {
+    background: #4541FD;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .point:nth-child(2) {
+    background: #415FFD;
+  }
+
+  .point:nth-child(3) {
+    background: #418CFD;
+  }
+
+  .point:nth-child(4) {
+    background: #41AEFD;
+    border-radius: 0 10px 10px 0;
+  }
+
+  .point {
+    opacity: .5;
+    font-size: 14px;
+    padding: 1px 16px;
+    transition: 125ms ease-out;
+  }
+  .point.active {
+    opacity: 1;
+  }
+}

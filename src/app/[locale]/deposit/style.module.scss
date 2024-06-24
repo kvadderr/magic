@@ -1,0 +1,36 @@
+.header {
+  margin-bottom: 32px;
+}
+.title {
+  margin: 0;
+}
+
+.content {
+  display: grid;
+  gap: 64px;
+  grid-template-columns: 54% 1fr;
+
+  @media screen and (max-width: 1200px) {
+    gap: 32px;
+  }
+
+  &--mobile {
+    display: flex;
+    flex-flow: column;
+    gap: 32px;
+    padding: 0 12px;
+  }
+}
+
+.select-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  &--mobile {
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+    gap: 20px;
+  }
+}

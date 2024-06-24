@@ -1,0 +1,55 @@
+.container {
+  position: relative;
+  width: 113px;
+
+  & > button {
+    width: inherit;
+    background: #3a2964;
+  }
+  & > ul > li > button {
+    width: 100%;
+    background: transparent;
+  }
+
+  & > button, & > ul > li > button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    border-radius: 12px;
+    border: none;
+    padding: 17px;
+  }
+
+  & > button > svg:last-of-type {
+    transition: 120ms ease-out;
+    margin-left: auto;
+  }
+
+  ul {
+    width: 100%;
+    z-index: -1;
+    opacity: 0;
+    position: absolute;
+    transition: 120ms ease-out;
+    background: #3A2964;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+
+  &.active > button > svg:last-of-type {
+    transform: rotate(180deg);
+  }
+
+  &.active > ul {
+    z-index: 10;
+    opacity: 1;
+  }
+
+  @media screen and (max-width: 1000px){
+    width: 100%;
+  }
+}
