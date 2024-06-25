@@ -77,10 +77,10 @@ export const Footer = async () => {
             </p>
           </div>
           <div className="listBottom">
-            <Link href={`/${locale}/privacyPolicy`}>
+            <Link href="/documents/policy.pdf">
               <p className="conditionalsLabel">{t('privacy_policy')}</p>
             </Link>
-            <Link href={`/${locale}/termOfUse`}>
+            <Link href="/documents/terms.pdf">
               <p className="conditionalsLabel">{t('terms')}</p>
             </Link>
             <Link href={`/${locale}/conditionsOfUse`}>
