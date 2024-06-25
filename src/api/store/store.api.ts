@@ -1,9 +1,18 @@
 import {IGetTypesRes} from './types'
 import apiInstance from '../instance/instance'
 
+export const revalidate = 3600;
+
 export const StoreApi = {
   async getTypes() {
-    return apiInstance.get<IGetTypesRes[]>('/store/types')
+    const data = await fetch('https://mrust.ru/api/store/types', {
+      cache: 'force-cache',
+       next: {
+         revalidate: 3600
+       }
+      })
+    return data.json()
+    //apiInstance.get<IGetTypesRes[]>('/store/types')
   },
   async getProducts(id: number) {
     return apiInstance.get<Product[]>('/store/catalog/' + id)
