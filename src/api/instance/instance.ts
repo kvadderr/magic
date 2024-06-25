@@ -5,7 +5,7 @@ const instance = axios.create( {
   httpsAgent: new https.Agent({
     rejectUnauthorized: false, // WARNING: This disables SSL certificate validation
   }),
-  baseURL: 'https://mrust.ru/api/',
+  baseURL: 'https://magicrust.gg/api/',
 } );
 
 instance.interceptors.response.use( response => response, error => {

@@ -1,4 +1,4 @@
 export const handleSteamLogin = () => {
-  const rootUrl = 'https://mrust.ru/api/auth/steam';
+  const rootUrl = 'https://magicrust.gg/api/auth/steam';
   window.location.href = rootUrl;
 };

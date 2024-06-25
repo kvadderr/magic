@@ -5,7 +5,7 @@ export const revalidate = 3600;
 
 export const StoreApi = {
   async getTypes() {
-    const data = await fetch('https://mrust.ru/api/store/types', {
+    const data = await fetch('https://magicrust.gg/api/store/types', {
       cache: 'force-cache',
        next: {
          revalidate: 3600
