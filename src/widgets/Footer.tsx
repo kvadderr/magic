@@ -81,9 +81,6 @@ export const Footer = async () => {
             <Link href="/documents/terms.pdf">
               <p className="conditionalsLabel">{t('terms')}</p>
             </Link>
-            <Link href={`/${locale}/conditionsOfUse`}>
-              <p className="conditionalsLabel">{t('conditions')}</p>
-            </Link>
           </div>
         </div>
       </div>
