@@ -68,12 +68,10 @@ export const Footer = async () => {
         <div className="bottomFooter bottomDopInfo">
           <div>
             <p>
-              INTERNATIONAL BUSINESS SYSTEMS S.R.L.<br/>
-              Reg. number:<br/>
-              3-102-693823<br/>
-              address:<br/>
-              SAN JOSE-SANTA ANA,THREE HUNDRED AND FIFTY METERS OF THE RESTAURANT CEVICHE DEL REY,<br/>
-              COSTA-RICA
+              EZ Tech Limited <br/>
+              Company No. 123041 <br/>
+              Registered at Suite 4.3.02, Block 4, Eurotowers<br/>
+              GX11 1AA, Gibraltar<br/>
             </p>
           </div>
           <div className="listBottom">
