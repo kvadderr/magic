@@ -6,6 +6,7 @@ const instance = axios.create( {
     rejectUnauthorized: false, // WARNING: This disables SSL certificate validation
   }),
   baseURL: 'https://magicrust.gg/api/',
+  //baseURL: 'http://localhost:4500/',
 } );
 
 instance.interceptors.response.use( response => response, error => {

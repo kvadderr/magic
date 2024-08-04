@@ -5,13 +5,7 @@ export const revalidate = 3600;
 
 export const StoreApi = {
   async getTypes() {
-    const data = await fetch('https://magicrust.gg/api/store/types', {
-      cache: 'force-cache',
-       next: {
-         revalidate: 3600
-       }
-      })
-    return data.json()
+    return apiInstance.get<IGetTypesRes[]>('/store/types')
     //apiInstance.get<IGetTypesRes[]>('/store/types')
   },
   async getProducts(id: number) {
