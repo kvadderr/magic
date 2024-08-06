@@ -5,10 +5,22 @@ import {ProgressDiscount} from "@/app/[locale]/deposit/ui/progress-discount/Prog
 import Media from "react-media";
 import Image from "next/image";
 import imgMock from "@/shared/assets/img/deposit-mock.png";
+import {DepositApi} from "@/api/deposit/deposit.api";
 
 export function DepositForm() {
   const {sum, setSum, activeType} = useDepositContext();
-
+  
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    if (activeType) {
+      try {
+        const response = await DepositApi.getPaymentLink(sum, 'RUB'); // Используем RUB как пример валюты
+        window.location.href = response.data;
+      } catch (error) {
+        console.error('Error fetching payment link:', error);
+      }
+    }
+  };
   return <form className={c.form}>
     <Media query="(max-width: 1000px)">
       {
@@ -41,6 +53,6 @@ export function DepositForm() {
     <ProgressDiscount/>
     <small className={c["result-label"]}>Вы получите</small>
     <p className={c["result-value"]}>{sum} ₽</p>
-    <button disabled={activeType === undefined} type="submit" className={c.submit}>Отправить</button>
+    <button onClick={handleSubmit} disabled={activeType === undefined} type="submit" className={c.submit}>Отправить</button>
   </form>
 }

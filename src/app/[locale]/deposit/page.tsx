@@ -8,18 +8,6 @@ import {IDepositTypeItems} from "@/api/deposit/types";
 export default async function DepositPage() {
   const t = await getTranslations("Deposit");
   const depositTypeMap: IDepositTypeItems = new Map([
-    ["Банковские карты", [
-      {title: "title3", label: "label3"},
-      {title: "title4", label: "label4"},
-      {title: "title4", label: "label4"},
-      {title: "title4", label: "label4"}
-    ]],
-    ["Электронные деньги", [
-      {title: "title3", label: "label3"},
-      {title: "title4", label: "label4"},
-      {title: "title4", label: "label4"},
-      {title: "title4", label: "label4"}
-    ]],
     ["Скины", [
       {title: "title3", label: "label3"},
       {title: "title4", label: "label4"}
