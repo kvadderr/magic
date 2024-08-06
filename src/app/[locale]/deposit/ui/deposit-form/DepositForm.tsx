@@ -1,3 +1,4 @@
+"use client"
 import c from "./style.module.scss";
 import sc from "../promocode/style.module.scss";
 import {useDepositContext} from "@/app/[locale]/deposit/deposit-provider";
@@ -12,9 +13,11 @@ export function DepositForm() {
   
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    const token = localStorage.getItem("accessToken");
+    if (!token) return;
     if (activeType) {
       try {
-        const response = await DepositApi.getPaymentLink(sum, 'RUB'); // Используем RUB как пример валюты
+        const response = await DepositApi.getPaymentLink(sum, 'RUB', token); // Используем RUB как пример валюты
         window.location.href = response.data;
       } catch (error) {
         console.error('Error fetching payment link:', error);
