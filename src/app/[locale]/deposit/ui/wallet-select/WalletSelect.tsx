@@ -8,7 +8,7 @@ type WalletOption = { value: TDepositFormWallet, label: string, icon: ReactEleme
 
 const options: WalletOption[] = [
   {value: 'RUB', label: "RUB", icon: <RuLangIcon/>},
-  {value: 'DOL', label: "DOL", icon: <EnLangIcon/>}
+  {value: 'EUR', label: "DOL", icon: <EnLangIcon/>}
 ]
 
 export function WalletSelect() {
