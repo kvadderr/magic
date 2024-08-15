@@ -19,7 +19,7 @@ export function DepositForm() {
     if (!token) return;
     if (activeType) {
       try {
-        const response = await DepositApi.getPaymentLink(sum, 'RUB', token); // Используем RUB как пример валюты
+        const response = await DepositApi.getPaymentLink(sum, 'RUB', token, activeType.method || ""); // Используем RUB как пример валюты
         window.location.href = response.data;
       } catch (error) {
         console.error('Error fetching payment link:', error);
