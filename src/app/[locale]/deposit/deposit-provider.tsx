@@ -20,7 +20,7 @@ interface IDepositProviderProps extends PropsWithChildren {
   tabs: IDepositTypeItems;
 }
 
-export type TDepositFormWallet = "RUB" | "DOL" | "TEN"
+export type TDepositFormWallet = "RUB" | "EUR"
 
 
 const DepositContext = createContext<IDepositContext>({} as IDepositContext);

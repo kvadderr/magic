@@ -17,7 +17,7 @@ export const ChooseType = () => {
         {
           keys.map(
             (el, ind) => <Fragment key={ind}>
-              <li className={activeTab === el ? c.active : ""} onClick={() => setActiveTab(el)}>{el}</li>
+              <li className={activeTab === el ? c.active : ""} onClick={() => setActiveTab(el)}>{t(el)}</li>
             </Fragment>
           )
         }

@@ -12,10 +12,12 @@
 }
 
 .list {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust 150px as needed */
   gap: 8px;
   margin-top: 20px;
 }
+
 
 @media screen and (max-width: 1000px) {
   .container {

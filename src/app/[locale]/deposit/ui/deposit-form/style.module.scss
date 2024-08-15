@@ -18,13 +18,15 @@
   .label {
     position: relative;
 
-    svg {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      top: 0;
-      right: 12px;
-    }
+
+  }
+
+  .svg {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 0;
+    right: 12px;
   }
 
   small {
@@ -58,6 +60,12 @@
   border-radius: 12px;
   border: 2px solid #3A2964;
   padding: 16px;
+}
+
+.preset-button:hover {
+  background-color: #3A2964;
+  color: #ffffff; /* Изменить цвет текста при ховере */
+  border-color: #8774B8; /* Изменить цвет рамки при ховере */
 }
 
 .result-label {
