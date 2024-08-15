@@ -49,17 +49,17 @@ export default async function DepositPage() {
     ["crypto", [
       {
         title: "USDT TRC 20",
-        method: 'Криптовалюты',
+        method: 'usdtTrc20',
         icon: TrcIMG
       },
       {
         title: "USDT ERC 20",
-        method: 'Криптовалюты',
+        method: 'usdtErc20',
         icon: TrcIMG
       },
       {
         title: "btc",
-        method: 'Криптовалюты',
+        method: 'btc',
         icon: BtcIMG
       },
       {
@@ -69,37 +69,37 @@ export default async function DepositPage() {
       },
       {
         title: "doge",
-        method: 'Криптовалюты',
+        method: 'doge',
         icon: DogeIMG
       },
       {
         title: "eth",
-        method: 'Криптовалюты',
+        method: 'eth',
         icon: EthIMG
       },
       {
         title: "ltc",
-        method: 'Криптовалюты',
+        method: 'ltc',
         icon: LtcING
       },
       {
         title: "shib",
-        method: 'Криптовалюты',
+        method: 'shib',
         icon: ShibaIMG
       },
       {
         title: "usdc",
-        method: 'Криптовалюты',
+        method: 'usdc',
         icon: UsdcIMG
       },
       {
         title: "xrp",
-        method: 'Криптовалюты',
+        method: 'xrp',
         icon: XrpIMG
       },
       {
         title: "trx",
-        method: 'Криптовалюты',
+        method: 'trx',
         icon: TrxIMG
       },
     ]],
