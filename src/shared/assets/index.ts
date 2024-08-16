@@ -8,9 +8,11 @@ import RubbleIcon from "@/shared/assets/icons/RubbleIcon";
 import SteamIcon from "@/shared/assets/icons/SteamIcon";
 import ExitIcon from "@/shared/assets/icons/ExitIcon";
 import ProgressIcon from "@/shared/assets/icons/ProgressIcon";
+import PlusBalanceIcon from "@/shared/assets/icons/PlusBalance";
 
 import EnLangIcon from "@/shared/assets/langIcon/EnLangIcon";
 import RuLangIcon from "@/shared/assets/langIcon/RuLangIcon";
+
 
 export {
   SearchIcon,
@@ -23,6 +25,7 @@ export {
   SteamIcon,
   ExitIcon,
   ProgressIcon,
+  PlusBalanceIcon,
   
   EnLangIcon,
   RuLangIcon

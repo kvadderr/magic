@@ -9,9 +9,10 @@
     "promo_code": "Promo Code",
     "promo_code_input": "Enter promo code",
     "access": "Apply",
+    "send": "Pay",
 
     "sum_input": "Enter amount",
-    "min_sum_input": "Minimum deposit amount is 100",
+    "min_sum_input": "Minimum deposit amount is 1$",
     "get_it_money": "You will receive",
     "you_pay": "You will pay"
   },

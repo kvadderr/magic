@@ -19,10 +19,10 @@ export function ProgressDiscount() {
       <div className={`${c.point} ${getSumCallback === 2000 && c.active}`}>+17%</div>
       <div className={`${c.point} ${getSumCallback === 6000 && c.active}`}>+25%</div>
 
-      <div className={`${c.sum} ${getSumCallback === 100 && c.active}`}>100 ₽</div>
-      <div className={`${c.sum} ${getSumCallback === 1000 && c.active}`}>1000 ₽</div>
-      <div className={`${c.sum} ${getSumCallback === 2000 && c.active}`}>2000 ₽</div>
-      <div className={`${c.sum} ${getSumCallback === 6000 && c.active}`}>6000 ₽  +</div>
+      <div className={`${c.sum} ${getSumCallback === 100 && c.active}`}>100</div>
+      <div className={`${c.sum} ${getSumCallback === 1000 && c.active}`}>1000</div>
+      <div className={`${c.sum} ${getSumCallback === 2000 && c.active}`}>2000</div>
+      <div className={`${c.sum} ${getSumCallback === 6000 && c.active}`}>6000+</div>
     </div>
   )
 }
