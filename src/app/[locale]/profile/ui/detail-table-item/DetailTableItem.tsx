@@ -3,6 +3,8 @@ import {getNameOperation} from "@/shared/constants/getNameOperation";
 import {getDate} from "@/shared/constants/getDate";
 import {getDetailsDataItem} from "@/api/user/types";
 import {useTranslations} from "next-intl";
+import {StarIcon} from "@/shared/assets/img";
+import Image from "next/image";
 
 export interface DetailsTableItemProps {
   data: getDetailsDataItem;
@@ -17,7 +19,9 @@ const DetailsTableItem: React.FC<DetailsTableItemProps> = ({data}) => {
       <td className="tablePurple"># {data.id}</td>
       <td>
         <span className={`${data.type == 'purchase' && data.refund === false ? '' : 'green'}`}>
-          {data.lostMainBalance ? data.lostMainBalance : data.type === 'transaction' ? data.amount : '0'} ₽
+          {data.lostMainBalance ? data.lostMainBalance : data.type === 'transaction' ? data.amount : '0'}
+          <Image src={StarIcon} alt="" width={24} height={24}
+                 style={{display: 'flex', width: '24px', height: '24px'}}/>
         </span>
       </td>
       {/*<td>{data?.product?.name_ru ? data?.name : 'йцу'}</td>*/}

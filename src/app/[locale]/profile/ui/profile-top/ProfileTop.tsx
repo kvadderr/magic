@@ -40,7 +40,7 @@ export const ProfileTop = ({tab}: { tab?: "inventory" | "detail" }) => {
                   <ProgressIcon/>
                 </div>
                 <div className="level-info">
-                  <div style={{zIndex:10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                  <div style={{zIndex:10, marginLeft: 5, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
                     <div className="level-text">Уровень 2</div>
                     <div className="progress-text">3120 / 4210 exp</div>
                   </div>
@@ -49,7 +49,7 @@ export const ProfileTop = ({tab}: { tab?: "inventory" | "detail" }) => {
                       <div className="progress" style={{width: `72%`}}></div>
                     </div>
                   </div>
-                  <div className="progress-text" style={{alignSelf: 'self-end'}}>Как это работает?</div>
+                  <div className="progress-text" style={{alignSelf: 'self-end', color: '#8774B8', cursor: 'pointer'}}>Как это работает?</div>
                 </div>
               </div>
             </div>

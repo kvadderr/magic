@@ -14,7 +14,6 @@ export function DepositForm() {
   const {sum, setSum, activeType, activeWallet} = useDepositContext();
   const t = useTranslations("Deposit");
   const locale = useLocale(); // Получение текущей локализации
-  console.log('locale', locale)
   
   const handleSubmit = async (event: any) => {
     event.preventDefault();
@@ -75,7 +74,7 @@ export function DepositForm() {
     </div>
     <button
       onClick={handleSubmit}
-      disabled={activeType === undefined}
+      disabled={activeType === undefined || sum < 100}
       type="submit"
       className={c.submit}>
       {t('send')}

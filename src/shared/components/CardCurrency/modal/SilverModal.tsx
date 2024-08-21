@@ -1,10 +1,3 @@
-import {
-  silverModalEnterTheAmount,
-  silverModalInCoins,
-  silverModalInRubles,
-  silverModalSelectAPackage,
-  silverModalSubTitle
-} from "@/shared/constants/modal";
 import {createRef, Dispatch, SetStateAction, useEffect, useState} from "react";
 import {useBodyScrollModal} from "@/shared/hooks/useBodyScrollModal";
 import {SilverPackage} from "@/shared/components/CardCurrency/modal/SilverPackage";
@@ -16,6 +9,7 @@ import {StoreApi} from "@/api/store/store.api";
 import {Simulate} from "react-dom/test-utils";
 import select = Simulate.select;
 import useOutsideClick from "@/shared/hooks/useOutsideClick";
+import {StarIcon} from "@/shared/assets/img";
 
 export interface BuySilverModalProps {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -174,7 +168,9 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
             onClick={handlerButton}
             disabled={Number(rubInput) === 0}
           >
-            {rubInput || 0} ₽
+            {rubInput || 0}
+            <Image src={StarIcon} alt="" width={24} height={24}
+                   style={{display: 'flex', width: '24px', height: '24px'}}/>
           </button>
         </div>
       
