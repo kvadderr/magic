@@ -29,6 +29,21 @@ export function DepositForm() {
       }
     }
   };
+  
+  const calculateSum = (sum: number) => {
+    if (sum >= 100 && sum < 1000) {
+      return sum * 1.10; // +10%
+    } else if (sum >= 1000 && sum < 2000) {
+      return sum * 1.15; // +15%
+    } else if (sum >= 2000 && sum < 6000) {
+      return sum * 1.17; // +17%
+    } else if (sum >= 6000) {
+      return sum * 1.25; // +25%
+    } else {
+      return sum; // Без изменений, если сумма меньше 100
+    }
+  };
+  
   return <form className={c.form}>
     <Media query="(max-width: 1000px)">
       {
@@ -69,7 +84,13 @@ export function DepositForm() {
       </div>
       <div>
         <small className={c["result-label"]}>{t('you_pay')}</small>
-        <p className={c["result-value"]}>{activeWallet === "RUB" ? sum + "₽": sum / 100 + "€"} </p>
+        <p className={c["result-value"]}>
+          <p className={c["result-value"]}>
+            {activeWallet === "RUB"
+              ? calculateSum(sum).toFixed(2) + "₽"
+              : (calculateSum(sum) / 100).toFixed(2) + "€"}
+          </p>
+        </p>
       </div>
     </div>
     <button

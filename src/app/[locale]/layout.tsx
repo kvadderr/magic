@@ -10,6 +10,9 @@ import instance from "@/api/instance/instance";
 export const metadata: Metadata = {
   title: "MRust",
   description: "w by create next app",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default async function RootLayout({

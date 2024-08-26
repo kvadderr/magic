@@ -70,7 +70,7 @@ const ResizingCard = ({product: item}: ResizingCardProps) => {
           {item.textButton ? item.textButton : item.price}
           {!item.textButton &&  <Image src={StarIcon} alt="" width={24} height={24}
                                        style={{display: 'flex', width: '24px', height: '24px'}}/>}
-        </button>ç
+        </button>
         {modalActive && <ModalPortal>
           {
             item.type === "CURRENCY" ?
