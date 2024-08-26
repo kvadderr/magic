@@ -41,7 +41,7 @@ const onlineMock: monitoringServers = {
       maxPlayers: 1000,
       name: "Сервер",
       port: "3001",
-      serverID: 5
+      serverID: 6
     },
     {
       IP: "199.134.44.22",
@@ -49,7 +49,7 @@ const onlineMock: monitoringServers = {
       maxPlayers: 1000,
       name: "Сервер",
       port: "3001",
-      serverID: 5
+      serverID: 7
     },
     {
       IP: "199.134.44.22",
@@ -57,7 +57,7 @@ const onlineMock: monitoringServers = {
       maxPlayers: 1000,
       name: "Сервер",
       port: "3001",
-      serverID: 5
+      serverID: 8
     },
     {
       IP: "199.134.44.22",
@@ -65,7 +65,7 @@ const onlineMock: monitoringServers = {
       maxPlayers: 1000,
       name: "Сервер",
       port: "3001",
-      serverID: 5
+      serverID: 9
     },
   ],
   sumPlayers: 560

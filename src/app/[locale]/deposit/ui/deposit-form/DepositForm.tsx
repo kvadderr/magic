@@ -8,7 +8,7 @@ import Image from "next/image";
 import imgMock from "@/shared/assets/img/deposit-mock.png";
 import {DepositApi} from "@/api/deposit/deposit.api";
 import {StarIcon} from "@/shared/assets/img";
-import {useTranslations, useLocale} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 
 export function DepositForm() {
   const {sum, setSum, activeType, activeWallet} = useDepositContext();
@@ -74,7 +74,7 @@ export function DepositForm() {
     </div>
     <small>{t('min_sum_input')}</small>
     <ProgressDiscount/>
-    <div style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
+    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
       <div>
         <small className={c["result-label"]}>{t('get_it_money')}</small>
         <div style={{flexDirection: 'row', display: 'flex', alignItems: 'center', gap: 10}}>
@@ -85,11 +85,9 @@ export function DepositForm() {
       <div>
         <small className={c["result-label"]}>{t('you_pay')}</small>
         <p className={c["result-value"]}>
-          <p className={c["result-value"]}>
-            {activeWallet === "RUB"
-              ? calculateSum(sum).toFixed(2) + "₽"
-              : (calculateSum(sum) / 100).toFixed(2) + "€"}
-          </p>
+          {activeWallet === "RUB"
+            ? calculateSum(sum).toFixed(2) + "₽"
+            : (calculateSum(sum) / 100).toFixed(2) + "€"}
         </p>
       </div>
     </div>

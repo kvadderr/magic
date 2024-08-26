@@ -6,13 +6,11 @@ import {Footer} from "@/widgets/Footer";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import instance from "@/api/instance/instance";
+import '@/shared/styles/index.css'
 
 export const metadata: Metadata = {
   title: "MRust",
   description: "w by create next app",
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default async function RootLayout({
@@ -29,7 +27,7 @@ export default async function RootLayout({
     <html lang={locale}>
     <body>
     <NextIntlClientProvider messages={messages}>
-      <div id='root'>
+    <div id='root'>
         <div id="modal-portal"></div>
         <Navbar/>
         {children}
