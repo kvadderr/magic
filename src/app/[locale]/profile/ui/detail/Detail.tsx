@@ -32,10 +32,10 @@ export const Detail = () => {
   return !data?.result[0] ? <h1 className="noRecords">Нет записей</h1> : (
     <div className="container">
       <div className="sortBlock">
-        {/* <SearchInput placeholder="Введите название предмета" value={value} setValue={setValue} /> */}
-        {/* <button className="btn blackBtn filterBtn">
-          <SettingsIcon /> <span>Фильтр</span>
-        </button> */}
+        <button className="btn blackBtn filterBtn">
+          <span>Фильтр</span>
+        </button>
+        <p>ewfwefwef</p>
       </div>
       <div ref={tableRef} className="tableWrap">
         <table className="tableForInventory">
