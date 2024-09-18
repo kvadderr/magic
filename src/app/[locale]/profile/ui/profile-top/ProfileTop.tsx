@@ -5,9 +5,12 @@ import {redirect} from "next/navigation";
 import {UserData} from "@/api/auth/types";
 import {useTranslations} from "next-intl";
 import {ExitIcon, ProgressIcon, SteamIcon} from "@/shared/assets";
+import LevelDetail from "@/app/[locale]/profile/ui/detail/LevelDetail";
+import {PaymentRewardModal} from "@/app/[locale]/profile/ui/paymentReward-modal/paymentRewardModal";
 
 export const ProfileTop = ({tab}: { tab?: "inventory" | "detail" }) => {
   const [user, setUser] = useState<UserData>();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const t = useTranslations("Profile");
   
   useEffect(() => {
@@ -34,25 +37,13 @@ export const ProfileTop = ({tab}: { tab?: "inventory" | "detail" }) => {
                   <SteamIcon/>
                 </Link>
               </div>
-              <div className="level-container">
-                <div className="icon-container">
-                  <span className="level-number">2</span>
-                  <ProgressIcon/>
-                </div>
-                <div className="level-info">
-                  <div style={{zIndex:10, marginLeft: 5, display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <div className="level-text">Уровень 2</div>
-                    <div className="progress-text">3120 / 4210 exp</div>
-                  </div>
-                  <div className="progress-bar-container">
-                    <div className="progress-bar">
-                      <div className="progress" style={{width: `72%`}}></div>
-                    </div>
-                  </div>
-                  <div className="progress-text" style={{alignSelf: 'self-end', color: '#8774B8', cursor: 'pointer'}}>Как это работает?</div>
-                </div>
+              <div className="level-info-web">
+                <LevelDetail open={() => setIsOpen(true)}/>
               </div>
             </div>
+          </div>
+          <div className="level-info-mobile">
+            <LevelDetail open={() => setIsOpen(true)}/>
           </div>
           <div className="right-side">
             <button className="btn blackBtn exitBtn" onClick={() => {
@@ -60,7 +51,8 @@ export const ProfileTop = ({tab}: { tab?: "inventory" | "detail" }) => {
               window.location.replace('/')
             }}>
               <ExitIcon/>
-              <span>{t("logout")}</span></button>
+              <span>{t("logout")}</span>
+            </button>
           </div>
         </div>
         <div className="profile-nav">
@@ -72,6 +64,7 @@ export const ProfileTop = ({tab}: { tab?: "inventory" | "detail" }) => {
                 className={`profile-nav__btn ${tab === "detail" ? "profile-nav__btn__active" : ""}`}>{t("Tabs.detail")}</Link>
         </div>
       </div>
+      {isOpen && <PaymentRewardModal closeModal={() => setIsOpen(false)} />}
     </div>
   
   )

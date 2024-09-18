@@ -7,7 +7,7 @@ import {Detail} from "@/app/[locale]/profile/ui/detail/Detail";
 export default async function ProfilePage(props: { searchParams: { tab: "inventory" | "detail" } }) {
 
   return (
-    <div>
+    <div style={{display: 'flex', flexDirection: 'column', gap: 20}}>
       <ProfileTop tab={props.searchParams.tab} />
       {
         !props.searchParams.tab || props.searchParams.tab === "inventory" ?
