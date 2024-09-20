@@ -7,6 +7,7 @@ import CardCurrency from "@/shared/components/Card/CardCurrency";
 export default async function StorePage(props: { searchParams: { tab: string } }) {
   const id = 1; // Initial ID value
   const {data: types} = await StoreApi.getTypes();
+  
   console.log('types', types);
   const {serversList: servers} = await getServers();
   const products = await getProducts(props.searchParams.tab ? parseInt(props.searchParams.tab) : id);
@@ -38,6 +39,7 @@ async function getServers() {
 
 async function getProducts(tab: number) {
   const res = await StoreApi.getProducts(tab)
+  
   if (res.status !== 200) throw new Error('Failed to fetch data')
   return res.data
 }
