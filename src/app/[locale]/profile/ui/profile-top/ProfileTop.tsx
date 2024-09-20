@@ -37,9 +37,7 @@ export const ProfileTop = ({tab}: { tab?: "inventory" | "detail" }) => {
                   <SteamIcon/>
                 </Link>
               </div>
-              <div className="level-info-web">
-                <LevelDetail open={() => setIsOpen(true)}/>
-              </div>
+              
             </div>
           </div>
           <div className="level-info-mobile">

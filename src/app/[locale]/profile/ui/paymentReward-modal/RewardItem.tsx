@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { CSSProperties } from "react";
 
 export const RewardItem = () => {
   return (
     <div style={styles.container}>
-      <div style={{flexDirection: 'row', display: 'flex', alignItems: 'center', gap: 20}}>
-        <div style={{backgroundColor: "#140F21", borderRadius: 12, width: 118, height: 118, alignItems: 'center', justifyContent: 'center', display: 'flex'}}>
+      <div style={styles.row}>
+        <div style={styles.rewardBox}>
           <p>150 ₽</p>
         </div>
         <div>
@@ -16,14 +17,30 @@ export const RewardItem = () => {
         <Image src="/svg/lock.svg" alt="lock" width={40} height={40} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-const styles = {
+
+const styles: { [key: string]: CSSProperties } = {
   container: {
     flexDirection: 'row',
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
-  }
-}
+    alignItems: 'center',
+  },
+  row: {
+    flexDirection: 'row',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 20,
+  },
+  rewardBox: {
+    backgroundColor: "#140F21",
+    borderRadius: 12,
+    width: 118,
+    height: 118,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+};
