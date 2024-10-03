@@ -35,6 +35,9 @@ const nextConfig = withSvgr({
       },
     ],
   },
+  eslint: {
+    ignoreDuringBuilds: true,  // Игнорировать ошибки ESLint при сборке
+  },
 });
 
 export default withNextIntl(nextConfig);

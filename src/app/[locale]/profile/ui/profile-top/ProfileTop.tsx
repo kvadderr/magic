@@ -34,7 +34,10 @@ export const ProfileTop = ({ tab }: { tab?: 'inventory' | 'detail' }) => {
 
   // Курс опыта: 1 рубль = 5 опыта
   const experiencePerRub = 5;
-  const levels = [0, 500, 1500, 3100, 5400, 8600, 12900, 18600, 26000, 35500];
+  const levels = [
+    500, 1000, 1600, 2300, 3200, 4300, 5700, 7400, 9500, 12000,
+    15100, 18800, 23200, 28400, 34500, 41600, 49800, 59200, 70000, 82500,
+  ];
 
   // Функция для расчета текущего уровня
   const calculateLevel = (experience: number) => {

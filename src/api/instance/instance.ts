@@ -8,7 +8,7 @@ const instance = axios.create({
   httpsAgent: new https.Agent({
     rejectUnauthorized: false, // WARNING: This disables SSL certificate validation
   }),
-  baseURL: 'http://localhost:4500/',
+  baseURL: 'https://magicrust.gg/api/',
   headers: {
     Authorization: `Bearer ${token}`, // Добавляем токен в заголовок
   },

@@ -181,7 +181,7 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
             }}
           >
             <img
-              src={`http://localhost:4500/${gift.iconUrl}`}
+              src={`https://magicrust.gg/api/${gift.iconUrl}`}
               alt={gift.name}
               style={{
                 width: '90px',

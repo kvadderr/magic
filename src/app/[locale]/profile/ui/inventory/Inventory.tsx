@@ -109,7 +109,7 @@ export const Inventory = () => {
                     }}
                   >
                     <img
-                      src={`http://localhost:4500/${userGift.Gifts.iconUrl}`}
+                      src={`https://magicrust.gg/api/${userGift.Gifts.iconUrl}`}
                       alt={userGift.Gifts.name}
                       style={{
                         width: '85px',
