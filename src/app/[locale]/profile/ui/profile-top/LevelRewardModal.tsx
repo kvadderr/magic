@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { UserApi } from '@/api/user/user.api';
 import { Gift } from '@/api/user/types';
-
+import { baseURL } from '@/api/instance/instance';
 interface LevelRewardModalProps {
   closeModal: () => void;
   level: number;
@@ -181,7 +181,7 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
             }}
           >
             <img
-              src={`https://magicrust.gg/api/${gift.iconUrl}`}
+              src={`${baseURL}${gift.iconUrl}`}
               alt={gift.name}
               style={{
                 width: '90px',

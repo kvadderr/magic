@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { UserApi } from '@/api/user/user.api';
 import ServerSelectionModal from './ServerSelectionModal'; // Импортируем модалку
-
+import { baseURL } from '@/api/instance/instance';
 enum Gifts_type {
   item = 'item',
   product = 'product',
@@ -109,15 +109,17 @@ export const Inventory = () => {
                     }}
                   >
                     <img
-                      src={`https://magicrust.gg/api/${userGift.Gifts.iconUrl}`}
-                      alt={userGift.Gifts.name}
-                      style={{
-                        width: '85px',
-                        height: '85px',
-                        marginRight: '8px',
-                      }}
+                      src={`${baseURL}${userGift.Gifts.iconUrl}`}
+                      alt="Gift Icon"
                     />
-                    {userGift.Gifts.name}
+                    alt={userGift.Gifts.name}
+                    style=
+                    {{
+                      width: '85px',
+                      height: '85px',
+                      marginRight: '8px',
+                    }}
+                    /{userGift.Gifts.name}
                   </td>
                   <td style={{ padding: '12px' }}>{userGift.amount}</td>
                   <td style={{ padding: '12px' }}>{userGift.Gifts.id}</td>
