@@ -61,7 +61,9 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
       console.log(
         `Подарок ${giftId} успешно привязан к пользователю ${userId}.`,
       );
-      // Можно обновить состояние или выполнить другие действия
+
+      // Перезагружаем страницу после успешного запроса
+      window.location.reload();
     } catch (error) {
       console.error('Ошибка при привязке подарка:', error);
     }
