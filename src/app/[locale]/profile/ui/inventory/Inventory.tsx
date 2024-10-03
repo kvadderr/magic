@@ -110,16 +110,14 @@ export const Inventory = () => {
                   >
                     <img
                       src={`${baseURL}${userGift.Gifts.iconUrl}`}
-                      alt="Gift Icon"
+                      alt={userGift.Gifts.name} // Правильное использование alt
+                      style={{
+                        width: '85px',
+                        height: '85px',
+                        marginRight: '8px',
+                      }}
                     />
-                    alt={userGift.Gifts.name}
-                    style=
-                    {{
-                      width: '85px',
-                      height: '85px',
-                      marginRight: '8px',
-                    }}
-                    /{userGift.Gifts.name}
+                    {userGift.Gifts.name}
                   </td>
                   <td style={{ padding: '12px' }}>{userGift.amount}</td>
                   <td style={{ padding: '12px' }}>{userGift.Gifts.id}</td>

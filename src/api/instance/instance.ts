@@ -1,7 +1,7 @@
 import axios from 'axios';
 import https from 'https';
 
-export const baseURL = 'http://localhost:4500';
+export const baseURL = 'http://localhost:4500/';
 //export const baseURL = 'https://magicrust.gg/api/';
 
 const token =
