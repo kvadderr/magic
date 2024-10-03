@@ -7,6 +7,7 @@ export const ServersApi = {
     const response = await apiInstance.get<{
       result: IServer[];
       sumPlayers: number;
+      data: any;
       maxServerOnline: number;
     }>('/servers', { headers });
     return response.data; // Вернем данные из ответа

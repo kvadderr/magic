@@ -105,7 +105,8 @@ export const SilverModal = ({ onClose, item }: BuySilverModalProps) => {
     }
   };
 
-  useEffect(() => {
+  {
+    /*} useEffect(() => {
     if (typeof selectedPack === 'number' && selectedPack) {
       // @ts-ignore
       const count = item.productContent.data.filter(
@@ -113,7 +114,8 @@ export const SilverModal = ({ onClose, item }: BuySilverModalProps) => {
       )[0].count;
       checkRubs(count);
     }
-  }, [selectedPack]);
+  }, [selectedPack]);*/
+  }
 
   useEffect(() => {
     setCoinInput('');
