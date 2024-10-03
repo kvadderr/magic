@@ -1,6 +1,6 @@
-import Select, {components} from 'react-select';
+import Select, { components } from 'react-select';
 import dropDown from '../../../assets/custom-select/arrow-down.png';
-import Image from "next/image";
+import Image from 'next/image';
 
 interface optionsItem {
   label: string;
@@ -27,8 +27,12 @@ interface CustomSelectProps {
 const DropdownIndicator = (props: any) => {
   return (
     <components.DropdownIndicator {...props}>
-      <Image alt="arrow" width={20} height={20} src={dropDown.src}
-             className={`${props.selectProps.menuIsOpen ? 'arrowDown' : 'arrowUp'}`}
+      <Image
+        alt="arrow"
+        width={20}
+        height={20}
+        src={dropDown.src}
+        className={`${props.selectProps.menuIsOpen ? 'arrowDown' : 'arrowUp'}`}
       />
     </components.DropdownIndicator>
   );
@@ -104,9 +108,9 @@ const CustomSelect = (props: CustomSelectProps) => {
       ...defaultStyles,
       backgroundColor: '#3A2964',
       boxSizing: 'min-content',
-      borderRadius: "12px",
-      "&>div": {
-        borderRadius: "12px",
+      borderRadius: '12px',
+      '&>div': {
+        borderRadius: '12px',
       },
     }),
     dropdownIndicator: (provided: any) => ({
@@ -119,18 +123,18 @@ const CustomSelect = (props: CustomSelectProps) => {
       transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null,
       background: `url('../../../img/customSelect/arrow-down.png') no-repeat right #8774B8 `,
     }),
-    singleValue: (defaultStyles: any) => ({...defaultStyles, color: '#fff'}),
+    singleValue: (defaultStyles: any) => ({ ...defaultStyles, color: '#fff' }),
   };
-  
+
   return (
     <Select
       defaultValue={value}
-      components={{DropdownIndicator, IndicatorSeparator}}
+      components={{ DropdownIndicator, IndicatorSeparator }}
       onChange={onChange}
       options={options}
       menuPlacement={menuPlacement}
       isSearchable={false}
-      formatOptionLabel={item => formatOptionLabel(item, isHaveIcon)}
+      formatOptionLabel={(item) => formatOptionLabel(item, isHaveIcon)}
       maxMenuHeight={150}
       styles={customStyles}
     />

@@ -140,14 +140,14 @@
     position: relative;
     overflow: clip;
 
-    &, &::before {
-      transition: .125s ease-out all;
+    &,
+    &::before {
+      transition: 0.125s ease-out all;
     }
-
 
     &::before {
       z-index: -1;
-      content: "";
+      content: '';
       left: 0;
       background: linear-gradient(90deg, #4046eb 0%, #4046eb 100%);
       background-position-x: 200px;

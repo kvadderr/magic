@@ -17,8 +17,6 @@
 
   .label {
     position: relative;
-
-
   }
 
   .svg {
@@ -32,10 +30,10 @@
   small {
     font-size: 14px;
     font-weight: 600;
-    color: #8774B8;
+    color: #8774b8;
   }
 
-  @media screen and (max-width: 1000px){
+  @media screen and (max-width: 1000px) {
     padding: 12px;
 
     legend {
@@ -55,17 +53,17 @@
 
 .preset-button {
   cursor: pointer;
-  color: #8774B8;
+  color: #8774b8;
   background: transparent;
   border-radius: 12px;
-  border: 2px solid #3A2964;
+  border: 2px solid #3a2964;
   padding: 16px;
 }
 
 .preset-button:hover {
-  background-color: #3A2964;
+  background-color: #3a2964;
   color: #ffffff; /* Изменить цвет текста при ховере */
-  border-color: #8774B8; /* Изменить цвет рамки при ховере */
+  border-color: #8774b8; /* Изменить цвет рамки при ховере */
 }
 
 .result-label {
@@ -85,7 +83,7 @@
   width: 100%;
   border: none;
   border-radius: 12px;
-  background: linear-gradient(270deg, #18BE5A 0.01%, #1C7E26 100%);
+  background: linear-gradient(270deg, #18be5a 0.01%, #1c7e26 100%);
   padding: 16px;
   font-weight: 600;
   font-size: 16px;
@@ -94,7 +92,7 @@
   cursor: pointer;
 
   &[disabled] {
-    opacity: .5;
+    opacity: 0.5;
   }
 
   @media screen and (max-width: 1000px) {

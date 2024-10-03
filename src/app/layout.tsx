@@ -1,7 +1,7 @@
 export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
+  children,
+}: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children  // return children;
+  return children; // return children;
 }

@@ -1,4 +1,9 @@
-const getArrayFromDigit = (digit: number, currentPage: number, valueInPage: number, functional = 'table') => {
+const getArrayFromDigit = (
+  digit: number,
+  currentPage: number,
+  valueInPage: number,
+  functional = 'table',
+) => {
   const res = [];
   if (digit <= valueInPage || functional === 'table') {
     for (let i = 1; i <= digit; i++) res.push(i);
@@ -25,6 +30,5 @@ const getArrayFromDigit = (digit: number, currentPage: number, valueInPage: numb
   }
   return res;
 };
-
 
 export default getArrayFromDigit;

@@ -14,7 +14,7 @@
   span {
     display: block;
     margin-bottom: 12px;
-    color: #8774B8;
+    color: #8774b8;
     font-weight: 600;
     font-size: 14px;
   }
@@ -27,10 +27,10 @@
   border: none;
   border-radius: 12px;
   padding: 16px 12px;
-  background: #3A2964;
+  background: #3a2964;
 
   &::placeholder {
-    color: #8774B8;
+    color: #8774b8;
   }
 }
 
@@ -43,7 +43,7 @@
   padding: 16px;
   cursor: pointer;
   transition: 125ms ease-out;
-  background: linear-gradient(90deg, #4046EB 0%, #419FFF 100%);
+  background: linear-gradient(90deg, #4046eb 0%, #419fff 100%);
 
   &[disabled] {
     opacity: 50%;

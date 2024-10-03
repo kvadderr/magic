@@ -1,4 +1,4 @@
-import {UserData} from "@/api/auth/types";
+import { UserData } from '@/api/auth/types';
 
 export const getUser = (): UserData | null => {
   const value: string | null = localStorage.getItem('user');

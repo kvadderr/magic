@@ -1,6 +1,6 @@
-@import "variables";
-@import "mixins";
-@import "normolize";
+@import 'variables';
+@import 'mixins';
+@import 'normolize';
 
 * {
   scroll-behavior: smooth;
@@ -196,7 +196,7 @@ input[type='number']:focus {
   text-decoration: line-through;
 }
 
-@media (hover: none), (pointer:coarse), (-moz-touch-enabled: 1) {
+@media (hover: none), (pointer: coarse), (-moz-touch-enabled: 1) {
   :global .scroll-horizontal {
     overflow: scroll !important;
     overflow: overlay !important;
@@ -206,7 +206,7 @@ input[type='number']:focus {
     -ms-overflow-style: none !important;
     scrollbar-width: none !important;
 
-    &>div {
+    & > div {
       transform: none !important;
       position: relative;
     }
@@ -216,4 +216,3 @@ input[type='number']:focus {
     }
   }
 }
-

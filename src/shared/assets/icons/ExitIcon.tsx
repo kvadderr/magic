@@ -1,6 +1,11 @@
 const ExitIcon = () => (
-  <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
-       xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="25"
+    height="24"
+    viewBox="0 0 25 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <g id="Login">
       <path
         id="Shape"
@@ -8,12 +13,14 @@ const ExitIcon = () => (
         fill="#8774B8"
       ></path>
       <path
-        id="Shape_2" fillRule="evenodd" clipRule="evenodd"
+        id="Shape_2"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M3.5 12C3.5 12.5523 3.94772 13 4.5 13H10.5V11H4.5C3.94772 11 3.5 11.4477 3.5 12Z"
         fill="#8774B8"
       ></path>
     </g>
   </svg>
-)
+);
 
-export default ExitIcon
+export default ExitIcon;

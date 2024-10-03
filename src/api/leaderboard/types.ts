@@ -1,6 +1,6 @@
 export interface IGetLeaderBoard {
-  leaderboard: ILeaderboardItem[],
-  pages: number,
+  leaderboard: ILeaderboardItem[];
+  pages: number;
 }
 
 export interface ILeaderboardItem {

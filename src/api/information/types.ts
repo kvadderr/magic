@@ -1,5 +1,5 @@
 export interface IGetListRes {
-  count: number
-  next: any
-  previous: any
+  count: number;
+  next: any;
+  previous: any;
 }

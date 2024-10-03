@@ -1,6 +1,6 @@
-"use client"
+'use client';
 import React, { useEffect, useState } from 'react';
-import getArrayFromDigit from "@/shared/hooks/getArrayFromDigit";
+import getArrayFromDigit from '@/shared/hooks/getArrayFromDigit';
 
 const buttonWithPoints = (
   page: number,
@@ -32,11 +32,16 @@ interface PaginationProps {
   perPage?: number;
 }
 
-const Pagination = ({ currentPage, pagesAmount, setCurrentPage, perPage = 10 }: PaginationProps) => {
+const Pagination = ({
+  currentPage,
+  pagesAmount,
+  setCurrentPage,
+  perPage = 10,
+}: PaginationProps) => {
   const [valueInPage, setValueInPage] = useState(perPage);
   const [dimensions, setDimensions] = useState({
     width: 1920,
-    height: 1080
+    height: 1080,
   });
 
   const handleResize = () => {
@@ -64,11 +69,30 @@ const Pagination = ({ currentPage, pagesAmount, setCurrentPage, perPage = 10 }: 
         &#8592;
       </button>
       <div className="paginationWrap">
-        {getArrayFromDigit(pagesAmount, currentPage, valueInPage, 'pagination')?.map((page, i) => {
+        {getArrayFromDigit(
+          pagesAmount,
+          currentPage,
+          valueInPage,
+          'pagination',
+        )?.map((page, i) => {
           if (i === 1 && page - 1 != 1) {
-            return buttonWithPoints(page, currentPage, setCurrentPage, 'top', i, dimensions.width >= 1280);
+            return buttonWithPoints(
+              page,
+              currentPage,
+              setCurrentPage,
+              'top',
+              i,
+              dimensions.width >= 1280,
+            );
           } else if (i == valueInPage - 2 && page + 1 != pagesAmount) {
-            return buttonWithPoints(page, currentPage, setCurrentPage, 'bottom', i, dimensions.width >= 1280);
+            return buttonWithPoints(
+              page,
+              currentPage,
+              setCurrentPage,
+              'bottom',
+              i,
+              dimensions.width >= 1280,
+            );
           }
           return (
             <button

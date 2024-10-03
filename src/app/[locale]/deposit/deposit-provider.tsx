@@ -1,7 +1,15 @@
-"use client";
-import {createContext, Dispatch, FC, PropsWithChildren, SetStateAction, useContext, useEffect, useState} from "react";
-import {IDepositType, IDepositTypeItems} from "@/api/deposit/types";
-
+'use client';
+import {
+  createContext,
+  Dispatch,
+  FC,
+  PropsWithChildren,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import { IDepositType, IDepositTypeItems } from '@/api/deposit/types';
 
 interface IDepositContext {
   activeTab: string;
@@ -20,29 +28,37 @@ interface IDepositProviderProps extends PropsWithChildren {
   tabs: IDepositTypeItems;
 }
 
-export type TDepositFormWallet = "RUB" | "EUR"
-
+export type TDepositFormWallet = 'RUB' | 'EUR';
 
 const DepositContext = createContext<IDepositContext>({} as IDepositContext);
 export const useDepositContext = () => useContext(DepositContext);
 
-export const DepositProvider: FC<IDepositProviderProps> = ({children, tabs}) => {
+export const DepositProvider: FC<IDepositProviderProps> = ({
+  children,
+  tabs,
+}) => {
   const keys = Array.from(tabs.keys());
-  const [activeWallet, setActiveWallet] = useState<TDepositFormWallet>("RUB");
+  const [activeWallet, setActiveWallet] = useState<TDepositFormWallet>('RUB');
   const [activeType, setActiveType] = useState<IDepositType>();
-  const [activeTab, setActiveTab] = useState<string>("");
+  const [activeTab, setActiveTab] = useState<string>('');
   const [sum, setSum] = useState<number>(500);
 
-  return <DepositContext.Provider value={{
-    setActiveType,
-    activeType,
-    tabs: tabs,
-    activeTab,
-    setActiveTab,
-    activeWallet,
-    setActiveWallet,
-    sum,
-    setSum,
-    keys
-  }}>{children}</DepositContext.Provider>
-}
+  return (
+    <DepositContext.Provider
+      value={{
+        setActiveType,
+        activeType,
+        tabs: tabs,
+        activeTab,
+        setActiveTab,
+        activeWallet,
+        setActiveWallet,
+        sum,
+        setSum,
+        keys,
+      }}
+    >
+      {children}
+    </DepositContext.Provider>
+  );
+};

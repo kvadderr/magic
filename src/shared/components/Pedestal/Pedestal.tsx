@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import PedestalItem from "@/shared/components/PedestalItem/PedestalItem";
-import {useWindowSize} from "@/shared/hooks/useWindowSize";
+import PedestalItem from '@/shared/components/PedestalItem/PedestalItem';
+import { useWindowSize } from '@/shared/hooks/useWindowSize';
 
-const Pedestal = ({ data }: {data: any}) => {
+const Pedestal = ({ data }: { data: any }) => {
   const dimensions = useWindowSize();
   const [activePlace, setActivePlace] = useState(0);
 
@@ -17,7 +17,11 @@ const Pedestal = ({ data }: {data: any}) => {
         </div>
       ) : (
         <>
-          <div className="scrollContainer" style={{ display: 'flex' }} id="container">
+          <div
+            className="scrollContainer"
+            style={{ display: 'flex' }}
+            id="container"
+          >
             <button
               className="buttonArrow"
               onClick={() => {
@@ -27,10 +31,16 @@ const Pedestal = ({ data }: {data: any}) => {
             >
               ‹
             </button>
-            { // @ts-ignore
+            {
+              // @ts-ignore
               data.map((item, index) => {
-              return index === activePlace && <PedestalItem key={index} data={item} />;
-            })}
+                return (
+                  index === activePlace && (
+                    <PedestalItem key={index} data={item} />
+                  )
+                );
+              })
+            }
             <button
               className="buttonArrow"
               onClick={() => {

@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { CSSProperties } from "react";
+import Image from 'next/image';
+import { CSSProperties } from 'react';
 
 export const RewardItem = () => {
   return (
@@ -20,7 +20,6 @@ export const RewardItem = () => {
   );
 };
 
-
 const styles: { [key: string]: CSSProperties } = {
   container: {
     flexDirection: 'row',
@@ -35,7 +34,7 @@ const styles: { [key: string]: CSSProperties } = {
     gap: 20,
   },
   rewardBox: {
-    backgroundColor: "#140F21",
+    backgroundColor: '#140F21',
     borderRadius: 12,
     width: 118,
     height: 118,

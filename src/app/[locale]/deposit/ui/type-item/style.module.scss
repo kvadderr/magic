@@ -19,7 +19,7 @@
   span:first-of-type {
     font-weight: 600;
     font-size: 12px;
-    color: #8774B8;
+    color: #8774b8;
     text-transform: capitalize;
   }
   span:last-of-type {
@@ -30,8 +30,8 @@
   }
 
   &.active {
-    border-color: #3A2964;
-    background: #3A2964;
+    border-color: #3a2964;
+    background: #3a2964;
   }
 
   @media screen and (max-width: 1200px) {

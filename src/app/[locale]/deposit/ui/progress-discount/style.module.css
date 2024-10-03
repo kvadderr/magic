@@ -17,17 +17,17 @@
   opacity: 1;
 }
 .container .point:first-child {
-  background: #4541FD;
+  background: #4541fd;
   border-radius: 10px 0 0 10px;
 }
 .container .point:nth-child(2) {
-  background: #415FFD;
+  background: #415ffd;
 }
 .container .point:nth-child(3) {
-  background: #418CFD;
+  background: #418cfd;
 }
 .container .point:nth-child(4) {
-  background: #41AEFD;
+  background: #41aefd;
   border-radius: 0 10px 10px 0;
 }
 .container .point {
@@ -38,4 +38,4 @@
 }
 .container .point.active {
   opacity: 1;
-}/*# sourceMappingURL=style.module.css.map */
+} /*# sourceMappingURL=style.module.css.map */

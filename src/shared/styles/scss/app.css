@@ -124,7 +124,7 @@ img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 input {
@@ -137,16 +137,16 @@ input::placeholder {
   color: #8774b8;
 }
 
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-input[type=number],
-input[type=number]:hover,
-input[type=number]:focus {
+input[type='number'],
+input[type='number']:hover,
+input[type='number']:focus {
   -webkit-appearance: none;
-          appearance: none;
+  appearance: none;
   -moz-appearance: textfield;
 }
 
@@ -197,7 +197,7 @@ input[type=number]:focus {
   filter: blur(5px);
   -webkit-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   z-index: 111;
   top: 0;
   left: 0;
@@ -576,7 +576,7 @@ tbody tr.marginTableItem {
 .level-text {
   display: flex;
   align-items: center;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-size: 14px;
   font-style: normal;
@@ -615,13 +615,13 @@ tbody tr.marginTableItem {
 .progress {
   height: 100%;
   border-radius: 0 3px 3px 0;
-  background: linear-gradient(90deg, #4046EB 0%, #419FFF 100%);
+  background: linear-gradient(90deg, #4046eb 0%, #419fff 100%);
 }
 
 .progress-text {
   display: flex;
   align-items: center;
-  color: #FFF;
+  color: #fff;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -691,7 +691,7 @@ tbody tr.marginTableItem {
 .balanceHeader {
   display: flex;
   align-items: center;
-  color: #8774B8;
+  color: #8774b8;
   text-align: center;
   font-size: 16px;
   font-style: normal;
@@ -714,7 +714,7 @@ tbody tr.marginTableItem {
   padding-top: 12px;
   row-gap: 32px;
   -moz-column-gap: 12px;
-       column-gap: 12px;
+  column-gap: 12px;
   grid-template-columns: repeat(4, auto);
   padding-right: 20px;
   padding-left: 20px;
@@ -814,7 +814,7 @@ tbody tr.marginTableItem {
 }
 
 .scrollContainer {
-  transition: "all 3s";
+  transition: 'all 3s';
   width: 100%;
   padding-right: 12px;
   padding-left: 12px;
@@ -1074,7 +1074,11 @@ p {
 .activeScale {
   display: flex;
   align-items: center;
-  background: -webkit-linear-gradient(left, rgb(64, 70, 235), rgb(65, 159, 255));
+  background: -webkit-linear-gradient(
+    left,
+    rgb(64, 70, 235),
+    rgb(65, 159, 255)
+  );
   width: 50%;
   height: 100%;
   border-radius: 6px;
@@ -1202,7 +1206,7 @@ p {
   display: grid;
   grid-template-columns: 311px 311px 311px 311px;
   -moz-column-gap: 12px;
-       column-gap: 12px;
+  column-gap: 12px;
   row-gap: 32px;
   padding-bottom: 64px;
   border-bottom: 1px solid #231943;
@@ -1212,7 +1216,7 @@ p {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     -moz-column-gap: 55px;
-         column-gap: 55px;
+    column-gap: 55px;
   }
 }
 @media (max-width: 900px) {
@@ -1220,7 +1224,7 @@ p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     -moz-column-gap: 45px;
-         column-gap: 45px;
+    column-gap: 45px;
     row-gap: 32px;
   }
 }
@@ -1529,13 +1533,13 @@ p {
   cursor: default;
   right: 0;
   bottom: 0;
-  display: "flex";
+  display: 'flex';
   position: fixed;
   top: 0;
   left: 0;
   background: rgba(13, 10, 22, 0.6);
   -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1698,7 +1702,8 @@ p {
 .navbar:hover .navbar__item:hover {
   opacity: 1;
 }
-.navbar__itemActive, .navbar__item {
+.navbar__itemActive,
+.navbar__item {
   margin-right: 24px;
   cursor: pointer;
   display: flex;
@@ -1706,7 +1711,8 @@ p {
   transition: 0.3s;
   opacity: 0.85;
 }
-.navbar__itemActive:last-child, .navbar__item:last-child {
+.navbar__itemActive:last-child,
+.navbar__item:last-child {
   margin-right: 0;
 }
 .navbar__itemActive {
@@ -1778,12 +1784,13 @@ p {
   position: relative;
   overflow: clip;
 }
-.profile .balanse, .profile .balanse::before {
+.profile .balanse,
+.profile .balanse::before {
   transition: 0.125s ease-out all;
 }
 .profile .balanse::before {
   z-index: -1;
-  content: "";
+  content: '';
   left: 0;
   background: linear-gradient(90deg, #4046eb 0%, #4046eb 100%);
   background-position-x: 200px;
@@ -1976,7 +1983,7 @@ p {
   display: grid;
   grid-template-columns: 311px 311px 311px 311px;
   -moz-column-gap: 12px;
-       column-gap: 12px;
+  column-gap: 12px;
   row-gap: 32px;
   padding-bottom: 64px;
   border-bottom: 1px solid #231943;
@@ -1986,7 +1993,7 @@ p {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     -moz-column-gap: 55px;
-         column-gap: 55px;
+    column-gap: 55px;
   }
 }
 @media (max-width: 900px) {
@@ -1994,7 +2001,7 @@ p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     -moz-column-gap: 45px;
-         column-gap: 45px;
+    column-gap: 45px;
     row-gap: 32px;
   }
 }
@@ -2436,7 +2443,7 @@ p {
 }
 
 .scrollContainer {
-  transition: "all 3s";
+  transition: 'all 3s';
   width: 100%;
   padding-right: 12px;
   padding-left: 12px;
@@ -2503,7 +2510,7 @@ p {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 8px;
 }
 
@@ -2648,14 +2655,16 @@ p {
   align-items: center;
   justify-content: space-between;
 }
-.inputSumWrapDisabled, .inputSumWrap {
+.inputSumWrapDisabled,
+.inputSumWrap {
   width: 216px;
   height: 50px;
   position: relative;
   border-radius: 12px;
   background-color: #3a2964;
 }
-.inputSumWrapDisabled input, .inputSumWrap input {
+.inputSumWrapDisabled input,
+.inputSumWrap input {
   width: 100%;
   height: 50px;
   border-radius: 12px;
@@ -2666,7 +2675,8 @@ p {
   justify-content: center;
   border: none;
 }
-.inputSumWrapDisabled svg, .inputSumWrap svg {
+.inputSumWrapDisabled svg,
+.inputSumWrap svg {
   position: absolute;
   top: 50%;
   right: 12px;
@@ -2827,7 +2837,7 @@ p {
 }
 
 .custom-radio::after {
-  content: "";
+  content: '';
   width: 10px;
   height: 10px;
   background: #4195fd;
@@ -2849,7 +2859,8 @@ p {
   font-weight: 600;
   border: none;
   padding: 12px;
-  background: url("../../../../../assets/custom-select/arrow-down.png") no-repeat right #3a2964;
+  background: url('../../../../../assets/custom-select/arrow-down.png')
+    no-repeat right #3a2964;
 }
 .customSelect option {
   color: #8774b8;
@@ -2962,8 +2973,8 @@ p {
   width: 100%;
   height: 100%;
   opacity: 0.5;
-  background: linear-gradient(180deg, #140F21 0%, #201F4E 74.48%);
-  content: "";
+  background: linear-gradient(180deg, #140f21 0%, #201f4e 74.48%);
+  content: '';
 }
 @media (max-width: 1000px) {
   .headerShopBox {
@@ -3117,7 +3128,9 @@ p {
   -webkit-background-clip: text;
   background-clip: text;
   color: rgba(255, 255, 255, 0.5058823529);
-  animation: reveal 400ms ease-in-out forwards 400ms, glow 3000ms linear infinite 100ms;
+  animation:
+    reveal 400ms ease-in-out forwards 400ms,
+    glow 3000ms linear infinite 100ms;
 }
 @keyframes glow {
   0% {
@@ -3428,7 +3441,7 @@ p {
   grid-template-columns: repeat(3, 1fr);
   justify-content: space-between;
   -moz-column-gap: 50px;
-       column-gap: 50px;
+  column-gap: 50px;
   row-gap: 28px;
 }
 .serviceModalLeftInfoItem {
@@ -3603,7 +3616,9 @@ p {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-.serviceItemElem, .serviceItemElemOn85, .serviceItemElemBig {
+.serviceItemElem,
+.serviceItemElemOn85,
+.serviceItemElemBig {
   border-radius: 12px;
   background-color: #140f21;
   position: relative;
@@ -3613,12 +3628,16 @@ p {
   align-items: center;
   justify-content: center;
 }
-.serviceItemElem img, .serviceItemElemOn85 img, .serviceItemElemBig img {
+.serviceItemElem img,
+.serviceItemElemOn85 img,
+.serviceItemElemBig img {
   border-radius: 8px;
   width: 60px;
   height: 60px;
 }
-.serviceItemElemCount, .serviceItemElemOn85Count, .serviceItemElemBigCount {
+.serviceItemElemCount,
+.serviceItemElemOn85Count,
+.serviceItemElemBigCount {
   position: absolute;
   bottom: 6px;
   right: 6px;
@@ -3627,7 +3646,9 @@ p {
   font-size: 14px;
   font-weight: 600;
 }
-.serviceItemElemFlag, .serviceItemElemOn85Flag, .serviceItemElemBigFlag {
+.serviceItemElemFlag,
+.serviceItemElemOn85Flag,
+.serviceItemElemBigFlag {
   position: absolute;
   right: 6px;
   top: -6px;
@@ -3677,4 +3698,4 @@ p {
 .boxCloseIconHeaderTitle {
   height: 24px;
   width: 24px;
-}/*# sourceMappingURL=app.css.map */
+} /*# sourceMappingURL=app.css.map */

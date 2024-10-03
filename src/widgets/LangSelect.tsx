@@ -2,19 +2,19 @@
 
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import Select, {components} from 'react-select';
+import Select, { components } from 'react-select';
 import { ChangeEvent, useTransition } from 'react';
-import CustomSelect from "@/shared/components/CustomSelect/CustomSelect";
-import {EnLangIcon} from "@/shared/assets";
-import RuLangIcon from "@/shared/assets/langIcon/RuLangIcon";
+import CustomSelect from '@/shared/components/CustomSelect/CustomSelect';
+import { EnLangIcon } from '@/shared/assets';
+import RuLangIcon from '@/shared/assets/langIcon/RuLangIcon';
 
 const LangSelect = () => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const localActive = useLocale();
-  
+
   const onSelectChange = (e: any) => {
-    console.log('e.target.value', e.value)
+    console.log('e.target.value', e.value);
     const nextLocale = e.value;
     startTransition(() => {
       router.replace(`/${nextLocale}`);
@@ -23,7 +23,7 @@ const LangSelect = () => {
   const options = [
     { value: 'en', label: 'EN', icon: <EnLangIcon /> },
     { value: 'ru', label: 'RU', icon: <RuLangIcon /> },
-  ]
+  ];
   return (
     <CustomSelect
       options={options}
@@ -36,6 +36,6 @@ const LangSelect = () => {
       menuPlacement={'top'}
     />
   );
-}
+};
 
-export default LangSelect
+export default LangSelect;

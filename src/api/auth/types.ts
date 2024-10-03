@@ -10,4 +10,6 @@ export interface UserData {
   role: string;
   steamId: string;
   name: string;
+  lvl?: number;
+  experience?: number;
 }

@@ -13,7 +13,10 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust 150px as needed */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(150px, 1fr)
+  ); /* Adjust 150px as needed */
   gap: 8px;
   margin-top: 20px;
 }
@@ -26,4 +29,4 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
-}/*# sourceMappingURL=style.module.css.map */
+} /*# sourceMappingURL=style.module.css.map */

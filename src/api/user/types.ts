@@ -1,5 +1,20 @@
-import apiInstance from "@/api/instance/instance";
-import {IGetBanList} from "@/api/banlist/types";
+export interface Gift {
+  id: number;
+  lvl: number;
+  iconUrl: string;
+  name: string;
+  type: string;
+  available?: boolean;
+}
+
+export interface UserGift {
+  id: number;
+  name: string;
+  iconUrl: string;
+  giftId: number;
+  lvl: number;
+  available?: boolean;
+}
 
 export interface IGetInventoryResponse {
   pages: number;
@@ -29,27 +44,27 @@ export interface getInventoryDataItem {
 
 const productMock = {
   id: 123,
-  name_ru: "123",
-  name_en: "123",
-  nameID: "123",
-  description_ru: "123",
-  description_en: "123",
-  image: "https://content.magicrust.ru/images/rust/items/128/wood.png",
-  type: "123",
+  name_ru: '123',
+  name_en: '123',
+  nameID: '123',
+  description_ru: '123',
+  description_en: '123',
+  image: 'https://content.magicrust.ru/images/rust/items/128/wood.png',
+  type: '123',
   productContent: {
     data: [
       {
         time: 123123,
-        alert: "qwe",
-        label: "qwe",
+        alert: 'qwe',
+        label: 'qwe',
         itemData: [],
-      }
+      },
     ],
     rade: 12,
     delay: 12,
     setHome: 12,
-    imageModal: "123",
-    descriptionModal: "12",
+    imageModal: '123',
+    descriptionModal: '12',
   },
   serverTypeId: 12,
   amount: 12,
@@ -57,33 +72,33 @@ const productMock = {
   price: 12,
   discount: 12,
   saleDiscount: 12,
-  saleDeadline: "qwe",
-  maxCountOfSale: "qwe",
+  saleDeadline: 'qwe',
+  maxCountOfSale: 'qwe',
   hidden: false,
   number: 123,
   autoactivation: true,
   isBackgroundColor: false,
   blockSize: 12,
   isBackgroundImage: true,
-  buttonColor: "qwe",
-  textButton: "",
-  textButton_en: "",
-  iconButton: "",
+  buttonColor: 'qwe',
+  textButton: '',
+  textButton_en: '',
+  iconButton: '',
   height: 123,
-  description: "123",
-  name: "qwe",
+  description: '123',
+  name: 'qwe',
   basePrice: 123,
-}
+};
 export const getInventoryDataItemMock: getInventoryDataItem = {
   id: 10,
   amount: 10,
-  status: "Статус",
+  status: 'Статус',
   dateOfReceive: null,
   historyOfPurchaseId: 23123123,
   userId: 12344,
   serverTypeId: 123,
   serverId: 1,
-  serverName: "MR 4 [ MAX 3 | BARREN ]",
+  serverName: 'MR 4 [ MAX 3 | BARREN ]',
   productId: 100,
   createdAt: new Date().toTimeString(),
   isCanBeRefund: false,
@@ -91,15 +106,15 @@ export const getInventoryDataItemMock: getInventoryDataItem = {
   packId: null,
   product: productMock,
   serverType: {
-    description: "qwe",
+    description: 'qwe',
     hidden: false,
     id: 123,
-    name: "qwe",
+    name: 'qwe',
     number: 1233,
   },
   description: null,
-  name: "qweqwe",
-}
+  name: 'qweqwe',
+};
 
 interface ServerType {
   description: string;
@@ -109,12 +124,10 @@ interface ServerType {
   number: number;
 }
 
-
 export interface IGetDetailsData {
   result: getDetailsDataItem[];
   pages: number;
 }
-
 
 export interface getDetailsDataItem {
   id: number;
@@ -139,16 +152,11 @@ const detailItemMock = {
   amount: 100,
   createdAt: new Date().toTimeString(),
   status: true,
-  name: "qwe",
-  type: "qwe",
-}
+  name: 'qwe',
+  type: 'qwe',
+};
 
 export const getDetailsMock = {
   pages: 1000,
-  result: [
-    detailItemMock,
-    detailItemMock,
-    detailItemMock,
-    detailItemMock
-  ]
-}
+  result: [detailItemMock, detailItemMock, detailItemMock, detailItemMock],
+};

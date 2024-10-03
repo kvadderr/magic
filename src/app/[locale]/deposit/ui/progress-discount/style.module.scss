@@ -11,32 +11,32 @@
   .sum {
     font-size: 14px;
     transition: 125ms ease-out;
-    opacity: .5;
+    opacity: 0.5;
   }
   .sum.active {
     opacity: 1;
   }
 
   .point:first-child {
-    background: #4541FD;
+    background: #4541fd;
     border-radius: 10px 0 0 10px;
   }
 
   .point:nth-child(2) {
-    background: #415FFD;
+    background: #415ffd;
   }
 
   .point:nth-child(3) {
-    background: #418CFD;
+    background: #418cfd;
   }
 
   .point:nth-child(4) {
-    background: #41AEFD;
+    background: #41aefd;
     border-radius: 0 10px 10px 0;
   }
 
   .point {
-    opacity: .5;
+    opacity: 0.5;
     font-size: 14px;
     padding: 1px 16px;
     transition: 125ms ease-out;

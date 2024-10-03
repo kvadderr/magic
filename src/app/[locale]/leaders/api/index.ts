@@ -1,1 +1,1 @@
-export * from "./LeaderboardProvider";
+export * from './LeaderboardProvider';

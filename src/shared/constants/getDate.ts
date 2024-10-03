@@ -1,4 +1,5 @@
-const checkTime = (value: string): string => (Number(value) < 10 ? `0${value}` : value);
+const checkTime = (value: string): string =>
+  Number(value) < 10 ? `0${value}` : value;
 
 export const getDate = (data: string): string => {
   const day = new Date(data);

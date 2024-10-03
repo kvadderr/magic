@@ -158,7 +158,9 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: rgba(255, 255, 255, 0.5058823529);
-  animation: reveal 400ms ease-in-out forwards 400ms, glow 3000ms linear infinite 100ms;
+  animation:
+    reveal 400ms ease-in-out forwards 400ms,
+    glow 3000ms linear infinite 100ms;
 }
 @keyframes glow {
   0% {
@@ -173,4 +175,4 @@
   100% {
     color: #fff;
   }
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */

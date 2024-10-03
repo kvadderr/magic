@@ -107,7 +107,7 @@
 
 .level-text {
   @include displayFlexAIC;
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-size: 14px;
   font-style: normal;
@@ -146,12 +146,12 @@
 .progress {
   height: 100%;
   border-radius: 0 3px 3px 0;
-  background: linear-gradient(90deg, #4046EB 0%, #419FFF 100%);
+  background: linear-gradient(90deg, #4046eb 0%, #419fff 100%);
 }
 
 .progress-text {
   @include displayFlexAIC;
-  color: #FFF;
+  color: #fff;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -212,10 +212,9 @@
   height: 64px;
 }
 
-
 .balanceHeader {
   @include displayFlexAIC;
-  color: #8774B8;
+  color: #8774b8;
   text-align: center;
   font-size: 16px;
   font-style: normal;

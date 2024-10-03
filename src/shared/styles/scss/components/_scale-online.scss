@@ -37,7 +37,11 @@ p {
 }
 .activeScale {
   @include displayFlexAIC;
-  background: -webkit-linear-gradient(left, rgba(64, 70, 235, 1), rgba(65, 159, 255, 1));
+  background: -webkit-linear-gradient(
+    left,
+    rgba(64, 70, 235, 1),
+    rgba(65, 159, 255, 1)
+  );
   width: 50%;
   height: 100%;
   border-radius: 6px;

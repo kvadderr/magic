@@ -1,6 +1,9 @@
-import React, {useState, useEffect, Dispatch, SetStateAction} from 'react';
+import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
-type UseOutsideClickHook = (ref: React.RefObject<any>, set: Dispatch<SetStateAction<boolean>>) => boolean;
+type UseOutsideClickHook = (
+  ref: React.RefObject<any>,
+  set: Dispatch<SetStateAction<boolean>>,
+) => boolean;
 
 const useOutsideClick: UseOutsideClickHook = (ref, set) => {
   const [isOutsideClick, setIsOutsideClick] = useState(false);
@@ -8,7 +11,11 @@ const useOutsideClick: UseOutsideClickHook = (ref, set) => {
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       const targetRole = (event.target as HTMLElement).getAttribute('role');
-      if (ref.current && !ref.current.contains(event.target as Node) && targetRole !== "option") {
+      if (
+        ref.current &&
+        !ref.current.contains(event.target as Node) &&
+        targetRole !== 'option'
+      ) {
         set(false);
         return;
       }

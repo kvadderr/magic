@@ -18,7 +18,7 @@
 .item span:first-of-type {
   font-weight: 600;
   font-size: 12px;
-  color: #8774B8;
+  color: #8774b8;
   text-transform: capitalize;
 }
 .item span:last-of-type {
@@ -28,12 +28,12 @@
   text-transform: capitalize;
 }
 .item.active {
-  border-color: #3A2964;
-  background: #3A2964;
+  border-color: #3a2964;
+  background: #3a2964;
 }
 @media screen and (max-width: 1200px) {
   .item {
     flex-grow: 1;
     width: 100%;
   }
-}/*# sourceMappingURL=style.module.css.map */
+} /*# sourceMappingURL=style.module.css.map */

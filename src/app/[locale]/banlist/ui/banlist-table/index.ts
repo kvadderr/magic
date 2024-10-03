@@ -1,1 +1,1 @@
-export * from "./BanListTable";
+export * from './BanListTable';

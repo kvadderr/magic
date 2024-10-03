@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@import '../../styles/variables';
 @import '../../styles/mixins';
 
 .headerShopBox {
@@ -141,7 +141,9 @@
   background-clip: text;
   color: #ffffff81;
 
-  animation: reveal 400ms ease-in-out forwards 400ms, glow 3000ms linear infinite 100ms;
+  animation:
+    reveal 400ms ease-in-out forwards 400ms,
+    glow 3000ms linear infinite 100ms;
 
   @keyframes glow {
     0% {
