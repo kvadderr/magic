@@ -77,6 +77,7 @@ export default function ProfilePage(props: {
         ) : (
           <Detail
             userDetails={userDetails}
+            token={token}
             balance={balance}
             steamId={userData.steamId}
           />
