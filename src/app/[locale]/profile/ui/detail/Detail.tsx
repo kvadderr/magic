@@ -1,42 +1,27 @@
 'use client';
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import TransferModal from './TransferModal';
-import { Ref, useEffect, useRef, useState } from 'react';
+import { Ref } from 'react';
 import Pagination from '@/shared/components/Pagination/Pagination';
-import { UserApi } from '@/api/user/user.api';
-import { IGetDetailsData } from '@/api/user/types';
 import DetailsTableItem from '@/app/[locale]/profile/ui/detail-table-item/DetailTableItem';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
-export const Detail = () => {
+export const Detail = ({
+  userDetails,
+  balance,
+  steamId,
+  token,
+}: {
+  userDetails: any; // Данные передаются через пропсы
+  balance: number;
+  steamId: string;
+  token: string;
+}) => {
   const t = useTranslations('Profile');
-  const [data, set] = useState<IGetDetailsData>();
-  const [token, setToken] = useState('');
-  const [steamID, setSteam] = useState('');
-  const [balance, setBalance] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const tableRef = useRef<any | null | Ref<HTMLDivElement>>();
-  //const locale = useLocale();
-  const asyncData = async () => {
-    const token = localStorage.getItem('accessToken');
-    if (!token) {
-      return;
-    }
-    setToken(token);
-    const { data } = await UserApi.getDetails(token, currentPage, 10, 'desc');
-    const { data: userData } = await UserApi.getMe(token);
-    setSteam(userData.steamId);
-    const response = await UserApi.getBalance(token);
-    const balance = response.data.balance;
-    setBalance(balance);
-    set(data);
-  };
-
-  useEffect(() => {
-    asyncData();
-  }, [currentPage]);
 
   useEffect(() => {
     tableRef?.current?.scrollTo({ left: 0, behavior: 'smooth' });
@@ -44,6 +29,7 @@ export const Detail = () => {
 
   return (
     <div className="container">
+      {/* Отображение баланса и кнопка для перевода */}
       <div className="populateBalanceInDetail">
         <div>
           <p className="balanceHeader">Баланс</p>
@@ -70,11 +56,13 @@ export const Detail = () => {
             onClose={() => setIsModalOpen(false)}
             balance={balance}
             token={token}
-            steamID={steamID}
+            steamID={steamId}
           />
         )}
       </div>
-      {!data?.result[0] ? (
+
+      {/* Таблица с деталями операций */}
+      {!userDetails?.result[0] ? (
         <h1 className="noRecords">Нет записей</h1>
       ) : (
         <>
@@ -90,18 +78,19 @@ export const Detail = () => {
                 </tr>
               </thead>
               <tbody>
-                <></>
-                {data?.result[0] &&
-                  data?.result.map((el, index) => {
+                {userDetails?.result[0] &&
+                  userDetails?.result.map((el: any, index: number) => {
                     return <DetailsTableItem data={el} key={index} />;
                   })}
               </tbody>
             </table>
           </div>
+
+          {/* Пагинация */}
           <Pagination
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
-            pagesAmount={data.pages}
+            pagesAmount={userDetails.pages}
             perPage={10}
           />
         </>
