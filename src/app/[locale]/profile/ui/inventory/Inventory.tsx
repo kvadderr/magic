@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { UserApi } from '@/api/user/user.api';
 import ServerSelectionModal from './ServerSelectionModal'; // Импортируем модалку
 import { baseURL } from '@/api/instance/instance';
+
 enum Gifts_type {
   item = 'item',
   product = 'product',
@@ -18,6 +19,7 @@ export const Inventory = () => {
   const [selectedGift, setSelectedGift] = useState<any>(null); // Хранит выбранный подарок
   const accessToken = localStorage.getItem('accessToken');
   const [userId, setUserId] = useState<number | null>(null); // Храним userId
+  const [searchQuery, setSearchQuery] = useState(''); // Состояние для поиска
 
   const fetchUserGifts = async (token: string, userId: number) => {
     if (!token || !userId) return;
@@ -67,8 +69,55 @@ export const Inventory = () => {
     setModalOpen(true);
   };
 
+  // Функция для фильтрации подарков по названию
+  const filteredGifts = userGifts.filter((userGift) =>
+    userGift.Gifts.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
   return (
     <div className="container">
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginBottom: '20px',
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Введите название предмета"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)} // Обновляем состояние для поиска
+          style={{
+            width: '1058px',
+            height: '50px',
+            padding: '13px 825px 13px 12px',
+            borderRadius: '12px 0px 0px 12px', // Закругленные границы слева
+            backgroundColor: '#3A2964',
+            color: '#fff',
+            border: 'none',
+            outline: 'none',
+          }}
+        />
+        <button
+          style={{
+            width: '210px',
+            height: '50px',
+            padding: '13px 59px 13px 59px',
+            borderRadius: '0px 12px 12px 0px', // Закругленные границы справа
+            backgroundColor: '#3A2964',
+            color: '#fff',
+            border: '2px solid #3A2964',
+            cursor: 'pointer',
+          }}
+          onClick={() => {
+            // Обработчик для фильтра
+          }}
+        >
+          Фильтр
+        </button>
+      </div>
+
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
           <tr style={{ color: 'white' }}>
@@ -79,15 +128,14 @@ export const Inventory = () => {
           </tr>
         </thead>
         <tbody>
-          {userGifts.length > 0 &&
-            userGifts.map((userGift, index) => {
+          {filteredGifts.length > 0 &&
+            filteredGifts.map((userGift, index) => {
               const giftDetails = allGifts.find(
                 (gift) => gift.id === userGift.Gifts.id,
               );
               const giftType = giftDetails?.type;
 
-              // Определяем, какой цвет использовать в зависимости от индекса строки
-              const backgroundColor = index % 2 === 0 ? '#5A4B78' : '#4A3B66'; // Цвета ближе друг к другу
+              const backgroundColor = index % 2 === 0 ? '#5A4B78' : '#4A3B66';
 
               return (
                 <tr
@@ -95,7 +143,7 @@ export const Inventory = () => {
                   style={{
                     backgroundColor, // Цвет в зависимости от индекса
                     color: 'white',
-                    borderRadius: '12px', // Закругленные углы для строк
+                    borderRadius: '12px',
                     padding: '12px',
                     margin: '5px 0',
                   }}
@@ -153,8 +201,8 @@ export const Inventory = () => {
         <ServerSelectionModal
           onClose={() => setModalOpen(false)}
           token={accessToken!}
-          userId={userId!} // Передаем userId в модалку
-          productId={selectedGift.giftId} // Передаем productId в модалку
+          userId={userId!}
+          productId={selectedGift.giftId}
         />
       )}
     </div>

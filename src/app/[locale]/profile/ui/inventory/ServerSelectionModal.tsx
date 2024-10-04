@@ -64,9 +64,9 @@ const ServerSelectionModal: React.FC<ServerSelectionModalProps> = ({
     <div
       style={{
         width: '470px',
-        height: '688px',
+        height: '548px',
         position: 'fixed',
-        top: '196px',
+        top: '40px',
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 1000,
