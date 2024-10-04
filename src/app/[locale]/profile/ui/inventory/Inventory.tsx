@@ -17,6 +17,7 @@ export const Inventory = () => {
   const [isModalOpen, setModalOpen] = useState(false); // Состояние для открытия модалки
   const [selectedGift, setSelectedGift] = useState<any>(null); // Хранит выбранный подарок
   const accessToken = localStorage.getItem('accessToken');
+  const [userId, setUserId] = useState<number | null>(null); // Храним userId
 
   const fetchUserGifts = async (token: string, userId: number) => {
     if (!token || !userId) return;
@@ -43,6 +44,7 @@ export const Inventory = () => {
       UserApi.getMe(accessToken)
         .then(async (response) => {
           const userId = response.data.id;
+          setUserId(userId); // Устанавливаем userId
           await UserApi.checkUserLevel(accessToken, userId);
           fetchUserGifts(accessToken, userId);
           const level = response.data.lvl;
@@ -65,15 +67,8 @@ export const Inventory = () => {
     setModalOpen(true);
   };
 
-  const handleServerSelect = (serverId: number) => {
-    // Здесь вы можете обработать получение подарка на выбранном сервере
-    alert(
-      `Подарок ${selectedGift.giftId} будет получен на сервере с ID ${serverId}`,
-    );
-  };
-
   return (
-    <div style={{ width: '50%', marginLeft: '380px' }}>
+    <div className="container">
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
           <tr style={{ color: 'white' }}>
@@ -85,18 +80,22 @@ export const Inventory = () => {
         </thead>
         <tbody>
           {userGifts.length > 0 &&
-            userGifts.map((userGift) => {
+            userGifts.map((userGift, index) => {
               const giftDetails = allGifts.find(
                 (gift) => gift.id === userGift.Gifts.id,
               );
               const giftType = giftDetails?.type;
+
+              // Определяем, какой цвет использовать в зависимости от индекса строки
+              const backgroundColor = index % 2 === 0 ? '#5A4B78' : '#4A3B66'; // Цвета ближе друг к другу
+
               return (
                 <tr
                   key={userGift.giftId}
                   style={{
-                    backgroundColor: 'rgba(50, 0, 100, 0.8)',
+                    backgroundColor, // Цвет в зависимости от индекса
                     color: 'white',
-                    borderRadius: '8px',
+                    borderRadius: '12px', // Закругленные углы для строк
                     padding: '12px',
                     margin: '5px 0',
                   }}
@@ -110,7 +109,7 @@ export const Inventory = () => {
                   >
                     <img
                       src={`${baseURL}${userGift.Gifts.iconUrl}`}
-                      alt={userGift.Gifts.name} // Правильное использование alt
+                      alt={userGift.Gifts.name}
                       style={{
                         width: '85px',
                         height: '85px',
@@ -122,20 +121,27 @@ export const Inventory = () => {
                   <td style={{ padding: '12px' }}>{userGift.amount}</td>
                   <td style={{ padding: '12px' }}>{userGift.Gifts.id}</td>
                   <td style={{ padding: '12px' }}>
-                    <button
-                      onClick={() => handleButtonClick(userGift)}
-                      style={{
-                        backgroundColor: '#00bfff',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '12px',
-                        padding: '8px 16px',
-                        cursor: 'pointer',
-                        transition: 'background-color 0.3s',
-                      }}
-                    >
-                      {getButtonLabel(giftType)}
-                    </button>
+                    {userGift.server ? (
+                      <div>
+                        <p>Сервер: {userGift.server.name}</p>
+                        <p>IP: {userGift.server.ip}</p>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => handleButtonClick(userGift)}
+                        style={{
+                          backgroundColor: '#00bfff',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '12px',
+                          padding: '8px 16px',
+                          cursor: 'pointer',
+                          transition: 'background-color 0.3s',
+                        }}
+                      >
+                        {getButtonLabel(giftType)}
+                      </button>
+                    )}
                   </td>
                 </tr>
               );
@@ -143,11 +149,12 @@ export const Inventory = () => {
         </tbody>
       </table>
 
-      {isModalOpen && (
+      {isModalOpen && selectedGift && (
         <ServerSelectionModal
           onClose={() => setModalOpen(false)}
-          onSelect={handleServerSelect}
-          token={accessToken!} // Передаем токен в модалку
+          token={accessToken!}
+          userId={userId!} // Передаем userId в модалку
+          productId={selectedGift.giftId} // Передаем productId в модалку
         />
       )}
     </div>

@@ -21,8 +21,9 @@ const statusMapping: Record<string, string> = {
 // Маппинг методов
 const methodMapping: Record<string, string> = {
   Refill: 'Депозит',
-  Purchase: 'Покупка',
-  Transfer: 'Перевод',
+  transaction: 'Пополнение',
+  purchase: 'Покупка',
+  transfer: 'Перевод',
   Withdrawal: 'Снятие',
   Deposit: 'Депозит',
 };
@@ -35,18 +36,25 @@ const DetailsTableItem: React.FC<DetailsTableItemProps> = ({ data }) => {
       <td className="tablePurple">{getDate(data.createdAt)}</td>
       <td className="tablePurple"># {data.id}</td>
       <td>
-        <span className={`${data.method === 'Refill' ? 'green' : ''}`}>
-          {data.amount}
+        <span
+          className={`${data.method === 'Refill' ? 'green' : ''}`}
+          style={{ display: 'inline-flex', alignItems: 'center' }} // Inline-flex и выравнивание
+        >
+          {data.amount == 1 ? 0 : data.amount}
           <Image
             src={StarIcon}
             alt=""
             width={24}
             height={24}
-            style={{ display: 'flex', width: '24px', height: '24px' }}
+            style={{ width: '24px', height: '24px', marginLeft: '8px' }} // Отступ слева, чтобы картинка не прилипала к числу
           />
         </span>
       </td>
-      <td>{methodMapping[data.method as string] || data.method}</td>
+      <td>
+        {data.method == 'Transfer'
+          ? 'Перевод'
+          : methodMapping[data.type as string] || data.method}
+      </td>
       <td>
         <div className="tableStatus">
           <span
@@ -54,7 +62,7 @@ const DetailsTableItem: React.FC<DetailsTableItemProps> = ({ data }) => {
               (data.status as unknown as string) === 'SUCCESS' ? 'green' : ''
             }
           >
-            {statusMapping[data.status as unknown as string] || data.status}
+            {statusMapping[data.status as unknown as string] || 'Успешно'}
           </span>
         </div>
       </td>

@@ -3,8 +3,19 @@ export interface Gift {
   lvl: number;
   iconUrl: string;
   name: string;
+  nameID: string;
   type: string;
   available?: boolean;
+}
+
+export interface User {
+  id: number;
+  role: string; // Можешь добавить другие роли, если они есть
+  steamId: string;
+  avatar: string;
+  balance: number;
+  name: string;
+  lvl: number;
 }
 
 export interface UserGift {

@@ -88,16 +88,23 @@ export const UserApi = {
   },
 
   // Новый метод для привязки подарка к пользователю
-  async linkUserGift(token: string, userId: number, giftId: number) {
-    return apiInstance.post(
-      `/users/${userId}/gifts/${giftId}`,
-      {},
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
+  async linkUserGift(
+    token: string,
+    steamId: string,
+    productId: string,
+    quantity: number,
+  ) {
+    return apiInstance.get(`/api-rust/product.give`, {
+      params: {
+        product: productId,
+        token: token,
+        steamid: steamId,
+        quanity: quantity,
       },
-    );
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
   },
 
   async transferFunds(
@@ -109,6 +116,23 @@ export const UserApi = {
     return apiInstance.post(
       `/users/transfer`,
       { senderSteamId, recipientSteamId, amount },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      },
+    );
+  },
+
+  async linkInventoryToServer(
+    token: string,
+    userId: number,
+    productId: number,
+    serverId: number,
+  ) {
+    return apiInstance.put(
+      `/profile/sendToServer?userId=${userId}&productId=${productId}&serverId=${serverId}`,
+      {},
       {
         headers: {
           authorization: `Bearer ${token}`,

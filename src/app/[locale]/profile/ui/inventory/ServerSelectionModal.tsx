@@ -1,20 +1,24 @@
-'use client';
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
-import { ServersApi } from '@/api/servers/servers.api'; // Импортируйте ваш API для серверов
+import { ServersApi } from '@/api/servers/servers.api';
+import { UserApi } from '@/api/user/user.api';
 
 interface ServerSelectionModalProps {
   onClose: () => void;
-  onSelect: (serverId: number) => void;
   token: string;
+  userId: number;
+  productId: number;
 }
 
 const ServerSelectionModal: React.FC<ServerSelectionModalProps> = ({
   onClose,
-  onSelect,
   token,
+  userId,
+  productId,
 }) => {
   const [servers, setServers] = useState<any[]>([]);
-  const [selectedServerId, setSelectedServerId] = useState<number | null>(null); // Хранит выбранный сервер
+  const [selectedServerId, setSelectedServerId] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchServers = async () => {
@@ -35,11 +39,22 @@ const ServerSelectionModal: React.FC<ServerSelectionModalProps> = ({
     setSelectedServerId(id);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (selectedServerId) {
-      onSelect(selectedServerId);
-      alert(`Выбран сервер с ID: ${selectedServerId}`); // Мок-обработчик
-      onClose();
+      try {
+        // Вызываем хук для привязки инвентаря к серверу
+        await UserApi.linkInventoryToServer(
+          token,
+          userId,
+          productId,
+          selectedServerId,
+        );
+
+        window.location.reload();
+      } catch (error) {
+        console.error('Ошибка привязки к серверу:', error);
+        alert('Произошла ошибка при привязке к серверу');
+      }
     } else {
       alert('Пожалуйста, выберите сервер.');
     }
@@ -48,20 +63,30 @@ const ServerSelectionModal: React.FC<ServerSelectionModalProps> = ({
   return (
     <div
       style={{
-        width: '300px',
+        width: '470px',
+        height: '688px',
         position: 'fixed',
-        top: '50%',
+        top: '196px',
         left: '50%',
-        transform: 'translate(-50%, -50%)',
+        transform: 'translateX(-50%)',
         zIndex: 1000,
-        backgroundColor: '#4b007f', // Темно-синий фон
-        color: '#fff',
+        backgroundColor: '#221939', // Уровень всей модалки
+        color: '#FFFFFF',
         padding: '20px',
-        borderRadius: '8px',
-        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.5)',
+        borderRadius: '12px 0px 0px 0px', // Скругление углов
+        boxShadow: `
+          -0.64px 1.74px 6.38px 0px #0C0C180C,
+          -2.8px 7.65px 13.2px 0px #0C0C1814,
+          -6.86px 18.79px 26.33px 0px #0C0C181A,
+          -13.22px 36.18px 51.6px 0px #0C0C181F,
+          -22.25px 60.88px 94.88px 0px #0C0C1827,
+          -34.32px 93.93px 162px 0px #0C0C1833`, // Множественные тени
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
       }}
     >
-      <h3 style={{ textAlign: 'center' }}>Выберите сервер</h3>
+      <h3 style={{ textAlign: 'center', color: '#FFFFFF' }}>Выберите сервер</h3>
       <button
         onClick={onClose}
         style={{
@@ -70,55 +95,85 @@ const ServerSelectionModal: React.FC<ServerSelectionModalProps> = ({
           right: '10px',
           background: 'transparent',
           border: 'none',
-          color: '#fff',
+          color: '#FFFFFF',
           fontSize: '20px',
         }}
       >
         &times;
       </button>
-      <ul style={{ listStyleType: 'none', padding: '0' }}>
-        {servers.map((server) => (
-          <li
-            key={server.serverID}
-            style={{
-              margin: '10px 0',
-              height: '25px',
-              display: 'flex',
-              paddingLeft: '3px',
-              alignItems: 'center',
-              border: '1px solid #5a9be6',
-              borderRadius: '5px',
-              backgroundColor: '#3b3b6b',
-            }}
-          >
-            <label style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
-              {server.name}
-              <input
-                type="radio"
-                name="server"
-                value={server.id}
-                checked={selectedServerId === server.serverID}
-                onChange={() => handleServerSelect(server.serverID)}
+
+      {/* Блок с серверами имеет скролл, который смещен правее */}
+      <div
+        style={{
+          flexGrow: 1,
+          overflowY: 'auto',
+          marginBottom: '20px', // Отступ до кнопки "Подтвердить"
+          paddingRight: '10px', // Смещаем скролл правее
+        }}
+      >
+        <ul style={{ listStyleType: 'none', padding: '0', margin: '0' }}>
+          {servers.map((server) => (
+            <li
+              key={server.serverID}
+              style={{
+                margin: '10px 0',
+                width: '406px',
+                height: '50px',
+                padding: '15px 12px 16px 12px',
+                gap: '0px',
+                borderRadius: '12px 0px 0px 0px', // Скругление углов
+                backgroundColor: '#140F21', // Фон для каждого сервера
+                display: 'flex',
+                alignItems: 'center',
+                border: '1px solid transparent', // Изначально прозрачная граница
+                transition: 'border-color 0.3s ease',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={
+                (e) => (e.currentTarget.style.borderColor = '#5A9BE6') // Фиолетовая граница при наведении
+              }
+              onMouseLeave={
+                (e) => (e.currentTarget.style.borderColor = 'transparent') // Прозрачная граница при уходе курсора
+              }
+              onClick={() => handleServerSelect(server.serverID)}
+            >
+              <label
                 style={{
-                  marginLeft: 'auto', // Перемещаем радиокнопку вправо
-                  accentColor: '#5a9be6', // Цвет радиокнопки
+                  flex: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: '#FFFFFF',
                 }}
-              />
-            </label>
-          </li>
-        ))}
-      </ul>
+              >
+                {server.name}
+                <input
+                  type="radio"
+                  name="server"
+                  value={server.serverID}
+                  checked={selectedServerId === server.serverID}
+                  onChange={() => handleServerSelect(server.serverID)}
+                  style={{
+                    marginLeft: 'auto', // Перемещаем радиокнопку вправо
+                    accentColor: '#5A9BE6', // Цвет радиокнопки
+                  }}
+                />
+              </label>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Кнопка всегда видна внизу */}
       <button
         onClick={handleConfirm}
         style={{
-          backgroundColor: '#5a9be6',
-          color: '#fff',
+          backgroundColor: '#3B82F6', // Цвет кнопки
+          color: '#FFFFFF',
           border: 'none',
           borderRadius: '5px',
           padding: '10px',
           cursor: 'pointer',
           width: '100%',
-          marginTop: '10px', // Отступ сверху для кнопки
         }}
       >
         Подтвердить

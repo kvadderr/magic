@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { UserApi } from '@/api/user/user.api';
 import { Gift } from '@/api/user/types';
+import { User } from '@/api/user/types';
 import { baseURL } from '@/api/instance/instance';
+
 interface LevelRewardModalProps {
   closeModal: () => void;
   level: number;
@@ -20,15 +22,18 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
 }) => {
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [userGifts, setUserGifts] = useState<{ giftId: number }[]>([]);
+  const [steamId, setSteamId] = useState<string | null>(null);
   const experiencePerRub = 5; // Опыт за 1 рубль
 
   // Расчет опыта на основе баланса
   const experienceGained = balance * experiencePerRub;
 
   // Массив уровней и необходимого опыта
-  const levels = [0, 500, 1500, 3100, 5400, 8600, 12900, 18600, 26000, 35500];
+  const levels = [
+    500, 1000, 1600, 2300, 3200, 4300, 5700, 7400, 9500, 12000, 15100, 18800,
+    23200, 28400, 34500, 41600, 49800, 59200, 70000, 82500,
+  ];
 
-  // Функция для расчета прогресса до следующего уровня
   const calculateProgress = (experience: number, level: number) => {
     const currentLevelExp = levels[level - 1]; // Опыт для текущего уровня
     const nextLevelExp = levels[level] || experience; // Опыт для следующего уровня
@@ -40,6 +45,16 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
   const { progress, nextLevelExp } = calculateProgress(experienceGained, level);
 
   useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await UserApi.getMe(token);
+        const userData: User = response.data;
+        setSteamId(userData.steamId); // Сохраняем steamId
+      } catch (error) {
+        console.error('Ошибка при получении данных пользователя:', error);
+      }
+    };
+
     const fetchGifts = async () => {
       try {
         const allGifts = await UserApi.getGiftsByLevel(level, token);
@@ -52,17 +67,21 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
       }
     };
 
+    fetchUserData();
     fetchGifts();
   }, [level, token, userId]);
 
-  const handleClaimGift = async (giftId: number) => {
+  const handleClaimGift = async (gift: Gift) => {
     try {
-      await UserApi.linkUserGift(token, userId, giftId);
-      console.log(
-        `Подарок ${giftId} успешно привязан к пользователю ${userId}.`,
-      );
+      const productIdentifier = gift.nameID || gift.id; // Проверяем, есть ли nameId, если нет, берем id
 
-      // Перезагружаем страницу после успешного запроса
+      await UserApi.linkUserGift(
+        token,
+        steamId as string,
+        String(productIdentifier),
+        1,
+      ); // Передаем либо nameId, либо id
+
       window.location.reload();
     } catch (error) {
       console.error('Ошибка при привязке подарка:', error);
@@ -72,7 +91,7 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
   return (
     <div
       style={{
-        width: '30%',
+        width: '563px', // Устанавливаем ширину согласно макету
         height: 'auto',
         maxHeight: '80%',
         position: 'fixed',
@@ -80,11 +99,12 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
         left: '50%',
         transform: 'translate(-50%, -50%)',
         zIndex: 1000,
-        backgroundColor: '#4b007f',
+        backgroundColor: '#221939',
         color: '#fff',
         padding: '20px',
-        borderRadius: '8px',
+        borderRadius: '12px', // Скругленные углы
         overflowY: 'auto',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)', // Тень для модалки
       }}
     >
       <button
@@ -101,12 +121,17 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
       >
         &times;
       </button>
-      <h3 style={{ marginBottom: '10px' }}>Награда за уровни</h3>
-      <p style={{ marginBottom: '15px' }}>
+      <h3
+        style={{ marginBottom: '10px', fontSize: '24px', fontWeight: 'bold' }}
+      >
+        Награда за уровни
+      </h3>
+      <p style={{ marginBottom: '20px', fontSize: '14px' }}>
         Играйте на MagicRust, чтобы зарабатывать опыт и получать бесплатные
-        предметы Rust
+        предметы Rust!
       </p>
 
+      {/* Прогресс уровня */}
       <div style={{ textAlign: 'center', marginBottom: '20px' }}>
         <div
           style={{
@@ -169,6 +194,7 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
         </div>
       </div>
 
+      {/* Подарки */}
       {gifts.map((gift) => {
         const isGiftClaimed = userGifts.some(
           (userGift) => userGift.giftId === gift.id,
@@ -180,6 +206,18 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
               display: 'flex',
               alignItems: 'center',
               marginBottom: '10px',
+              backgroundColor: '#221939', // Изначальный цвет фона
+              padding: '20px',
+              borderRadius: '12px',
+              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)', // Тень для карточек подарков
+              transition: 'background-color 0.3s, box-shadow 0.3s', // Плавный переход при наведении
+            }}
+            // Добавляем обработчик событий для hover
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#140F21'; // Цвет при наведении (исходный цвет для уровня)
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#221939'; // Возвращаем изначальный цвет
             }}
           >
             <img
@@ -193,7 +231,7 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
               }}
             />
             <div style={{ flexGrow: 1 }}>
-              <span style={{ fontSize: '16px' }}>
+              <span style={{ fontSize: '16px', fontWeight: 'bold' }}>
                 {gift.name} (Уровень: {gift.lvl})
               </span>
             </div>
@@ -209,15 +247,16 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
                 </div>
               ) : (
                 <button
-                  onClick={() => handleClaimGift(gift.id)}
+                  onClick={() => handleClaimGift(gift)}
                   style={{
                     marginLeft: '10px',
                     backgroundColor: '#5a9be6',
                     color: '#fff',
                     border: 'none',
                     borderRadius: '20px',
-                    padding: '5px 10px',
+                    padding: '10px 20px',
                     cursor: 'pointer',
+                    fontSize: '14px',
                   }}
                 >
                   Забрать награду
