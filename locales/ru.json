@@ -32,6 +32,8 @@
     "title": "Информация"
   },
   "Profile": {
+    "filter": "Фильтр",
+    "activate": "Активировать",
     "logout": "Выйти",
     "Tabs": {
       "inventory": "Инвентарь",

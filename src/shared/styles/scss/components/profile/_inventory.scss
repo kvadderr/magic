@@ -62,3 +62,17 @@
   flex-direction: row;
   gap: 40px;
 }
+
+.inventory-table__row-title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21.6px;
+  color: #fff;
+}
+
+.inventory-table__row-description {
+  font-weight: 600;
+  line-height: 14.4px;
+  font-size: 12px;
+  color: #8774B8;
+}

@@ -33,6 +33,8 @@
   },
   "Profile": {
     "logout": "Exit",
+    "filter": "Filter",
+    "activate": "Activate",
     "Tabs": {
       "inventory": "Inventory",
       "detail": "Detail"

@@ -2,6 +2,10 @@
 import React, { useState } from 'react';
 import ServerSelectionModal from './ServerSelectionModal';
 import { baseURL } from '@/api/instance/instance';
+import { SettingsIcon } from '@/shared/assets/icons/SettingsIcon';
+import { useTranslations } from 'next-intl';
+import { SearchIcon } from '@/shared/assets';
+import ModalPortal from '@/shared/components/ModalPortal/ModalPortal';
 
 export const Inventory = ({
   userGifts,
@@ -15,13 +19,7 @@ export const Inventory = ({
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedGift, setSelectedGift] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState('');
-
-  const getButtonLabel = (giftType: string) => {
-    return giftType === 'privilege' || giftType === 'service'
-      ? 'Активировать'
-      : 'Забрать';
-  };
-
+  const t = useTranslations('Profile');
   const handleButtonClick = (userGift: any) => {
     setSelectedGift(userGift);
     setModalOpen(true);
@@ -40,35 +38,19 @@ export const Inventory = ({
           marginBottom: '20px',
         }}
       >
-        <input
-          type="text"
-          placeholder="Введите название предмета"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={{
-            width: '1058px',
-            height: '50px',
-            padding: '13px 825px 13px 12px',
-            borderRadius: '12px 0px 0px 12px',
-            backgroundColor: '#3A2964',
-            color: '#fff',
-            border: 'none',
-            outline: 'none',
-          }}
-        />
-        <button
-          style={{
-            width: '210px',
-            height: '50px',
-            padding: '13px 59px 13px 59px',
-            borderRadius: '0px 12px 12px 0px',
-            backgroundColor: '#3A2964',
-            color: '#fff',
-            border: '2px solid #3A2964',
-            cursor: 'pointer',
-          }}
-        >
-          Фильтр
+        <div className="searchInputWrap">
+          <SearchIcon />
+          <input
+            value={searchQuery}
+            placeholder="Введите название предмета"
+            onChange={(e) => setSearchQuery(e.target.value)}
+            type="text"
+            className="searchInput"
+          />
+        </div>
+        <button className="btn blackBtn filterBtn">
+          <SettingsIcon />
+          <span>{t('filter')}</span>
         </button>
       </div>
 
@@ -83,28 +65,18 @@ export const Inventory = ({
         </thead>
         <tbody>
           {filteredGifts.length > 0 &&
-            filteredGifts.map((userGift, index) => {
-              const giftDetails = allGiftsByLevel.find(
-                (gift) => gift.id === userGift.Gifts.id,
-              );
-              const giftType = giftDetails?.type;
+            filteredGifts.map((userGift) => {
+              // const giftDetails = allGiftsByLevel.find(
+              //   (gift) => gift.id === userGift.Gifts.id,
+              // );
+              // const giftType = giftDetails?.type;
 
-              const backgroundColor = index % 2 === 0 ? '#5A4B78' : '#4A3B66';
+              // const backgroundColor = index % 2 === 0 ? '#221939' : '#281D42';
 
               return (
-                <tr
-                  key={userGift.giftId}
-                  style={{
-                    backgroundColor,
-                    color: 'white',
-                    borderRadius: '12px',
-                    padding: '12px',
-                    margin: '5px 0',
-                  }}
-                >
+                <tr key={userGift.giftId}>
                   <td
                     style={{
-                      padding: '12px',
                       display: 'flex',
                       alignItems: 'center',
                     }}
@@ -113,8 +85,8 @@ export const Inventory = ({
                       src={`${baseURL}${userGift.Gifts.iconUrl}`}
                       alt={userGift.Gifts.name}
                       style={{
-                        width: '85px',
-                        height: '85px',
+                        width: '60px',
+                        height: '60px',
                         marginRight: '8px',
                       }}
                     />
@@ -126,24 +98,20 @@ export const Inventory = ({
                     {userGift.server ? (
                       // Отображение информации о сервере, если он есть
                       <div>
-                        <p>Сервер: {userGift.server.name}</p>
-                        <p>IP: {userGift.server.ip}</p>
+                        <p className="inventory-table__row-title">
+                          Сервер: {userGift.server.name}
+                        </p>
+                        <p className="inventory-table__row-description">
+                          IP: {userGift.server.ip}
+                        </p>
                       </div>
                     ) : (
                       // Кнопка, если сервера нет
                       <button
+                        className="btn lightBtn wideBtn"
                         onClick={() => handleButtonClick(userGift)}
-                        style={{
-                          backgroundColor: '#00bfff',
-                          color: 'white',
-                          border: 'none',
-                          borderRadius: '12px',
-                          padding: '8px 16px',
-                          cursor: 'pointer',
-                          transition: 'background-color 0.3s',
-                        }}
                       >
-                        {getButtonLabel(giftType)}
+                        {t("activate")}
                       </button>
                     )}
                   </td>
@@ -154,12 +122,14 @@ export const Inventory = ({
       </table>
 
       {isModalOpen && selectedGift && (
-        <ServerSelectionModal
-          onClose={() => setModalOpen(false)}
-          token={localStorage.getItem('accessToken')!}
-          userId={userId}
-          productId={selectedGift.giftId}
-        />
+        <ModalPortal>
+          <ServerSelectionModal
+            onClose={() => setModalOpen(false)}
+            token={localStorage.getItem('accessToken')!}
+            userId={userId}
+            productId={selectedGift.giftId}
+          />
+        </ModalPortal>
       )}
     </div>
   );
