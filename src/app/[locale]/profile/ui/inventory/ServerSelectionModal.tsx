@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect, useState } from 'react';
+import React, { createRef, Fragment, useEffect, useState } from 'react';
 import { ServersApi } from '@/api/servers/servers.api';
 import { UserApi } from '@/api/user/user.api';
+import { v4 } from 'uuid';
+import { useTranslations } from 'next-intl';
 
 interface ServerSelectionModalProps {
   onClose: () => void;
@@ -17,6 +19,8 @@ const ServerSelectionModal: React.FC<ServerSelectionModalProps> = ({
   userId,
   productId,
 }) => {
+  const ref = createRef();
+  const t = useTranslations('Leaderboard.Modal');
   const [servers, setServers] = useState<any[]>([]);
   const [selectedServerId, setSelectedServerId] = useState<number | null>(null);
 
@@ -61,123 +65,73 @@ const ServerSelectionModal: React.FC<ServerSelectionModalProps> = ({
   };
 
   return (
-    <div
-      style={{
-        width: '470px',
-        height: '548px',
-        position: 'fixed',
-        top: '40px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: 1000,
-        backgroundColor: '#221939', // Уровень всей модалки
-        color: '#FFFFFF',
-        padding: '20px',
-        borderRadius: '12px 0px 0px 0px', // Скругление углов
-        boxShadow: `
-          -0.64px 1.74px 6.38px 0px #0C0C180C,
-          -2.8px 7.65px 13.2px 0px #0C0C1814,
-          -6.86px 18.79px 26.33px 0px #0C0C181A,
-          -13.22px 36.18px 51.6px 0px #0C0C181F,
-          -22.25px 60.88px 94.88px 0px #0C0C1827,
-          -34.32px 93.93px 162px 0px #0C0C1833`, // Множественные тени
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
-    >
-      <h3 style={{ textAlign: 'center', color: '#FFFFFF' }}>Выберите сервер</h3>
-      <button
-        onClick={onClose}
-        style={{
-          position: 'absolute',
-          top: '10px',
-          right: '10px',
-          background: 'transparent',
-          border: 'none',
-          color: '#FFFFFF',
-          fontSize: '20px',
-        }}
-      >
-        &times;
-      </button>
-
-      {/* Блок с серверами имеет скролл, который смещен правее */}
+    <div className="modal modalActive" style={{ zIndex: 1000 }}>
       <div
         style={{
-          flexGrow: 1,
-          overflowY: 'auto',
-          marginBottom: '20px', // Отступ до кнопки "Подтвердить"
-          paddingRight: '10px', // Смещаем скролл правее
-        }}
-      >
-        <ul style={{ listStyleType: 'none', padding: '0', margin: '0' }}>
-          {servers.map((server) => (
-            <li
-              key={server.serverID}
-              style={{
-                margin: '10px 0',
-                width: '406px',
-                height: '50px',
-                padding: '15px 12px 16px 12px',
-                gap: '0px',
-                borderRadius: '12px 0px 0px 0px', // Скругление углов
-                backgroundColor: '#140F21', // Фон для каждого сервера
-                display: 'flex',
-                alignItems: 'center',
-                border: '1px solid transparent', // Изначально прозрачная граница
-                transition: 'border-color 0.3s ease',
-                cursor: 'pointer',
-              }}
-              onMouseEnter={
-                (e) => (e.currentTarget.style.borderColor = '#5A9BE6') // Фиолетовая граница при наведении
-              }
-              onMouseLeave={
-                (e) => (e.currentTarget.style.borderColor = 'transparent') // Прозрачная граница при уходе курсора
-              }
-              onClick={() => handleServerSelect(server.serverID)}
-            >
-              <label
-                style={{
-                  flex: 1,
-                  display: 'flex',
-                  alignItems: 'center',
-                  color: '#FFFFFF',
-                }}
-              >
-                {server.name}
-                <input
-                  type="radio"
-                  name="server"
-                  value={server.serverID}
-                  checked={selectedServerId === server.serverID}
-                  onChange={() => handleServerSelect(server.serverID)}
-                  style={{
-                    marginLeft: 'auto', // Перемещаем радиокнопку вправо
-                    accentColor: '#5A9BE6', // Цвет радиокнопки
-                  }}
-                />
-              </label>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Кнопка всегда видна внизу */}
-      <button
-        onClick={handleConfirm}
-        style={{
-          backgroundColor: '#3B82F6', // Цвет кнопки
-          color: '#FFFFFF',
-          border: 'none',
-          borderRadius: '5px',
-          padding: '10px',
-          cursor: 'pointer',
           width: '100%',
+          height: '100%',
+          position: 'fixed',
+          top: '0px',
+          right: '0px',
         }}
+      ></div>
+      <div
+        ref={ref}
+        className="modalContent mountedStyle modalContentActive undefined"
       >
-        Подтвердить
-      </button>
+        <div className="modalBackground"></div>
+        <div className="selectServerModal">
+          <div className="modalHeader">
+            <h3 className="modalHeaderTitle">{t('title')}</h3>
+            <div
+              className="modal-header-with-close"
+              onClick={() => onClose()}
+            >
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293z"
+                  fill="#8774B8"
+                />
+              </svg>
+            </div>
+          </div>
+          <div className="selectServer">
+            {servers.map((sv) => {
+              const id = v4();
+              return (
+                <Fragment key={id}>
+                  <label
+                    htmlFor={id}
+                    className="radio-label"
+                    onClick={() => setSelectedServerId(sv.serverID)}
+                  >
+                    {sv.name}
+                    <input
+                      className="radio-input"
+                      type="radio"
+                      name="server"
+                      id={id}
+                      defaultChecked={selectedServerId === sv.serverID}
+                      readOnly
+                    />
+                    <span className="custom-radio"></span>
+                  </label>
+                </Fragment>
+              );
+            })}
+          </div>
+          <button className="btn wideBtn lightBtn" onClick={() => handleConfirm()}>
+            {t('submit')}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
