@@ -1,0 +1,59 @@
+.transfer-modal {
+  &__subtitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8774B8;
+    font-size: 16px;
+    line-height: 19.2px;
+    font-weight: 600;
+  }
+  &__sum-title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 38.41px;
+  }
+
+  &__input {
+    width: 100%;
+  }
+
+  &__label {
+    font-size: 14px;
+    line-height: 16.8px;
+    font-weight: 600;
+    color: #8774B8;
+    margin-bottom: 12px;
+  }
+
+  &__sublabel {
+    font-size: 14px;
+    line-height: 16.8px;
+    font-weight: 600;
+    color: #8774B8;
+    margin-top: 12px;
+    opacity: .7;
+  }
+
+  &__warning {
+    color: #FFB800;
+    padding: 13px 12px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 16.8px;
+    font-weight: 600;
+    background: #FFB8001A;
+    border-radius: 12px;
+  }
+
+  &__form {
+    margin-top: 32px;
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+
+    fieldset {
+      border: none;
+    }
+  }
+}

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { getDate } from '@/shared/constants/getDate';
 import { getDetailsDataItem } from '@/api/user/types';
 //import { useTranslations } from 'next-intl';
 import { StarIcon } from '@/shared/assets/img';
 import Image from 'next/image';
+import './detail-table-item.scss';
 
 export interface DetailsTableItemProps {
   data: getDetailsDataItem; // Убедитесь, что тип включает все необходимые поля
@@ -16,6 +17,15 @@ const statusMapping: Record<string, string> = {
   DENIED: 'Отклонено',
   REFUND: 'Возврат',
   IN_PROGRESS: 'В ожидании',
+};
+
+// Маппинг статусов
+const classesMapping: Record<string, string> = {
+  SUCCESS: 'detail-table-item__success',
+  FALSE: 'detail-table-item__false',
+  DENIED: 'detail-table-item__denied',
+  REFUND: 'detail-table-item__refund',
+  IN_PROGRESS: 'detail-table-item__waiting',
 };
 
 // Маппинг методов
@@ -31,38 +41,35 @@ const methodMapping: Record<string, string> = {
 const DetailsTableItem: React.FC<DetailsTableItemProps> = ({ data }) => {
   //const t = useTranslations('Profile.Table.Detail');
 
+  const status = useMemo(() => {
+    return statusMapping[data.status as unknown as string];
+  }, [data]);
+  const classes = useMemo(() => {
+    return classesMapping[data.status as unknown as string];
+  }, [data]);
   return (
     <tr>
-      <td className="tablePurple">{getDate(data.createdAt)}</td>
-      <td className="tablePurple"># {data.id}</td>
-      <td>
-        <span
-          className={`${data.method === 'Refill' ? 'green' : ''}`}
-          style={{ display: 'inline-flex', alignItems: 'center' }} // Inline-flex и выравнивание
-        >
-          {data.amount == 1 ? 0 : data.amount}
-          <Image
-            src={StarIcon}
-            alt=""
-            width={24}
-            height={24}
-            style={{ width: '24px', height: '24px', marginLeft: '8px' }} // Отступ слева, чтобы картинка не прилипала к числу
-          />
+      <td style={{ fontWeight: 600 }} className="tablePurple">{getDate(data.createdAt)}</td>
+      <td style={{ fontWeight: 600 }} className="tablePurple">
+        # {data.id}
+      </td>
+      <td
+        style={{ fontWeight: 600 }}
+        className={`${status === 'Успешно' && 'detail-table-item__success'}`}
+      >
+        <span style={{ fontWeight: 600 }}>
+          {data.amount == 1 ? 0 : data.amount} ₽
         </span>
       </td>
-      <td>
+      <td style={{ fontWeight: 600 }}>
         {data.method == 'Transfer'
           ? 'Перевод'
           : methodMapping[data.type as string] || data.method}
       </td>
       <td>
-        <div className="tableStatus">
-          <span
-            className={
-              (data.status as unknown as string) === 'SUCCESS' ? 'green' : ''
-            }
-          >
-            {statusMapping[data.status as unknown as string] || 'Успешно'}
+        <div className={`detail-table-item__status ${classes}`}>
+          <span className={status === 'Успешно' ? 'detail-table-item__green' : ''}>
+            {status || 'Неизвестно'}
           </span>
         </div>
       </td>

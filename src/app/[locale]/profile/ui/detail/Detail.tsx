@@ -6,6 +6,8 @@ import Pagination from '@/shared/components/Pagination/Pagination';
 import DetailsTableItem from '@/app/[locale]/profile/ui/detail-table-item/DetailTableItem';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { SearchIcon } from '@/shared/assets';
+import ModalPortal from '@/shared/components/ModalPortal/ModalPortal';
 
 export const Detail = ({
   userDetails,
@@ -47,18 +49,37 @@ export const Detail = ({
               width={24}
               height={24}
             />
-            <span style={{ fontSize: 16 }}>Перевод</span>
+            <span style={{ fontSize: 16 }}>Пополнить</span>
+          </button>
+          <button
+            onClick={() => setIsModalOpen(true)} // Открываем модалку
+            className="btn wideBtn blackBtn"
+            style={{ gap: 12, paddingLeft: 48, paddingRight: 48 }}
+          >
+            <span style={{ fontSize: 16 }}>Перевести</span>
           </button>
         </div>
 
         {isModalOpen && ( // Условно рендерим модалку
-          <TransferModal
-            onClose={() => setIsModalOpen(false)}
-            balance={balance}
-            token={token}
-            steamID={steamId}
-          />
+          <ModalPortal>
+            <TransferModal
+              onClose={() => setIsModalOpen(false)}
+              balance={balance}
+              token={token}
+              steamID={steamId}
+            />
+          </ModalPortal>
         )}
+      </div>
+      <div className="searchInputWrap" style={{ marginTop: '32px' }}>
+        <SearchIcon />
+        <input
+          value=""
+          placeholder="Введите название предмета"
+          onChange={(e) => {}}
+          type="text"
+          className="searchInput"
+        />
       </div>
 
       {/* Таблица с деталями операций */}
