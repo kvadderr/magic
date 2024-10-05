@@ -19,7 +19,7 @@ const ServerSelectionModal: React.FC<ServerSelectionModalProps> = ({
   userId,
   productId,
 }) => {
-  const ref = createRef();
+  const ref = createRef<HTMLDivElement>();
   const t = useTranslations('Leaderboard.Modal');
   const [servers, setServers] = useState<any[]>([]);
   const [selectedServerId, setSelectedServerId] = useState<number | null>(null);
