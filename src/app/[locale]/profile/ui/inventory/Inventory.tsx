@@ -123,20 +123,29 @@ export const Inventory = ({
                   <td style={{ padding: '12px' }}>{userGift.amount}</td>
                   <td style={{ padding: '12px' }}>{userGift.Gifts.id}</td>
                   <td style={{ padding: '12px' }}>
-                    <button
-                      onClick={() => handleButtonClick(userGift)}
-                      style={{
-                        backgroundColor: '#00bfff',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '12px',
-                        padding: '8px 16px',
-                        cursor: 'pointer',
-                        transition: 'background-color 0.3s',
-                      }}
-                    >
-                      {getButtonLabel(giftType)}
-                    </button>
+                    {userGift.server ? (
+                      // Отображение информации о сервере, если он есть
+                      <div>
+                        <p>Сервер: {userGift.server.name}</p>
+                        <p>IP: {userGift.server.ip}</p>
+                      </div>
+                    ) : (
+                      // Кнопка, если сервера нет
+                      <button
+                        onClick={() => handleButtonClick(userGift)}
+                        style={{
+                          backgroundColor: '#00bfff',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '12px',
+                          padding: '8px 16px',
+                          cursor: 'pointer',
+                          transition: 'background-color 0.3s',
+                        }}
+                      >
+                        {getButtonLabel(giftType)}
+                      </button>
+                    )}
                   </td>
                 </tr>
               );
