@@ -4,6 +4,8 @@ import { UserApi } from '@/api/user/user.api';
 import { Gift } from '@/api/user/types';
 import { User } from '@/api/user/types';
 import { baseURL } from '@/api/instance/instance';
+import './level-reward.scss';
+import { LevelProgress } from '@/shared/components/LevelProgress/LevelProgress';
 
 interface LevelRewardModalProps {
   closeModal: () => void;
@@ -67,8 +69,8 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
       }
     };
 
-    fetchUserData();
-    fetchGifts();
+    void fetchUserData();
+    void fetchGifts();
   }, [level, token, userId]);
 
   const handleClaimGift = async (gift: Gift) => {
@@ -89,193 +91,109 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
   };
 
   return (
-    <div
-      style={{
-        width: '563px', // Устанавливаем ширину согласно макету
-        height: 'auto',
-        maxHeight: '80%',
-        position: 'fixed',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        zIndex: 1000,
-        backgroundColor: '#221939',
-        color: '#fff',
-        padding: '20px',
-        borderRadius: '12px', // Скругленные углы
-        overflowY: 'auto',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)', // Тень для модалки
-      }}
-    >
-      <button
-        onClick={closeModal}
-        style={{
-          position: 'absolute',
-          top: '10px',
-          right: '10px',
-          background: 'transparent',
-          border: 'none',
-          color: '#fff',
-          fontSize: '20px',
-        }}
-      >
-        &times;
-      </button>
-      <h3
-        style={{ marginBottom: '10px', fontSize: '24px', fontWeight: 'bold' }}
-      >
-        Награда за уровни
-      </h3>
-      <p style={{ marginBottom: '20px', fontSize: '14px' }}>
-        Играйте на MagicRust, чтобы зарабатывать опыт и получать бесплатные
-        предметы Rust!
-      </p>
-
-      {/* Прогресс уровня */}
-      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
-            marginBottom: '10px',
-          }}
-        >
-          <div
-            style={{
-              width: '60px',
-              height: '60px',
-              borderRadius: '50%',
-              border: '3px solid #2e76e6',
-              backgroundColor: '#5a9be6',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#fff',
-              fontSize: '22px',
-              fontWeight: 'bold',
-              position: 'relative',
-              zIndex: '2',
-            }}
-          >
-            {level}
-          </div>
-          <div
-            style={{
-              width: '100%',
-              height: '10px',
-              backgroundColor: '#0a0a23',
-              borderRadius: '5px',
-              position: 'relative',
-              marginBottom: '10px',
-              marginLeft: '-25px',
-            }}
-          >
-            <div
-              style={{
-                width: `${Math.min(100, progress)}%`,
-                backgroundColor: '#5a9be6',
-                height: '100%',
-                borderRadius: '5px',
-              }}
-            ></div>
-            <span
-              style={{
-                position: 'absolute',
-                right: '0',
-                top: '-20px',
-                fontSize: '12px',
-                color: '#ccc',
-              }}
+    <div className="level-reward__overlay">
+      <div className="level-reward__modal">
+        <div className="level-reward__heading">
+          <button onClick={closeModal} className="level-reward__close">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              {experienceGained} / {nextLevelExp} exp
-            </span>
-          </div>
+              <g id="Remove cr-fr">
+                <path
+                  id="Shape"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM9.70711 8.29289C9.31658 7.90237 8.68342 7.90237 8.29289 8.29289C7.90237 8.68342 7.90237 9.31658 8.29289 9.70711L10.5858 12L8.29289 14.2929C7.90237 14.6834 7.90237 15.3166 8.29289 15.7071C8.68342 16.0976 9.31658 16.0976 9.70711 15.7071L12 13.4142L14.2929 15.7071C14.6834 16.0976 15.3166 16.0976 15.7071 15.7071C16.0976 15.3166 16.0976 14.6834 15.7071 14.2929L13.4142 12L15.7071 9.70711C16.0976 9.31658 16.0976 8.68342 15.7071 8.29289C15.3166 7.90237 14.6834 7.90237 14.2929 8.29289L12 10.5858L9.70711 8.29289Z"
+                  fill="#8774B8"
+                ></path>
+              </g>
+            </svg>
+          </button>
+          <h3 className="level-reward__title">Награда за уровни</h3>
+          <p className="level-reward__subtitle">
+            Играйте на MagicRust, чтобы зарабатывать опыт <br /> и получать
+            предметы Rust!
+          </p>
+
+          {/* Прогресс уровня */}
+          <LevelProgress
+            variant="small"
+            currentLevel={level}
+            progress={progress}
+            experience={experienceGained}
+            nextLevelExp={nextLevelExp}
+          />
+        </div>
+        {/* Подарки */}
+        <div className="level-reward__content">
+          {gifts.map((gift) => {
+            const isGiftClaimed = userGifts.some(
+              (userGift) => userGift.giftId === gift.id,
+            );
+            return (
+              <div
+                key={gift.id}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginBottom: '20px',
+                  backgroundColor: '#221939', // Изначальный цвет фона
+                  borderRadius: '12px',
+                }}
+              >
+                <div className="level-reward__preview">
+                  <img
+                    src={`${baseURL}${gift.iconUrl}`}
+                    alt={gift.name}
+                    style={{
+                      width: '102px',
+                      height: '102px',
+                    }}
+                  />
+                </div>
+                <div style={{ flexGrow: 1 }}>
+              <span style={{ fontSize: '16px', fontWeight: 'bold' }}>
+                {gift.name} Уровень: {gift.lvl}
+              </span>
+                </div>
+                {gift.available ? (
+                  isGiftClaimed ? (
+                    <div
+                      style={{
+                        marginLeft: '10px',
+                        color: '#ccc',
+                      }}
+                    >
+                      В инвентаре
+                    </div>
+                  ) : (
+                    <button
+                      className="lightBtn btn oneColumnBtn level-reward__claim"
+                      onClick={() => handleClaimGift(gift)}
+                    >
+                      Забрать награду
+                    </button>
+                  )
+                ) : (
+                  <img
+                    src="/padlock.png"
+                    alt="Lock"
+                    style={{
+                      width: '30px',
+                      height: '30px',
+                      marginLeft: '10px',
+                    }}
+                  />
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
-
-      {/* Подарки */}
-      {gifts.map((gift) => {
-        const isGiftClaimed = userGifts.some(
-          (userGift) => userGift.giftId === gift.id,
-        );
-        return (
-          <div
-            key={gift.id}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              marginBottom: '10px',
-              backgroundColor: '#221939', // Изначальный цвет фона
-              padding: '20px',
-              borderRadius: '12px',
-              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)', // Тень для карточек подарков
-              transition: 'background-color 0.3s, box-shadow 0.3s', // Плавный переход при наведении
-            }}
-            // Добавляем обработчик событий для hover
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#140F21'; // Цвет при наведении (исходный цвет для уровня)
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#221939'; // Возвращаем изначальный цвет
-            }}
-          >
-            <img
-              src={`${baseURL}${gift.iconUrl}`}
-              alt={gift.name}
-              style={{
-                width: '90px',
-                height: '90px',
-                marginRight: '10px',
-                flexShrink: 0,
-              }}
-            />
-            <div style={{ flexGrow: 1 }}>
-              <span style={{ fontSize: '16px', fontWeight: 'bold' }}>
-                {gift.name} (Уровень: {gift.lvl})
-              </span>
-            </div>
-            {gift.available ? (
-              isGiftClaimed ? (
-                <div
-                  style={{
-                    marginLeft: '10px',
-                    color: '#ccc',
-                  }}
-                >
-                  В инвентаре
-                </div>
-              ) : (
-                <button
-                  onClick={() => handleClaimGift(gift)}
-                  style={{
-                    marginLeft: '10px',
-                    backgroundColor: '#5a9be6',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '20px',
-                    padding: '10px 20px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                  }}
-                >
-                  Забрать награду
-                </button>
-              )
-            ) : (
-              <img
-                src="/padlock.png"
-                alt="Lock"
-                style={{
-                  width: '30px',
-                  height: '30px',
-                  marginLeft: '10px',
-                }}
-              />
-            )}
-          </div>
-        );
-      })}
     </div>
   );
 };

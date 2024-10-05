@@ -10,6 +10,8 @@ import { PaymentRewardModal } from '@/app/[locale]/profile/ui/paymentReward-moda
 import LevelRewardModal from './LevelRewardModal'; // Импортируем новый компонент
 import { UserApi } from '@/api/user/user.api';
 import { UserData } from '@/api/auth/types';
+import ModalPortal from '@/shared/components/ModalPortal/ModalPortal';
+import { LevelProgress } from '@/shared/components/LevelProgress/LevelProgress';
 
 export const ProfileTop = ({ tab }: { tab?: 'inventory' | 'detail' }) => {
   const [user, setUser] = useState<UserData>();
@@ -68,7 +70,7 @@ export const ProfileTop = ({ tab }: { tab?: 'inventory' | 'detail' }) => {
   const currentLevel = calculateLevel(experience);
   const { progress, nextLevelExp } = calculateProgress(
     experience,
-    currentLevel,
+    currentLevel
   );
 
   return (
@@ -79,20 +81,8 @@ export const ProfileTop = ({ tab }: { tab?: 'inventory' | 'detail' }) => {
             className="left-side"
             style={{ display: 'flex', alignItems: 'flex-end' }}
           >
-            <div
-              className="logo"
-              style={{
-                height: '120px',
-                display: 'flex',
-                alignItems: 'flex-end',
-              }}
-            >
-              <img
-                src={user?.avatar}
-                alt=""
-                className="avatarInProfile"
-                style={{ height: '100%', borderRadius: '50%' }}
-              />
+            <div className="logo">
+              <img src={user?.avatar} alt="" className='avatarInProfile' />
             </div>
             <div
               style={{
@@ -107,17 +97,10 @@ export const ProfileTop = ({ tab }: { tab?: 'inventory' | 'detail' }) => {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  marginBottom: '15px',
+                  marginBottom: '15px'
                 }}
               >
-                <span
-                  className="user-name"
-                  style={{
-                    fontSize: '24px',
-                    fontWeight: 'bold',
-                    marginRight: '10px',
-                  }}
-                >
+                <span className="user-name">
                   {user?.name
                     ? user?.name?.charAt(0).toUpperCase() + user?.name?.slice(1)
                     : ''}
@@ -130,81 +113,13 @@ export const ProfileTop = ({ tab }: { tab?: 'inventory' | 'detail' }) => {
               </div>
 
               {/* Круг с уровнем и прогресс */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  marginBottom: '10px',
-                }}
-              >
-                {/* Кругляшок с уровнем */}
-                <div
-                  onClick={() => setIsLevelRewardOpen(true)} // Открытие модалки при клике
-                  style={{
-                    width: '60px',
-                    height: '60px',
-                    borderRadius: '50%',
-                    border: '3px solid #2e76e6',
-                    backgroundColor: '#5a9be6',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: '2',
-                    color: '#fff',
-                    fontSize: '22px',
-                    fontWeight: 'bold',
-                    marginRight: '20px',
-                    cursor: 'pointer', // Указатель для кликабельного элемента
-                  }}
-                >
-                  {currentLevel}
-                </div>
-
-                {/* Текст "Уровень X" и полоска прогресса */}
-                <div style={{ flexGrow: 1 }}>
-                  <span
-                    style={{
-                      fontSize: '14px',
-                      color: '#bbb',
-                      marginBottom: '5px',
-                      display: 'block',
-                    }}
-                  >
-                    {'Уровень'} {currentLevel}
-                  </span>
-                  <div
-                    style={{
-                      marginLeft: '-34px',
-                      width: '700px',
-                      height: '10px',
-                      backgroundColor: '#0a0a23',
-                      borderRadius: '5px',
-                      marginBottom: '8px',
-                      position: 'relative',
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: `${progress}%`,
-                        backgroundColor: '#5a9be6',
-                        height: '100%',
-                        borderRadius: '5px',
-                      }}
-                    ></div>
-                    <span
-                      style={{
-                        position: 'absolute',
-                        right: '0',
-                        top: '-20px',
-                        fontSize: '12px',
-                        color: '#ccc',
-                      }}
-                    >
-                      {experience} / {nextLevelExp} exp
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <LevelProgress
+                currentLevel={currentLevel}
+                progress={progress}
+                nextLevelExp={nextLevelExp}
+                experience={experience}
+                onClick={() => setIsLevelRewardOpen(true)}
+              />
             </div>
           </div>
 
@@ -233,7 +148,7 @@ export const ProfileTop = ({ tab }: { tab?: 'inventory' | 'detail' }) => {
             {t('Tabs.inventory')}
           </Link>
           <Link
-            href="?tab=detail"
+            href='?tab=detail'
             style={{ fontWeight: 600 }}
             className={`profile-nav__btn ${tab === 'detail' ? 'profile-nav__btn__active' : ''}`}
           >
@@ -242,15 +157,16 @@ export const ProfileTop = ({ tab }: { tab?: 'inventory' | 'detail' }) => {
         </div>
 
         {isOpen && <PaymentRewardModal closeModal={() => setIsOpen(false)} />}
-        {isLevelRewardOpen && (
-          <LevelRewardModal
-            closeModal={() => setIsLevelRewardOpen(false)}
-            level={currentLevel}
-            userId={Number(user?.id)}
-            balance={user?.balance || 0}
-            token={localStorage.getItem('accessToken')!}
-          />
-        )}
+        {isLevelRewardOpen && <ModalPortal>
+            <LevelRewardModal
+              closeModal={() => setIsLevelRewardOpen(false)}
+              level={currentLevel}
+              userId={Number(user?.id)}
+              balance={user?.balance || 0}
+              token={localStorage.getItem('accessToken')!}
+            />
+          </ModalPortal>
+        }
       </div>
     </div>
   );
