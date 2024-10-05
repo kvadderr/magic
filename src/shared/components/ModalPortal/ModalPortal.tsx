@@ -7,7 +7,11 @@ const Portal = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     setMounted(true);
-    return () => setMounted(false);
+    window.document.body.style.overflow = 'hidden';
+    return () => {
+      setMounted(false);
+      window.document.body.style.overflow = 'unset';
+    };
   }, []);
   return (
     mounted &&

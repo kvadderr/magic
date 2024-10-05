@@ -21,10 +21,10 @@ module.exports = {
   ],
   plugins: ['react', '@typescript-eslint', 'jsx-a11y', 'prettier'],
   rules: {
-    'prettier/prettier': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'react/prop-types': 'off',
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 };

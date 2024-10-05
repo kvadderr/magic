@@ -1,0 +1,86 @@
+.level-reward {
+  &__overlay {
+    z-index: 1000;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: #0A081299;
+    backdrop-filter: blur(12px);
+  }
+
+  &__modal {
+    padding: 32px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: fit-content;
+    max-width: 627px;
+    background: #221939;
+    border-radius: 12px;
+    z-index: 1;
+
+    &::before {
+      left: 0;
+      top: 0;
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 200px;
+      border-radius: 12px;
+      z-index: -1;
+      background: linear-gradient(180deg, #140F21 0%, #221939 100%);
+    }
+  }
+
+  &__close {
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: absolute;
+    right: 34px;
+    top: 41px;
+  }
+
+  &__title {
+    font-size: 32px;
+    line-height: 38.41px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    line-height: 19.2px;
+    font-weight: 600;
+    margin-bottom: 32px;
+  }
+
+  &__content {
+    padding-right: 18px;
+    max-height: 60vh;
+    overflow-y: scroll;
+  }
+
+  &__heading {
+    padding-bottom: 32px;
+  }
+
+  &__claim {
+    height: 50px;
+    padding: 0 33px;
+  }
+
+  &__preview {
+    width: 118px;
+    height: 118px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    background: #140F21;
+    border-radius: 12px;
+  }
+}
