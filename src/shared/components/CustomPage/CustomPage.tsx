@@ -1,11 +1,13 @@
-import { IGetSectionsRes } from '@/api/servers/types';
-import { ListSections } from '@/shared/components/CustomPage/ListSection/ListSections';
-import { CustomPageContent } from '@/shared/components/CustomPage/CustomPageContent';
+/* eslint-disable react/react-in-jsx-scope */
+import { IServer } from "@/api/servers/types";
+import { ListSections } from "@/shared/components/CustomPage/ListSection/ListSections";
+import { CustomPageContent } from "@/shared/components/CustomPage/CustomPageContent";
 
 type Props = {
-  sections: IGetSectionsRes[];
+  sections: IServer[]; // Изменяем тип на IServer
   label: string;
 };
+
 export const CustomPage = (props: Props) => {
   const { label, sections } = props;
 
@@ -15,27 +17,19 @@ export const CustomPage = (props: Props) => {
       <div className="boxWithSection">
         <ListSections sections={sections} />
         <div className="boxForSection">
-          {sections.map((item: any) => (
+          {sections.map((server: IServer) => (
             <section
-              key={item.id}
+              key={server.serverID} // Используем serverID как уникальный ключ
               className="sectionCustomPage"
-              id={String(item.id)}
-            >
-              <div
-                className={`${item.icon === null ? 'labelSectionCustomPage' : 'labelSectionCustomPageWithIcon'}`}
-              >
-                <div className="iconSectionCustomPage">
-                  {item.icon !== null && (
-                    <img
-                      src={item.icon}
-                      className="iconCustomPage"
-                      alt="qweasd"
-                    />
-                  )}
-                </div>
-                <h2>{item.title}</h2>
+              id={String(server.serverID)}>
+              <div className="labelSectionCustomPage">
+                <h2>{server.name}</h2>
               </div>
-              <CustomPageContent html={item.html} />
+              <CustomPageContent
+                html={`<p>IP: ${server.IP}:${server.port}</p>
+                       <p>Текущий онлайн: ${server.currentOnline}</p>
+                       <p>Максимум игроков: ${server.maxPlayers}</p>`}
+              />
             </section>
           ))}
         </div>
