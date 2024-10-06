@@ -1,5 +1,5 @@
-import { IServer, monitoringServers } from '@/api/servers/types';
-import apiInstance from '../instance/instance';
+import { IServer, monitoringServers } from "@/api/servers/types";
+import apiInstance from "../instance/instance";
 
 export const ServersApi = {
   async getServers(headers: Record<string, string> = {}) {
@@ -9,10 +9,10 @@ export const ServersApi = {
       sumPlayers: number;
       data: any;
       maxServerOnline: number;
-    }>('/servers', { headers });
+    }>("/servers", { headers });
     return response.data; // Вернем данные из ответа
   },
   async getScaleServers() {
-    return apiInstance.get<monitoringServers>('/servers');
+    return apiInstance.get<monitoringServers>("/servers");
   },
 };

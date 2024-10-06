@@ -1,11 +1,12 @@
-'use client';
-import { useState } from 'react';
-import { SilverModal } from '@/shared/components/CardCurrency/modal/SilverModal';
-import ModalPortal from '@/shared/components/ModalPortal/ModalPortal';
-import NotificationModal from '@/shared/components/CardCurrency/modal/Notification';
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import { StarIcon } from '@/shared/assets/img';
+"use client";
+import React from "react";
+import { useState } from "react";
+import { SilverModal } from "@/shared/components/CardCurrency/modal/SilverModal";
+import ModalPortal from "@/shared/components/ModalPortal/ModalPortal";
+import NotificationModal from "@/shared/components/CardCurrency/modal/Notification";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { StarIcon } from "@/shared/assets/img";
 
 interface ResizingCardProps {
   product: Product;
@@ -13,12 +14,12 @@ interface ResizingCardProps {
 }
 
 const ResizingCard = ({ product: item }: ResizingCardProps) => {
-  const t = useTranslations('Card');
+  const t = useTranslations("Card");
 
   const [modalActive, setModalActive] = useState<boolean>(false);
 
   const backgroundImageGradient =
-    item.buttonColor === 'GREEN'
+    item.buttonColor === "GREEN"
       ? `linear-gradient(to bottom,  rgba(0, 71, 11, 0.00) 40%, #00470B 100%), url(${item.image}) `
       : `linear-gradient(to bottom, rgba(35, 27, 58, 0.00) 0%, #231B3A 100%), url(${item.image}) `;
 
@@ -27,41 +28,37 @@ const ResizingCard = ({ product: item }: ResizingCardProps) => {
   return (
     <>
       <div
-        className={`resizingCard ${item.blockSize === 1 ? 'resizingOneColumnCard' : ''}`}
+        className={`resizingCard ${item.blockSize === 1 ? "resizingOneColumnCard" : ""}`}
         style={{
-          cursor: 'unset',
+          cursor: "unset",
           backgroundImage:
             item.blockSize === 1 ? backgroundImageGradient : gradientOfBigCard,
-          gridColumn: `span ${item.type === 'CURRENCY' ? 3 : 1} `,
+          gridColumn: `span ${item.type === "CURRENCY" ? 3 : 1} `,
           height: 340,
-        }}
-      >
+        }}>
         {!!item.discount && <div className="discount">{item.discount}%</div>}
         <div>
           <p
-            className={`${item.blockSize === 1 ? 'labelOneCard' : 'labelResizingCard'}`}
+            className={`${item.blockSize === 1 ? "labelOneCard" : "labelResizingCard"}`}
             style={{
               marginBottom:
                 item.blockSize === 1 && item?.productContent?.link ? 0 : 32,
-            }}
-          >
+            }}>
             {item.name}
           </p>
           <p className="descriptionResizingCard">
-            {item?.description?.replace('<br/>', '')}
+            {item?.description?.replace("<br/>", "")}
           </p>
           {item?.productContent?.link !== undefined && (
             <div
               className="dopInfoResizingCard"
-              style={{ marginBottom: item.blockSize === 1 ? 8 : 0 }}
-            >
+              style={{ marginBottom: item.blockSize === 1 ? 8 : 0 }}>
               <svg
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <g opacity="0.6">
                   <path
                     fillRule="evenodd"
@@ -71,15 +68,14 @@ const ResizingCard = ({ product: item }: ResizingCardProps) => {
                   />
                 </g>
               </svg>
-              <p> {t('Silver.learn_more')}</p>
+              <p> {t("Silver.learn_more")}</p>
             </div>
           )}
         </div>
 
         <button
           onClick={() => setModalActive(true)}
-          className={`btn ${item.buttonColor === 'GREEN' ? 'greenBtn' : 'lightBtn'} resizingCardBtn`}
-        >
+          className={`btn ${item.buttonColor === "GREEN" ? "greenBtn" : "lightBtn"} resizingCardBtn`}>
           {item.iconButton && (
             <Image
               src={item.iconButton}
@@ -96,13 +92,13 @@ const ResizingCard = ({ product: item }: ResizingCardProps) => {
               alt=""
               width={24}
               height={24}
-              style={{ display: 'flex', width: '24px', height: '24px' }}
+              style={{ display: "flex", width: "24px", height: "24px" }}
             />
           )}
         </button>
         {modalActive && (
           <ModalPortal>
-            {item.type === 'CURRENCY' ? (
+            {item.type === "CURRENCY" ? (
               <SilverModal onClose={setModalActive} item={item} />
             ) : (
               <NotificationModal onClose={setModalActive} />

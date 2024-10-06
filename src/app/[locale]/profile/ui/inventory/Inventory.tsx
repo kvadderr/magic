@@ -1,11 +1,11 @@
-'use client';
-import React, { useState } from 'react';
-import ServerSelectionModal from './ServerSelectionModal';
-import { baseURL } from '@/api/instance/instance';
-import { SettingsIcon } from '@/shared/assets/icons/SettingsIcon';
-import { useTranslations } from 'next-intl';
-import { SearchIcon } from '@/shared/assets';
-import ModalPortal from '@/shared/components/ModalPortal/ModalPortal';
+"use client";
+import React, { useState } from "react";
+import ServerSelectionModal from "./ServerSelectionModal";
+import { baseURL } from "@/api/instance/instance";
+import { SettingsIcon } from "@/shared/assets/icons/SettingsIcon";
+import { useTranslations } from "next-intl";
+import { SearchIcon } from "@/shared/assets";
+import ModalPortal from "@/shared/components/ModalPortal/ModalPortal";
 
 export const Inventory = ({
   userGifts,
@@ -18,8 +18,9 @@ export const Inventory = ({
 }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedGift, setSelectedGift] = useState<any>(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const t = useTranslations('Profile');
+  const [searchQuery, setSearchQuery] = useState("");
+  const t = useTranslations("Profile");
+  console.log(allGiftsByLevel);
   const handleButtonClick = (userGift: any) => {
     setSelectedGift(userGift);
     setModalOpen(true);
@@ -33,11 +34,10 @@ export const Inventory = ({
     <div className="container">
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          marginBottom: '20px',
-        }}
-      >
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "20px",
+        }}>
         <div className="searchInputWrap">
           <SearchIcon />
           <input
@@ -50,69 +50,66 @@ export const Inventory = ({
         </div>
         <button className="btn blackBtn filterBtn">
           <SettingsIcon />
-          <span>{t('filter')}</span>
+          <span>{t("filter")}</span>
         </button>
       </div>
 
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+      <table style={{ borderCollapse: "collapse", width: "100%" }}>
         <thead>
-          <tr style={{ color: 'white' }}>
-            <th style={{ padding: '12px' }}>Название</th>
-            <th style={{ padding: '12px' }}>Количество</th>
-            <th style={{ padding: '12px' }}>ID</th>
-            <th style={{ padding: '12px' }}>Действия</th>
+          <tr style={{ color: "white" }}>
+            <th style={{ padding: "12px" }}>Название</th>
+            <th style={{ padding: "12px" }}>Количество</th>
+            <th style={{ padding: "12px" }}>ID</th>
+            <th style={{ padding: "12px" }}>Действия</th>
           </tr>
         </thead>
         <tbody>
           {filteredGifts.length > 0 &&
             filteredGifts.map((userGift) => {
-              // const giftDetails = allGiftsByLevel.find(
-              //   (gift) => gift.id === userGift.Gifts.id,
-              // );
-              // const giftType = giftDetails?.type;
-
-              // const backgroundColor = index % 2 === 0 ? '#221939' : '#281D42';
-
               return (
                 <tr key={userGift.giftId}>
                   <td
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                    }}
-                  >
+                      display: "flex",
+                      alignItems: "center",
+                    }}>
                     <img
-                      src={`${baseURL}${userGift.Gifts.iconUrl}`}
+                      src={
+                        !userGift.product.isGift
+                          ? userGift.product.image
+                          : `${baseURL}${userGift.Gifts.iconUrl}`
+                      }
                       alt={userGift.Gifts.name}
                       style={{
-                        width: '60px',
-                        height: '60px',
-                        marginRight: '8px',
+                        width: "60px",
+                        height: "60px",
+                        marginRight: "8px",
                       }}
                     />
                     {userGift.Gifts.name}
                   </td>
-                  <td style={{ padding: '12px' }}>{userGift.amount}</td>
-                  <td style={{ padding: '12px' }}>{userGift.Gifts.id}</td>
-                  <td style={{ padding: '12px' }}>
-                    {userGift.server ? (
-                      // Отображение информации о сервере, если он есть
-                      <div>
-                        <p className="inventory-table__row-title">
-                          Сервер: {userGift.server.name}
-                        </p>
-                        <p className="inventory-table__row-description">
-                          IP: {userGift.server.ip}
-                        </p>
-                      </div>
+                  <td style={{ padding: "12px" }}>{userGift.amount}</td>
+                  <td style={{ padding: "12px" }}>{userGift.Gifts.id}</td>
+                  <td style={{ padding: "12px" }}>
+                    {userGift.product?.type === "SERVICE" ? (
+                      userGift.server ? (
+                        <div>
+                          <p className="inventory-table__row-title">
+                            Сервер: {userGift.server.name}
+                          </p>
+                          <p className="inventory-table__row-description">
+                            IP: {userGift.server.ip}
+                          </p>
+                        </div>
+                      ) : (
+                        <button
+                          className="btn lightBtn wideBtn"
+                          onClick={() => handleButtonClick(userGift)}>
+                          {t("activate")}
+                        </button>
+                      )
                     ) : (
-                      // Кнопка, если сервера нет
-                      <button
-                        className="btn lightBtn wideBtn"
-                        onClick={() => handleButtonClick(userGift)}
-                      >
-                        {t("activate")}
-                      </button>
+                      <span>{"не требует активации"}</span>
                     )}
                   </td>
                 </tr>
@@ -125,7 +122,7 @@ export const Inventory = ({
         <ModalPortal>
           <ServerSelectionModal
             onClose={() => setModalOpen(false)}
-            token={localStorage.getItem('accessToken')!}
+            token={localStorage.getItem("accessToken")!}
             userId={userId}
             productId={selectedGift.giftId}
           />

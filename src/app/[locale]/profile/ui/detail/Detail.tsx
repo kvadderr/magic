@@ -1,13 +1,13 @@
-'use client';
-import React, { useRef, useState, useEffect } from 'react';
-import TransferModal from './TransferModal';
-import { Ref } from 'react';
-import Pagination from '@/shared/components/Pagination/Pagination';
-import DetailsTableItem from '@/app/[locale]/profile/ui/detail-table-item/DetailTableItem';
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import { SearchIcon } from '@/shared/assets';
-import ModalPortal from '@/shared/components/ModalPortal/ModalPortal';
+"use client";
+import React, { useRef, useState, useEffect } from "react";
+import TransferModal from "./TransferModal";
+import { Ref } from "react";
+import Pagination from "@/shared/components/Pagination/Pagination";
+import DetailsTableItem from "@/app/[locale]/profile/ui/detail-table-item/DetailTableItem";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { SearchIcon } from "@/shared/assets";
+import ModalPortal from "@/shared/components/ModalPortal/ModalPortal";
 
 export const Detail = ({
   userDetails,
@@ -20,13 +20,13 @@ export const Detail = ({
   steamId: string;
   token: string;
 }) => {
-  const t = useTranslations('Profile');
+  const t = useTranslations("Profile");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const tableRef = useRef<any | null | Ref<HTMLDivElement>>();
 
   useEffect(() => {
-    tableRef?.current?.scrollTo({ left: 0, behavior: 'smooth' });
+    tableRef?.current?.scrollTo({ left: 0, behavior: "smooth" });
   }, [currentPage]);
 
   return (
@@ -37,12 +37,11 @@ export const Detail = ({
           <p className="balanceHeader">Баланс</p>
           <p className="balanceValue">{balance} &#8381;</p>
         </div>
-        <div style={{ gap: 12, flexDirection: 'row', display: 'flex' }}>
+        <div style={{ gap: 12, flexDirection: "row", display: "flex" }}>
           <button
             onClick={() => setIsModalOpen(true)} // Открываем модалку
             className="btn wideBtn lightBtn"
-            style={{ gap: 12, paddingLeft: 48, paddingRight: 48 }}
-          >
+            style={{ gap: 12, paddingLeft: 48, paddingRight: 48 }}>
             <Image
               src="/svg/plusBalance.svg"
               alt="logo"
@@ -54,8 +53,7 @@ export const Detail = ({
           <button
             onClick={() => setIsModalOpen(true)} // Открываем модалку
             className="btn wideBtn blackBtn"
-            style={{ gap: 12, paddingLeft: 48, paddingRight: 48 }}
-          >
+            style={{ gap: 12, paddingLeft: 48, paddingRight: 48 }}>
             <span style={{ fontSize: 16 }}>Перевести</span>
           </button>
         </div>
@@ -71,7 +69,7 @@ export const Detail = ({
           </ModalPortal>
         )}
       </div>
-      <div className="searchInputWrap" style={{ marginTop: '32px' }}>
+      <div className="searchInputWrap" style={{ marginTop: "32px" }}>
         <SearchIcon />
         <input
           value=""
@@ -91,11 +89,11 @@ export const Detail = ({
             <table className="tableForInventory">
               <thead>
                 <tr>
-                  <th scope="col">{t('Table.Detail.date')}</th>
-                  <th scope="col">{t('Table.Detail.id')}</th>
-                  <th scope="col">{t('Table.Detail.sum')}</th>
-                  <th scope="col">{t('Table.Detail.type')}</th>
-                  <th scope="col">{t('Table.Detail.status')}</th>
+                  <th scope="col">{t("Table.Detail.date")}</th>
+                  <th scope="col">{t("Table.Detail.id")}</th>
+                  <th scope="col">{t("Table.Detail.sum")}</th>
+                  <th scope="col">{t("Table.Detail.type")}</th>
+                  <th scope="col">{t("Table.Detail.status")}</th>
                 </tr>
               </thead>
               <tbody>

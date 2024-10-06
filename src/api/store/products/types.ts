@@ -53,4 +53,5 @@ interface Product {
   description: string | null;
   name: string;
   basePrice: number;
+  isGift?: boolean;
 }
