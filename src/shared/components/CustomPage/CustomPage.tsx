@@ -4,7 +4,7 @@ import { ListSections } from "@/shared/components/CustomPage/ListSection/ListSec
 import { CustomPageContent } from "@/shared/components/CustomPage/CustomPageContent";
 
 type Props = {
-  sections: IServer[]; // Изменяем тип на IServer
+  sections: any; // Изменяем тип на IServer
   label: string;
 };
 
