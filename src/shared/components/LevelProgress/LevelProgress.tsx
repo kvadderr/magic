@@ -12,17 +12,26 @@ interface ILevelProgressProps {
 const progressTextLeftStyles = {
   paddingLeft: '10px',
   marginBottom: '12px',
-};
+} as CSSProperties;
+const smallProgressTextLeftStyles = {
+  paddingLeft: '10px',
+  marginBottom: '8px',
+} as CSSProperties;
 const progressTextRightStyles = {
   position: 'absolute',
   right: '0',
   top: '-32px',
-};
+} as CSSProperties;
+const smallProgressTextRightStyles = {
+  position: 'absolute',
+  right: '0',
+  top: '16px',
+} as CSSProperties;
 const containerStyles = {
   display: 'flex',
   alignItems: 'flex-end',
   marginBottom: '10px',
-};
+} as CSSProperties;
 
 export const LevelProgress: FC<ILevelProgressProps> = (props) => {
   const { onClick, currentLevel, progress, nextLevelExp, experience, variant = "large" } = props;
@@ -33,14 +42,14 @@ export const LevelProgress: FC<ILevelProgressProps> = (props) => {
         {currentLevel}
       </div>
       <div style={{ flexGrow: 1 }}>
-        <span className="progress-text" style={progressTextLeftStyles}>
+        <span className={`progress-text ${variant === "small" && "progress-text--purple"}`} style={variant === "small" ? smallProgressTextLeftStyles : progressTextLeftStyles}>
           {'Уровень'} {currentLevel}
         </span>
         <div className={`progress-bar ${variant}`}>
           <div className="progress" style={{ width: `${progress}%` }} />
           <span
-            className="progress-text"
-            style={progressTextRightStyles as CSSProperties}
+            className={`progress-text ${variant === "small" && "progress-text--under"}`}
+            style={variant === "small" ? smallProgressTextRightStyles : progressTextRightStyles }
           >
             {experience} / {nextLevelExp} exp
           </span>

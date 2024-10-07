@@ -174,6 +174,7 @@
 
   &.small {
     min-width: 100%;
+    margin-bottom: 20px;
   }
   &.large {
     min-width: 700px;
@@ -207,6 +208,14 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+
+  &--under {
+    margin-top: 0;
+  }
+
+  &--purple {
+    color: #8774B8;
+  }
 }
 
 .exitBtn {
