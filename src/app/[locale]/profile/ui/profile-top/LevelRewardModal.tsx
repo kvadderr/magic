@@ -180,11 +180,11 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
                   )
                 ) : (
                   <img
-                    src="/padlock.png"
+                    src="/svg/lock.svg"
                     alt="Lock"
                     style={{
-                      width: '30px',
-                      height: '30px',
+                      width: '40px',
+                      height: '40px',
                       marginLeft: '10px',
                     }}
                   />
