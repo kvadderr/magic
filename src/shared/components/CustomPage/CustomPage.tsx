@@ -1,10 +1,10 @@
 import React from "react";
-import { IGetSectionsRes } from "@/api/servers/types";
+//import { IGetSectionsRes } from "@/api/servers/types";
 import { ListSections } from "@/shared/components/CustomPage/ListSection/ListSections";
 import { CustomPageContent } from "@/shared/components/CustomPage/CustomPageContent";
 
 type Props = {
-  sections: IGetSectionsRes[];
+  sections: any;
   label: string;
 };
 
