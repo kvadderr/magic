@@ -7,6 +7,7 @@ type Props = {
   sections: IGetSectionsRes[];
   label: string;
 };
+
 export const CustomPage = (props: Props) => {
   const { label, sections } = props;
 
@@ -20,7 +21,9 @@ export const CustomPage = (props: Props) => {
             <section
               key={item.id}
               className="sectionCustomPage"
-              id={String(item.id)}>
+              id={String(item.id)}
+              style={{ padding: "20px 0" }} // Добавляем отступы для секций
+            >
               <div
                 className={`${item.icon === null ? "labelSectionCustomPage" : "labelSectionCustomPageWithIcon"}`}>
                 <div className="iconSectionCustomPage">
@@ -28,13 +31,13 @@ export const CustomPage = (props: Props) => {
                     <img
                       src={item.icon}
                       className="iconCustomPage"
-                      alt="qweasd"
+                      alt="section-icon"
                     />
                   )}
                 </div>
-                <h2>{item.title}</h2>
+                <h2>{item.title}</h2> {/* Отображаем заголовок секции */}
               </div>
-              <CustomPageContent html={item.html} />
+              <CustomPageContent html={item.html} /> {/* Отображаем контент */}
             </section>
           ))}
         </div>

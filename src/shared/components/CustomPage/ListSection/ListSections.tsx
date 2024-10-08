@@ -1,54 +1,64 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 "use client";
-import React from "react";
-//import { IServer } from "@/api/servers/types";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {
-  sections: any; // Изменяем тип на IServer
+  sections: any;
 };
 
 export const ListSections = ({ sections }: Props) => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    const sections = document.querySelectorAll(".sectionCustomPage");
+    // Создаем IntersectionObserver для отслеживания секций
+    const sectionsElements = document.querySelectorAll(".sectionCustomPage");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+            setActiveSection(entry.target.id); // Устанавливаем активную секцию
           }
         });
       },
       {
         root: null,
-        rootMargin: "0px",
-        threshold: 0.5,
+        threshold: 0.5, // Половина секции должна быть видимой, чтобы считаться активной
       },
     );
 
-    sections.forEach((section) => {
-      observer.observe(section);
+    // Наблюдаем за каждой секцией
+    sectionsElements.forEach((sectionElement) => {
+      observer.observe(sectionElement);
     });
 
     return () => {
-      sections.forEach((section) => {
-        observer.unobserve(section);
+      sectionsElements.forEach((sectionElement) => {
+        observer.unobserve(sectionElement);
       });
     };
   }, []);
 
+  const handleScrollToSection = (id: string) => {
+    const sectionElement = document.getElementById(id);
+    if (sectionElement) {
+      sectionElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="boxListSections" id="boxListSections">
-      {sections.map((server) => (
-        <Link
-          href={`#${server.serverID}`} // Используем serverID для ссылок
-          key={server.serverID} // Уникальный ключ — serverID
-          id={"sectionListSection" + String(server.serverID)}
-          className={`sectionListSection ${activeSection === String(server.serverID) ? "sectionListSectionActive" : ""}`}>
-          {server.name} {/* Отображаем имя сервера */}
-        </Link>
+      {sections.map((server: any, index: number) => (
+        <div
+          key={server.id}
+          id={"sectionListSection" + String(server.id)}
+          className={`sectionListSection ${activeSection === String(server.id) ? "sectionListSectionActive" : ""}`}
+          style={{ color: "white", cursor: "pointer" }} // Белый текст, добавляем pointer для курсора
+          onClick={() => handleScrollToSection(String(server.id))} // Добавляем плавный скроллинг
+        >
+          {server.title || `Section ${index + 1}`}{" "}
+          {/* Отображаем title секции */}
+        </div>
       ))}
     </div>
   );
