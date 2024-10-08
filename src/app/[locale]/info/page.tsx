@@ -7,16 +7,13 @@ export default async function InfoPage() {
   const t = await getTranslations("Information");
   const { serversList } = await getInformation();
 
-  // Преобразуем данные в соответствующий тип IServer
-  const sections = serversList.sections.map((section: any) => ({
-    serverID: section.id,
-    name: section.name,
-    IP: section.ipAddress, // Используйте правильное имя поля для IP
-    port: section.port,
-    additionalField: section.additionalField, // Добавьте другие поля, которые необходимы
-  }));
+  // Логируем структуру с использованием Object.entries для более подробного отображения
+  console.log("Servers List Sections Structure:");
+  Object.entries(serversList.sections).forEach(([key, value]) => {
+    console.log(`Section: ${key}`, value);
+  });
 
-  return <CustomPage sections={sections} label={t("title")} />;
+  return <CustomPage sections={serversList.sections} label={t("title")} />;
 }
 
 async function getInformation() {

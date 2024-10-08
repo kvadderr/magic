@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import { IServer } from "@/api/servers/types";
+//import { IServer } from "@/api/servers/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Props = {
-  sections: IServer[]; // Изменяем тип на IServer
+  sections: any; // Изменяем тип на IServer
 };
 
 export const ListSections = ({ sections }: Props) => {

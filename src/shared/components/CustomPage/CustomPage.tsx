@@ -1,13 +1,12 @@
-/* eslint-disable react/react-in-jsx-scope */
-import { IServer } from "@/api/servers/types";
+import React from "react";
+import { IGetSectionsRes } from "@/api/servers/types";
 import { ListSections } from "@/shared/components/CustomPage/ListSection/ListSections";
 import { CustomPageContent } from "@/shared/components/CustomPage/CustomPageContent";
 
 type Props = {
-  sections: any; // Изменяем тип на IServer
+  sections: IGetSectionsRes[];
   label: string;
 };
-
 export const CustomPage = (props: Props) => {
   const { label, sections } = props;
 
@@ -17,19 +16,25 @@ export const CustomPage = (props: Props) => {
       <div className="boxWithSection">
         <ListSections sections={sections} />
         <div className="boxForSection">
-          {sections.map((server: IServer) => (
+          {sections.map((item: any) => (
             <section
-              key={server.serverID} // Используем serverID как уникальный ключ
+              key={item.id}
               className="sectionCustomPage"
-              id={String(server.serverID)}>
-              <div className="labelSectionCustomPage">
-                <h2>{server.name}</h2>
+              id={String(item.id)}>
+              <div
+                className={`${item.icon === null ? "labelSectionCustomPage" : "labelSectionCustomPageWithIcon"}`}>
+                <div className="iconSectionCustomPage">
+                  {item.icon !== null && (
+                    <img
+                      src={item.icon}
+                      className="iconCustomPage"
+                      alt="qweasd"
+                    />
+                  )}
+                </div>
+                <h2>{item.title}</h2>
               </div>
-              <CustomPageContent
-                html={`<p>IP: ${server.IP}:${server.port}</p>
-                       <p>Текущий онлайн: ${server.currentOnline}</p>
-                       <p>Максимум игроков: ${server.maxPlayers}</p>`}
-              />
+              <CustomPageContent html={item.html} />
             </section>
           ))}
         </div>
