@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 export default async function BanListPage(props: {
   searchParams: { page: string };
 }) {
-  const t = await getTranslations('Information');
+  const t = await getTranslations('Ban_List');
   return (
     <div className="containerCustomPage">
       <h1 className="titlePage">{t('title')}</h1>

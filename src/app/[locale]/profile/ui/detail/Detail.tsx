@@ -4,42 +4,43 @@ import TransferModal from "./TransferModal";
 import { Ref } from "react";
 import Pagination from "@/shared/components/Pagination/Pagination";
 import DetailsTableItem from "@/app/[locale]/profile/ui/detail-table-item/DetailTableItem";
-import { useTranslations } from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import Image from "next/image";
 import { SearchIcon } from "@/shared/assets";
 import ModalPortal from "@/shared/components/ModalPortal/ModalPortal";
+import {useRouter} from "next/navigation";
 
-export const Detail = ({
-  userDetails,
-  balance,
-  steamId,
-  token,
-}: {
+export const Detail = (props: {
   userDetails: any; // Данные передаются через пропсы
   balance: number;
   steamId: string;
   token: string;
+  page: number;
 }) => {
+  const {
+    userDetails,
+    balance,
+    steamId,
+    page,
+    token,
+  } = props;
   const t = useTranslations("Profile");
+  const router = useRouter();
+  const locale = useLocale();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
   const tableRef = useRef<any | null | Ref<HTMLDivElement>>();
-
-  useEffect(() => {
-    tableRef?.current?.scrollTo({ left: 0, behavior: "smooth" });
-  }, [currentPage]);
 
   return (
     <div className="container">
       {/* Отображение баланса и кнопка для перевода */}
       <div className="populateBalanceInDetail">
         <div>
-          <p className="balanceHeader">Баланс</p>
+          <p className="balanceHeader">{t("Table.Detail.heading")}</p>
           <p className="balanceValue">{balance} &#8381;</p>
         </div>
         <div style={{ gap: 12, flexDirection: "row", display: "flex" }}>
           <button
-            onClick={() => setIsModalOpen(true)} // Открываем модалку
+            onClick={() => router.push(`/${locale}/deposit`)} // Открываем модалку
             className="btn wideBtn lightBtn"
             style={{ gap: 12, paddingLeft: 48, paddingRight: 48 }}>
             <Image
@@ -48,13 +49,13 @@ export const Detail = ({
               width={24}
               height={24}
             />
-            <span style={{ fontSize: 16 }}>Пополнить</span>
+            <span style={{ fontSize: 16 }}>{t("Table.Detail.replenish")}</span>
           </button>
           <button
             onClick={() => setIsModalOpen(true)} // Открываем модалку
             className="btn wideBtn blackBtn"
             style={{ gap: 12, paddingLeft: 48, paddingRight: 48 }}>
-            <span style={{ fontSize: 16 }}>Перевести</span>
+            <span style={{ fontSize: 16 }}>{t("Table.Detail.transfer")}</span>
           </button>
         </div>
 
@@ -73,7 +74,7 @@ export const Detail = ({
         <SearchIcon />
         <input
           value=""
-          placeholder="Введите название предмета"
+          placeholder={t("Table.Detail.input_placeholder")}
           onChange={(e) => {}}
           type="text"
           className="searchInput"
@@ -82,7 +83,7 @@ export const Detail = ({
 
       {/* Таблица с деталями операций */}
       {!userDetails?.result[0] ? (
-        <h1 className="noRecords">Нет записей</h1>
+        <h1 className="noRecords">{t("Table.Detail.enough")}</h1>
       ) : (
         <>
           <div ref={tableRef} className="tableWrap">
@@ -107,8 +108,10 @@ export const Detail = ({
 
           {/* Пагинация */}
           <Pagination
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
+            currentPage={page}
+            setCurrentPage={(v) => {
+              router.push(`/${locale}/profile?tab=detail&page=${v}`)
+            }}
             pagesAmount={userDetails.pages}
             perPage={10}
           />

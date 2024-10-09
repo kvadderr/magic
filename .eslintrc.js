@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -17,14 +18,13 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:prettier/recommended', // Make sure this is always the last configuration in the extends array.
   ],
-  plugins: ['react', '@typescript-eslint', 'jsx-a11y', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'jsx-a11y'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'react/prop-types': 'off',
-    'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    "react/react-in-jsx-scope": "off"
   },
 };

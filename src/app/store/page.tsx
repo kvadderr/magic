@@ -1,5 +1,4 @@
 import React from 'react';
-import { NextResponse } from 'next/server';
 import { AuthApi } from '@/api/auth/auth.api';
 import { AuthMiddleware } from '@/app/store/auth-middleware';
 

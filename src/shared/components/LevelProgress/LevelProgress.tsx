@@ -1,4 +1,5 @@
 import React, { CSSProperties, FC } from 'react';
+import {useTranslations} from "next-intl";
 
 interface ILevelProgressProps {
   onClick?: () => void;
@@ -34,6 +35,7 @@ const containerStyles = {
 } as CSSProperties;
 
 export const LevelProgress: FC<ILevelProgressProps> = (props) => {
+  const t = useTranslations("LevelProgress");
   const { onClick, currentLevel, progress, nextLevelExp, experience, variant = "large" } = props;
   return (
     <div style={containerStyles}>
@@ -43,7 +45,7 @@ export const LevelProgress: FC<ILevelProgressProps> = (props) => {
       </div>
       <div style={{ flexGrow: 1 }}>
         <span className={`progress-text ${variant === "small" && "progress-text--purple"}`} style={variant === "small" ? smallProgressTextLeftStyles : progressTextLeftStyles}>
-          {'Уровень'} {currentLevel}
+          {t("level")} {currentLevel}
         </span>
         <div className={`progress-bar ${variant}`}>
           <div className="progress" style={{ width: `${progress}%` }} />

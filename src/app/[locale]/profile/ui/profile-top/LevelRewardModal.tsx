@@ -6,6 +6,7 @@ import { User } from '@/api/user/types';
 import { baseURL } from '@/api/instance/instance';
 import './level-reward.scss';
 import { LevelProgress } from '@/shared/components/LevelProgress/LevelProgress';
+import {useTranslations} from "next-intl";
 
 interface LevelRewardModalProps {
   closeModal: () => void;
@@ -22,6 +23,7 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
   userId,
   balance,
 }) => {
+  const t = useTranslations('LevelProgress.Modal');
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [userGifts, setUserGifts] = useState<{ giftId: number }[]>([]);
   const [steamId, setSteamId] = useState<string | null>(null);
@@ -113,10 +115,9 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
               </g>
             </svg>
           </button>
-          <h3 className="level-reward__title">Награда за уровни</h3>
+          <h3 className="level-reward__title">{t("level_reward")}</h3>
           <p className="level-reward__subtitle">
-            Играйте на MagicRust, чтобы зарабатывать опыт <br /> и получать
-            предметы Rust!
+            {t("description_l")} <br /> {t("description_r")}
           </p>
 
           {/* Прогресс уровня */}
@@ -157,7 +158,7 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
                 </div>
                 <div style={{ flexGrow: 1 }}>
               <span style={{ fontSize: '16px', fontWeight: 'bold' }}>
-                {gift.name} Уровень: {gift.lvl}
+                {gift.name} {t("level")}: {gift.lvl}
               </span>
                 </div>
                 {gift.available ? (
@@ -167,16 +168,12 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
                         marginLeft: '10px',
                         color: '#ccc',
                       }}
-                    >
-                      В инвентаре
-                    </div>
+                    >{t("in_inventory")}</div>
                   ) : (
                     <button
                       className="lightBtn btn oneColumnBtn level-reward__claim"
                       onClick={() => handleClaimGift(gift)}
-                    >
-                      Забрать награду
-                    </button>
+                    >{t("claim")}</button>
                   )
                 ) : (
                   <img

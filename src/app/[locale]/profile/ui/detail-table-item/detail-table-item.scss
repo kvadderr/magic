@@ -7,6 +7,10 @@
     gap: 11px;
     align-items: center;
 
+    span {
+      text-transform: capitalize;
+    }
+
     &::before {
       content: "";
       display: block;

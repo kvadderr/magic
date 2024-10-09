@@ -26,19 +26,19 @@ export const NoBackgroundCard = (props: Props) => {
       />
       <p className="nameOneColumnCard">{product.name}</p>
       <button className="lightBtn btn oneColumnBtn" onClick={() => set(true)}>
+          <Image
+              src={StarIcon}
+              alt=""
+              width={24}
+              height={24}
+              style={{
+                  display: 'flex',
+                  width: '8px',
+                  height: '8px',
+                  marginRight: "5px"
+              }}
+          />
         {product.price}
-        <Image
-          src={StarIcon}
-          alt=""
-          width={24}
-          height={24}
-          style={{
-            display: 'flex',
-            width: '24px',
-            height: '24px',
-            marginLeft: 5,
-          }}
-        />
       </button>
       {modal && (
         <ModalPortal>

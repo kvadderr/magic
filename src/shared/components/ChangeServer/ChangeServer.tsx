@@ -6,6 +6,7 @@ import {
   serviceModalChangeServerTitle,
 } from "@/shared/constants/modal";
 import CustomSelect from "@/shared/components/CustomSelect/CustomSelect";
+import {useTranslations} from "next-intl";
 
 interface ChangeServerProps {
   setSelectedServer: Dispatch<SetStateAction<number>>;
@@ -16,9 +17,10 @@ const ChangeServer = ({
   setSelectedServer,
   infoOfSelect,
 }: ChangeServerProps) => {
+  const t = useTranslations("Card.Package");
   // Состояние для хранения выбранного сервера, по умолчанию '0'
   const [selectedOption, setSelectedOption] = useState({
-    label: serviceModalChangeServerInInventory.ru,
+    label: t("to_inventory"),
     value: "0",
   });
 
@@ -38,7 +40,7 @@ const ChangeServer = ({
       : [];
     return [
       {
-        label: serviceModalChangeServerInInventory.ru,
+        label: t("to_inventory"),
         value: "0",
       },
       ...servers,
@@ -48,7 +50,7 @@ const ChangeServer = ({
   return (
     <div className="serverForActivation">
       <span className="serverForActivationTitle">
-        {serviceModalChangeServerTitle.ru}
+        {t("server_activation")}
       </span>
       <CustomSelect
         options={selectOptions()}

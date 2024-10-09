@@ -1,26 +1,38 @@
+"use client";
+
+import {useEffect, useState} from "react";
+
 interface CopyProps {
   className?: string;
   value: string;
 }
 
 const Copy = ({ className, value }: CopyProps) => {
+  const [active, setActive] = useState(false);
   async function copyTextToClipboard(text: string) {
     if ('clipboard' in navigator) {
+      setActive(true);
       return await navigator.clipboard.writeText(text);
     } else {
       return document.execCommand('copy', true, text);
     }
   }
 
+  useEffect(() => {
+    if (!active) return;
+    setTimeout(() => setActive(false), 300)
+  }, [active]);
+
   return (
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <div
       onClick={() => {
         copyTextToClipboard(value)
-          .catch((err) => console.log('qwe'))
-          .then(() => console.log('qwe'))
+          .catch(() => console.log('error'))
+          .then(() => console.log('error'))
           .catch(() => 'obligatory catch');
       }}
-      className={`iconCopy ${className}`}
+      className={`iconCopy ${active && "active"}  ${className}`}
     >
       <svg
         width="15"

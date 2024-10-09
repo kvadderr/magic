@@ -32,8 +32,10 @@
     "title": "Information"
   },
   "Profile": {
+    "server": "Server",
     "logout": "Exit",
     "filter": "Filter",
+    "not_need_activation": "Does not require activation",
     "activate": "Activate",
     "Tabs": {
       "inventory": "Inventory",
@@ -41,6 +43,21 @@
     },
     "Table": {
       "empty": "No records",
+      "TransferModal": {
+        "can_transfer": "Can be transferred",
+        "sum_zero": "The amount must be greater than 0.",
+        "no_money": "Insufficient funds.",
+        "transfer_l": "Transferred",
+        "transfer_r": "rubles to the user",
+        "transfer_error": "Error transferring funds. Try again.",
+        "transfer_title": "Transfer of funds",
+        "user": "User",
+        "input_sum": "Enter the amount",
+        "input_steam": "Enter SteamID64",
+        "min_sum": "The minimum amount for transfer is 50 ₽",
+        "max_sum": "The transaction takes from 15 minutes to 24 hours.",
+        "submit": "Submit"
+      },
       "Inventory": {
         "id": "ID",
         "title": "Product",
@@ -49,6 +66,8 @@
         "cancel_btn": "Cancel",
         "activate_btn": "Activate",
         "wait_btn": "Coming soon",
+        "actions": "Server",
+        "input_placeholder": "Enter the name of the item",
         "Modal": {
           "title": "Are you sure you want to cancel your purchase?",
           "accept": "Yes",
@@ -56,6 +75,28 @@
         }
       },
       "Detail": {
+        "enough": "No entries",
+        "heading": "Balance",
+        "input_placeholder": "Enter the name of the item",
+        "transfer": "Transfer",
+        "replenish": "Replenish",
+        "Status": {
+          "SUCCESS": "Success",
+          "FALSE": "False",
+          "DENIED": "Denied",
+          "REFUND": "Refund",
+          "IN_PROGRESS": "In progress",
+          "undefined": "Unknown"
+        },
+        "Type": {
+          "refill": "Deposit",
+          "transaction": "Replenish",
+          "purchase": "Purchase",
+          "transfer": "Transfer",
+          "withdrawal": "Withdrawal",
+          "deposit": "Deposit"
+        },
+
         "date": "Date",
         "id": "ID",
         "sum": "Sum",
@@ -139,6 +180,12 @@
       }
     },
     "Package": {
+      "buy_for": "Buy for",
+      "purchase_error": "An error occurred while trying to make a purchase",
+      "token_unknown": "Token not found, please log in",
+      "purchase_failed": "The purchase failed",
+      "to_inventory": "To inventory",
+      "server_activation": "Server activation",
       "buy": "Buy",
       "hour": "Hour",
       "hours": "Hours",
@@ -149,5 +196,16 @@
   },
   "UI": {
     "go-back": "Go back"
+  },
+  "LevelProgress": {
+    "level": "Level",
+    "Modal": {
+      "level": "Level",
+      "level_reward": "Reward for levels",
+      "description_l": "Play MagicRust to earn experience",
+      "description_r": "and get free Rust items!",
+      "claim": "Claim reward",
+      "in_inventory": "In Inventory"
+    }
   }
 }

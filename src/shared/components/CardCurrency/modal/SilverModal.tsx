@@ -1,4 +1,4 @@
-import {
+import React, {
   createRef,
   Dispatch,
   SetStateAction,
@@ -191,14 +191,20 @@ export const SilverModal = ({ onClose, item }: BuySilverModalProps) => {
             onClick={handlerButton}
             disabled={Number(rubInput) === 0}
           >
-            {rubInput || 0}
             <Image
-              src={StarIcon}
-              alt=""
-              width={24}
-              height={24}
-              style={{ display: 'flex', width: '24px', height: '24px' }}
+                src={StarIcon}
+                alt=""
+                width={24}
+                height={24}
+                style={{
+                  display: 'flex',
+                  width: '8px',
+                  height: '8px',
+                  marginRight: "5px",
+                  marginLeft: "5px"
+                }}
             />
+            {rubInput || 0}
           </button>
         </div>
       </div>

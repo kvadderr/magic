@@ -42,7 +42,7 @@ export const Inventory = ({
           <SearchIcon />
           <input
             value={searchQuery}
-            placeholder="Введите название предмета"
+            placeholder={t("Table.Inventory.input_placeholder")}
             onChange={(e) => setSearchQuery(e.target.value)}
             type="text"
             className="searchInput"
@@ -57,10 +57,10 @@ export const Inventory = ({
       <table style={{ borderCollapse: "collapse", width: "100%" }}>
         <thead>
           <tr style={{ color: "white" }}>
-            <th style={{ padding: "12px" }}>Название</th>
-            <th style={{ padding: "12px" }}>Количество</th>
-            <th style={{ padding: "12px" }}>ID</th>
-            <th style={{ padding: "12px" }}>Действия</th>
+            <th style={{ padding: "12px" }}>{t("Table.Inventory.title")}</th>
+            <th style={{ padding: "12px" }}>{t("Table.Inventory.amount")}</th>
+            <th style={{ padding: "12px" }}>{t("Table.Inventory.id")}</th>
+            <th style={{ padding: "12px" }}>{t("Table.Inventory.actions")}</th>
           </tr>
         </thead>
         <tbody>
@@ -91,25 +91,21 @@ export const Inventory = ({
                   <td style={{ padding: "12px" }}>{userGift.amount}</td>
                   <td style={{ padding: "12px" }}>{userGift.Gifts.id}</td>
                   <td style={{ padding: "12px" }}>
-                    {userGift.product?.type === "SERVICE" ? (
-                      userGift.server ? (
+                    {userGift.server ? (
                         <div>
                           <p className="inventory-table__row-title">
-                            Сервер: {userGift.server.name}
+                            {t("server")}: {userGift.server.name}
                           </p>
                           <p className="inventory-table__row-description">
                             IP: {userGift.server.ip}
                           </p>
                         </div>
-                      ) : (
+                    ) : (
                         <button
-                          className="btn lightBtn wideBtn"
-                          onClick={() => handleButtonClick(userGift)}>
+                            className="btn lightBtn wideBtn"
+                            onClick={() => handleButtonClick(userGift)}>
                           {t("activate")}
                         </button>
-                      )
-                    ) : (
-                      <span>{"не требует активации"}</span>
                     )}
                   </td>
                 </tr>

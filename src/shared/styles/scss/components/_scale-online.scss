@@ -55,9 +55,13 @@ p {
 }
 .iconCopy {
   cursor: pointer;
-  opacity: 0.6;
+  opacity: 0.5;
   transition: 0.3s;
   &:hover {
+    opacity: .6;
+  }
+
+  &.active {
     opacity: 1;
   }
 }

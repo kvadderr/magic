@@ -2,14 +2,13 @@
 
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import Select, { components } from 'react-select';
-import { ChangeEvent, useTransition } from 'react';
+import { useTransition } from 'react';
 import CustomSelect from '@/shared/components/CustomSelect/CustomSelect';
 import { EnLangIcon } from '@/shared/assets';
 import RuLangIcon from '@/shared/assets/langIcon/RuLangIcon';
 
 const LangSelect = () => {
-  const [isPending, startTransition] = useTransition();
+  const [_, startTransition] = useTransition();
   const router = useRouter();
   const localActive = useLocale();
 
@@ -26,7 +25,7 @@ const LangSelect = () => {
   ];
   return (
     <CustomSelect
-      options={options}
+      options={localActive === "ru" ? options.reverse() : options}
       onChange={onSelectChange}
       isHaveIcon={true}
       width={80}

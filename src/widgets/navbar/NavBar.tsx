@@ -114,18 +114,19 @@ const Navbar = () => {
                     style={{
                       display: 'flex',
                       flexDirection: 'row',
-                      gap: 4,
+                      gap: "4px",
+                      lineHeight: "16px",
                       alignItems: 'center',
                     }}
                   >
-                    <span>{userBalance}</span>
                     <Image
-                      src={StarIcon}
-                      alt=""
-                      width={24}
-                      height={24}
-                      style={{ display: 'flex', width: '24px', height: '24px' }}
+                        src={StarIcon}
+                        alt=""
+                        width={8}
+                        height={8}
+                        style={{ width: "8px", height: "8px", display: 'flex'}}
                     />
+                    <span>{userBalance}</span>
                   </div>
                   <PlusBalanceIcon />
                 </Link>
@@ -133,9 +134,7 @@ const Navbar = () => {
                   href="/profile"
                   className="profile__icon"
                   onClick={() => {}}
-                >
-                  <img src={user?.avatar} alt="" className="avatar-in-navbar" />
-                </Link>
+                ><img src={user?.avatar} alt="" className="avatar-in-navbar" /></Link>
               </div>
             ) : (
               <div
