@@ -1,4 +1,4 @@
-import { IServer, monitoringServers } from "@/api/servers/types";
+import {IGetServersRes, IServer, monitoringServers} from "@/api/servers/types";
 import apiInstance from "../instance/instance";
 
 export const ServersApi = {
@@ -11,6 +11,9 @@ export const ServersApi = {
       maxServerOnline: number;
     }>("/servers", { headers });
     return response.data; // Вернем данные из ответа
+  },
+  async getServersSections() {
+    return apiInstance.get<IGetServersRes>("/page/custom/2");
   },
   async getScaleServers() {
     return apiInstance.get<monitoringServers>("/servers");
