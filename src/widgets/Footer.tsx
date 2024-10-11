@@ -21,11 +21,11 @@ export const Footer = async () => {
 
   // Вычисляем суммарные показатели
   const sumPlayers = data.reduce(
-    (sum, server: IServer) => sum + server.currentOnline,
+    (sum: number, server: IServer) => sum + server.currentOnline,
     0,
   );
   const maxServerOnline = data.reduce(
-    (max, server: IServer) => max + server.maxPlayers,
+    (max: number, server: IServer) => max + server.maxPlayers,
     0,
   );
 
