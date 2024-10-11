@@ -1,11 +1,11 @@
-import { IServer, monitoringServers } from "@/api/servers/types";
+import { monitoringServers } from "@/api/servers/types";
 import apiInstance from "../instance/instance";
 
 export const ServersApi = {
   async getServers(headers: Record<string, string> = {}) {
     // Вызов существующего эндпоинта для получения информации о серверах с передачей заголовков
     const response = await apiInstance.get<{
-      result: IServer[];
+      result: any;
       sumPlayers: number;
       data: any;
       maxServerOnline: number;

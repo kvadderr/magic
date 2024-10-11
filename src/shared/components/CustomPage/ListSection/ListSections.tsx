@@ -9,7 +9,7 @@ type Props = {
 
 export const ListSections = ({ sections }: Props) => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
-
+  console.log("sectionzzz " + sections);
   useEffect(() => {
     // Создаем IntersectionObserver для отслеживания секций
     const sectionsElements = document.querySelectorAll(".sectionCustomPage");
@@ -48,18 +48,19 @@ export const ListSections = ({ sections }: Props) => {
 
   return (
     <div className="boxListSections" id="boxListSections">
-      {sections.map((server: any, index: number) => (
-        <div
-          key={server.id}
-          id={"sectionListSection" + String(server.id)}
-          className={`sectionListSection ${activeSection === String(server.id) ? "sectionListSectionActive" : ""}`}
-          style={{ color: "white", cursor: "pointer" }} // Белый текст, добавляем pointer для курсора
-          onClick={() => handleScrollToSection(String(server.id))} // Добавляем плавный скроллинг
-        >
-          {server.title || `Section ${index + 1}`}{" "}
-          {/* Отображаем title секции */}
-        </div>
-      ))}
+      {!!sections &&
+        sections.map((server: any, index: number) => (
+          <div
+            key={server.id}
+            id={"sectionListSection" + String(server.id)}
+            className={`sectionListSection ${activeSection === String(server.id) ? "sectionListSectionActive" : ""}`}
+            style={{ color: "white", cursor: "pointer" }} // Белый текст, добавляем pointer для курсора
+            onClick={() => handleScrollToSection(String(server.id))} // Добавляем плавный скроллинг
+          >
+            {server.title || `Section ${index + 1}`}{" "}
+            {/* Отображаем title секции */}
+          </div>
+        ))}
     </div>
   );
 };

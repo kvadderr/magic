@@ -1,5 +1,7 @@
-'use client';
-import { useEffect } from 'react';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+"use client";
+import React from "react";
+import { useEffect } from "react";
 
 export const CustomPageContent = ({ html }: { html: string }) => {
   useEffect(() => {
