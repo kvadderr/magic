@@ -28,12 +28,18 @@ const Navbar = () => {
     setUserBalance(balance);
   };
 
+  const asyncUserData = async (token: string) => {
+    const {data} = await UserApi.getMe(token);
+    setUser(data);
+  };
+
   useEffect(() => {
-    const userStorage = localStorage.getItem('user');
+    // const userStorage = localStorage.getItem('user');
     const accessToken = localStorage.getItem('accessToken');
-    if (userStorage && accessToken) {
-      setUser(JSON.parse(userStorage) as UserData);
-      asyncData(accessToken);
+    if (accessToken) {
+      // setUser(JSON.parse(userStorage) as UserData);
+      void asyncData(accessToken);
+      void asyncUserData(accessToken);
     }
   }, []);
 
