@@ -194,7 +194,7 @@ export const serversListMock: IServersListItem[] = [
     id: 22,
     serverTypeId: 1,
     IP: '185.207.214.45',
-    port: '35000',
+    port: '36000',
     apiKey: '4cv4igc86a5gs0sb',
     name: 'тест корзины',
     serverID: 91,

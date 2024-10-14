@@ -99,14 +99,24 @@ export const Inventory = ({
                           <p className="inventory-table__row-description">
                             IP: {userGift.server.ip}
                           </p>
-                        </div>
-                    ) : (
-                        <button
-                            className="btn lightBtn wideBtn"
-                            onClick={() => handleButtonClick(userGift)}>
-                          {t("activate")}
-                        </button>
-                    )}
+                        </div>) : <p>{t("activate_in_game")}</p>}
+
+                    {/*{userGift.server ? (*/}
+                    {/*    <div>*/}
+                    {/*      <p className="inventory-table__row-title">*/}
+                    {/*        {t("server")}: {userGift.server.name}*/}
+                    {/*      </p>*/}
+                    {/*      <p className="inventory-table__row-description">*/}
+                    {/*        IP: {userGift.server.ip}*/}
+                    {/*      </p>*/}
+                    {/*    </div>*/}
+                    {/*) : (*/}
+                    {/*    <button*/}
+                    {/*        className="btn lightBtn wideBtn"*/}
+                    {/*        onClick={() => handleButtonClick(userGift)}>*/}
+                    {/*      {t("activate")}*/}
+                    {/*    </button>*/}
+                    {/*)}*/}
                   </td>
                 </tr>
               );

@@ -110,9 +110,9 @@ export function DepositForm() {
         <button
           type="button"
           className={c['preset-button']}
-          onClick={() => setSum(5000)}
+          onClick={() => setSum(6000)}
         >
-          5000
+          6000
         </button>
       </div>
       <small>{t('min_sum_input')}</small>

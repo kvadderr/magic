@@ -20,7 +20,7 @@ const options: WalletOption[] = [
 
 export function WalletSelect() {
   const { setActiveWallet, activeWallet } = useDepositContext();
-  const [active, set] = useState<WalletOption>(options[0]);
+  const [active, set] = useState<WalletOption>(options.filter(el => el.value === activeWallet)[0]);
   const [show, setShow] = useState(false);
   const ref = createRef<HTMLDivElement>();
   useOutsideClick(ref, setShow);

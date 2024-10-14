@@ -38,16 +38,6 @@ export default async function DepositPage() {
       'skins',
       [
         {
-          title: 'Dota 2',
-          method: 'steamSkins',
-          icon: DotaIMG,
-        },
-        {
-          title: 'TF2',
-          method: 'steamSkins',
-          icon: TFIMG,
-        },
-        {
           title: 'Rust',
           method: 'steamSkins',
           icon: RustIMG,
@@ -56,6 +46,16 @@ export default async function DepositPage() {
           title: 'CS:GO',
           method: 'steamSkins',
           icon: CSGOIMG,
+        },
+        {
+          title: 'Dota 2',
+          method: 'steamSkins',
+          icon: DotaIMG,
+        },
+        {
+          title: 'TF2',
+          method: 'steamSkins',
+          icon: TFIMG,
         },
       ],
     ],

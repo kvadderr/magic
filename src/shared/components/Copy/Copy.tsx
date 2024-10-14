@@ -1,6 +1,7 @@
 "use client";
 
 import {useEffect, useState} from "react";
+import {NotificationEvent} from "@/shared/components/NotificationEvent/NotificationEvent";
 
 interface CopyProps {
   className?: string;
@@ -9,6 +10,17 @@ interface CopyProps {
 
 const Copy = ({ className, value }: CopyProps) => {
   const [active, setActive] = useState(false);
+  const [show, set] = useState(false);
+
+  useEffect(() => {
+    if (!show) return;
+
+    const hideTimer = setTimeout(() => {
+      set(false);
+    }, 1250);
+
+    return () => clearTimeout(hideTimer);
+  }, [show]);
   async function copyTextToClipboard(text: string) {
     if ('clipboard' in navigator) {
       setActive(true);
@@ -29,7 +41,7 @@ const Copy = ({ className, value }: CopyProps) => {
       onClick={() => {
         copyTextToClipboard(value)
           .catch(() => console.log('error'))
-          .then(() => console.log('error'))
+          .then(() => set(true))
           .catch(() => 'obligatory catch');
       }}
       className={`iconCopy ${active && "active"}  ${className}`}
@@ -48,6 +60,9 @@ const Copy = ({ className, value }: CopyProps) => {
           fill="#8774B8"
         />
       </svg>
+      {show && <NotificationEvent variant="neutral">
+        Скопировано.
+      </NotificationEvent>}
     </div>
   );
 };

@@ -6,8 +6,9 @@
 @import '../components/leaders/select-server';
 
 .containerPedestal {
-  @include displayFlexAIC;
+  //@include displayFlexAIC;
   justify-content: center;
+  margin-bottom: 60px;
   // margin-bottom: 100px;
   @media (max-width: 700px) {
     display: block;

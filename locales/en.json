@@ -32,6 +32,7 @@
     "title": "Information"
   },
   "Profile": {
+    "activate_in_game": "Activate in game",
     "server": "Server",
     "logout": "Exit",
     "filter": "Filter",

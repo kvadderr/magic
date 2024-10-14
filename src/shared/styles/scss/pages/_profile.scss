@@ -220,6 +220,7 @@
 
 .exitBtn {
   width: 160px;
+  line-height: 12px;
   height: 50px;
 
   span {
@@ -232,19 +233,21 @@
   justify-content: space-between;
 
   &__btn {
-    padding: 15px;
+    padding: 11px 0 17px 0;
     font-size: 20px;
     width: 50%;
     text-align: center;
     border-radius: 12px 12px 0px 0px;
     background-color: transparent;
     cursor: pointer;
+    opacity: .7;
 
     @media (max-width: $largeScreens) {
       font-size: 16px;
     }
 
     &__active {
+      opacity: 1;
       background-color: $darkBlue;
     }
   }

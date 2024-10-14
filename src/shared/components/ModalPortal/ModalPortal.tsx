@@ -2,14 +2,20 @@
 import { PropsWithChildren, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-const Portal = ({ children }: PropsWithChildren) => {
+interface IPortalProps extends PropsWithChildren {
+  overflowHidden?: boolean;
+}
+
+const Portal = ({ children, overflowHidden = true }: IPortalProps) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    if (!overflowHidden) return;
     window.document.body.style.overflow = 'hidden';
     return () => {
       setMounted(false);
+      if (!overflowHidden) return;
       window.document.body.style.overflow = 'unset';
     };
   }, []);

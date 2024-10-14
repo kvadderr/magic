@@ -30,6 +30,7 @@
     "title": "Информация"
   },
   "Profile": {
+    "activate_in_game": "Активируйте в игре",
     "server": "Сервер",
     "logout": "Выйти",
     "filter": "Фильтр",

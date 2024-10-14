@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import {usePathname, useRouter} from 'next/navigation';
 import { useTransition } from 'react';
 import CustomSelect from '@/shared/components/CustomSelect/CustomSelect';
 import { EnLangIcon } from '@/shared/assets';
@@ -10,13 +10,16 @@ import RuLangIcon from '@/shared/assets/langIcon/RuLangIcon';
 const LangSelect = () => {
   const [_, startTransition] = useTransition();
   const router = useRouter();
+  const path = usePathname();
   const localActive = useLocale();
 
   const onSelectChange = (e: any) => {
     console.log('e.target.value', e.value);
     const nextLocale = e.value;
+    const parsed = path.split("/");
+    parsed[1] = nextLocale;
     startTransition(() => {
-      router.replace(`/${nextLocale}`);
+      router.push(parsed.join("/"));
     });
   };
   const options = [
