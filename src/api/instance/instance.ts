@@ -17,6 +17,10 @@ const instance = axios.create({
     },
 });
 
+export const setLocaleInstance = (locale: string) => {
+    instance.defaults.headers.language = locale;
+}
+
 instance.interceptors.response.use(
     (response) => response,
     (error) => {

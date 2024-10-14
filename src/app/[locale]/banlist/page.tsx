@@ -1,14 +1,17 @@
 import BanListContent from '@/app/[locale]/banlist/banlist-content';
-import { getTranslations } from 'next-intl/server';
+import {getTranslations} from 'next-intl/server';
+import {setLocaleInstance} from "@/api/instance/instance";
 
 export default async function BanListPage(props: {
-  searchParams: { page: string };
+    searchParams: { page: string };
+    params: {locale}
 }) {
-  const t = await getTranslations('Ban_List');
-  return (
-    <div className="containerCustomPage">
-      <h1 className="titlePage">{t('title')}</h1>
-      <BanListContent page={props.searchParams.page} />
-    </div>
-  );
+    setLocaleInstance(props.params.locale);
+    const t = await getTranslations('Ban_List');
+    return (
+        <div className="containerCustomPage">
+            <h1 className="titlePage">{t('title')}</h1>
+            <BanListContent page={props.searchParams.page}/>
+        </div>
+    );
 }

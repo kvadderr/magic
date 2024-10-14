@@ -2,8 +2,10 @@ import React from "react";
 import { InformationApi } from "@/api/information/information.api";
 import { CustomPage } from "@/shared/components/CustomPage/CustomPage";
 import { getTranslations } from "next-intl/server";
+import {setLocaleInstance} from "@/api/instance/instance";
 
-export default async function InfoPage() {
+export default async function InfoPage({params: {locale}}) {
+  setLocaleInstance(locale);
   const t = await getTranslations("Information");
   const { serversList } = await getInformation();
 

@@ -5,7 +5,7 @@ import '../../shared/styles/scss/app.scss';
 import { Footer } from '@/widgets/Footer';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import instance from '@/api/instance/instance';
+import {setLocaleInstance} from '@/api/instance/instance';
 import '@/shared/styles/index.css';
 import Head from "next/head";
 
@@ -22,8 +22,7 @@ export default async function RootLayout({
   params: { locale: string };
 }>) {
   const messages = await getMessages();
-  // @ts-ignore
-  instance.defaults.headers.language = locale;
+  setLocaleInstance(locale);
 
   return (
     <html lang={locale}>
@@ -35,7 +34,6 @@ export default async function RootLayout({
           <div id="root">
             <div id="modal-portal"></div>
             <Navbar />
-            {locale}
             {children}
             <Footer />
           </div>

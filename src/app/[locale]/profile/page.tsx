@@ -4,10 +4,13 @@ import {Inventory} from '@/app/[locale]/profile/ui/inventory/Inventory';
 import {Detail} from '@/app/[locale]/profile/ui/detail/Detail';
 import {UserApi} from '@/api/user/user.api';
 import {ProfileTop} from '@/app/[locale]/profile/ui/profile-top/ProfileTop';
+import {setLocaleInstance} from "@/api/instance/instance";
 
 export default function ProfilePage(props: {
-    searchParams: { tab: 'inventory' | 'detail', page?: number };
+    searchParams: { tab: 'inventory' | 'detail', page?: number },
+    params: {locale},
 }) {
+    setLocaleInstance(props.params.locale);
     const page = props.searchParams.page ? props.searchParams.page : 1;
     const [token, setToken] = useState<string | null>(null);
     const [userData, setUserData] = useState<any>(null);
