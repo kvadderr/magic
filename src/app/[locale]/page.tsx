@@ -10,8 +10,6 @@ export default async function StorePage(props: {
 }) {
   const id = 1; // Initial ID value
   const { data: types } = await StoreApi.getTypes();
-
-  console.log('types', types);
   const { serversList: servers } = await getServers();
   const products = await getProducts(
     props.searchParams.tab ? parseInt(props.searchParams.tab) : id,
@@ -24,7 +22,8 @@ export default async function StorePage(props: {
         tab={props.searchParams.tab ? parseInt(props.searchParams.tab) : id}
       />
       <div className="container container-shop">
-        {products.map((item, index) => {
+          {/*{JSON.stringify(products.resp.config)}*/}
+        {products.data.map((item, index) => {
           switch (item.type) {
             case 'CURRENCY':
               return <CardCurrency product={item} key={index} />;
@@ -54,5 +53,5 @@ async function getProducts(tab: number) {
   const res = await StoreApi.getProducts(tab);
 
   if (res.status !== 200) throw new Error('Failed to fetch data');
-  return res.data;
+  return {data: res.data, resp: res};
 }

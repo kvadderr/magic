@@ -3,7 +3,7 @@ import {
   useDepositContext,
 } from '@/app/[locale]/deposit/deposit-provider';
 import { createRef, ReactElement, useState } from 'react';
-import { EnLangIcon, RuLangIcon } from '@/shared/assets';
+import { RuLangIcon } from '@/shared/assets';
 import c from './style.module.scss';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
 
@@ -15,7 +15,7 @@ type WalletOption = {
 
 const options: WalletOption[] = [
   { value: 'RUB', label: 'RUB', icon: <RuLangIcon /> },
-  { value: 'EUR', label: 'EUR', icon: <EnLangIcon /> },
+  { value: 'EUR', label: 'EUR', icon: <img style={{width: "20px", height: "14px"}} width={20} height={14} src="/svg/european-union.svg"  alt=""/> },
 ];
 
 export function WalletSelect() {

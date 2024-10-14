@@ -12,7 +12,7 @@ export const ChooseType = () => {
 
   return (
     <ul className={c.container} ref={ref}>
-      <HorizontalScroll>
+      <HorizontalScroll pageLock={true} className={c["scroll-container"]}>
         <li
           className={activeTab === '' ? c.active : ''}
           onClick={() => setActiveTab('')}

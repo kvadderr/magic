@@ -5,6 +5,9 @@
   & > button {
     width: inherit;
     background: #3a2964;
+    display: flex;
+    align-items: center;
+    line-height: 16px;
   }
   & > ul > li > button {
     width: 100%;

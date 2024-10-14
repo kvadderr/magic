@@ -1,17 +1,23 @@
+"use client";
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { StoreHeaderTabs } from '@/shared/components/StoreHeader/Tabs/StoreHeaderTabs';
 import { IGetTypesRes } from '@/api/store/types';
+import {StoreApi} from "@/api/store/store.api";
+import {useEffect} from "react";
 
 type StoreHeaderProps = {
   types: IGetTypesRes[];
   tab: number;
 };
+
 export default function StoreHeader(props: StoreHeaderProps) {
   const { types, tab } = props;
   const t = useTranslations('Index.Header');
   const locale = useLocale();
+
   return (
     <div className="headerShopBox">
       <Image

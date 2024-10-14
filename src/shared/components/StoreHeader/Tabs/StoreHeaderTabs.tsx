@@ -10,10 +10,10 @@ export const StoreHeaderTabs = ({
 }) => {
   return (
     <div className="menuHeaderShopBox">
-      {storeTypes?.map((item, index) => (
+      {storeTypes?.map((item) => (
         <Link
           key={item.id}
-          href={`/?tab=${item.id}`}
+          href={`?tab=${item.id}`}
           style={{ fontWeight: 600 }}
           className={`sectionMenuHeaderShopBox ${tab === item.id && 'activeSectionMenuHeaderShopBox'}`}
         >

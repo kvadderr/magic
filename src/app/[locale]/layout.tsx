@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import instance from '@/api/instance/instance';
 import '@/shared/styles/index.css';
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: 'MRust',
@@ -26,11 +27,15 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+    <Head>
+      <link rel="icon" href="/src/app/icon.ico" />
+    </Head>
       <body>
         <NextIntlClientProvider messages={messages}>
           <div id="root">
             <div id="modal-portal"></div>
             <Navbar />
+            {locale}
             {children}
             <Footer />
           </div>
