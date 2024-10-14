@@ -4,7 +4,7 @@ import {setLocaleInstance} from "@/api/instance/instance";
 
 export default async function BanListPage(props: {
     searchParams: { page: string };
-    params: {locale}
+    params: {locale: string}
 }) {
     setLocaleInstance(props.params.locale);
     const t = await getTranslations('Ban_List');

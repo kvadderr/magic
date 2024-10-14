@@ -8,7 +8,7 @@ import {setLocaleInstance} from "@/api/instance/instance";
 
 export default async function StorePage(props: {
     searchParams: { tab: string };
-    params: { locale }
+    params: { locale: string }
 }) {
     const id = 1; // Initial ID value
     const {data: types} = await StoreApi.getTypes();

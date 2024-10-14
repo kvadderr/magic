@@ -4,7 +4,7 @@ import { CustomPage } from "@/shared/components/CustomPage/CustomPage";
 import { getTranslations } from "next-intl/server";
 import {setLocaleInstance} from "@/api/instance/instance";
 
-export default async function InfoPage({params: {locale}}) {
+export default async function InfoPage({params: {locale}}: {params: {locale: string}}) {
   setLocaleInstance(locale);
   const t = await getTranslations("Information");
   const { serversList } = await getInformation();

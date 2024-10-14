@@ -8,7 +8,7 @@ import {setLocaleInstance} from "@/api/instance/instance";
 
 export default function ProfilePage(props: {
     searchParams: { tab: 'inventory' | 'detail', page?: number },
-    params: {locale},
+    params: {locale: string},
 }) {
     setLocaleInstance(props.params.locale);
     const page = props.searchParams.page ? props.searchParams.page : 1;

@@ -22,7 +22,7 @@ import {
 } from '@/shared/assets/img';
 import {setLocaleInstance} from "@/api/instance/instance";
 
-export default async function DepositPage({params: {locale}}) {
+export default async function DepositPage({params: {locale}}: {params: {locale: string}}) {
   setLocaleInstance(locale);
   const t = await getTranslations('Deposit');
 
