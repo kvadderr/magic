@@ -3,10 +3,18 @@
     transform: translateX(100%);
     opacity: 0;
   }
-  100% {
+  40% {
     right: 50px;
     transform: translateX(0);
     opacity: 1;
+  }
+  80% {
+    right: 50px;
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    right: -300px;
   }
 }
 
@@ -23,7 +31,7 @@
   background: red;
   z-index: 100;
   top: 100px;
-  animation: slideIn 0.5s forwards;
+  animation: slideIn 2s forwards;
 
   p {
     color: currentColor;

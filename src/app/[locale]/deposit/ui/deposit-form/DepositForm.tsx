@@ -135,9 +135,7 @@ export function DepositForm() {
             }}
           >
             <p className={c['result-value']}>
-              {activeWallet === 'RUB'
-                ? calculateSum(sum).toFixed(2) + '₽'
-                : (calculateSum(sum) / 100).toFixed(2) + '€'}
+              {activeWallet === 'RUB' ? calculateSum(sum).toFixed(2) : (calculateSum(sum) / 100).toFixed(2)}
             </p>
             <Image
               src={StarIcon}
@@ -150,7 +148,7 @@ export function DepositForm() {
         </div>
         <div>
           <small className={c['result-label']}>{t('you_pay')}</small>
-          <p className={c['result-value']}>{sum}</p>
+          <p className={c['result-value']}>{activeWallet === "RUB" ? sum + "₽" : sum + "€"}</p>
         </div>
       </div>
       <button
