@@ -17,7 +17,7 @@ const Copy = ({ className, value }: CopyProps) => {
 
     const hideTimer = setTimeout(() => {
       set(false);
-    }, 1250);
+    }, 3200);
 
     return () => clearTimeout(hideTimer);
   }, [show]);
@@ -60,8 +60,8 @@ const Copy = ({ className, value }: CopyProps) => {
           fill="#8774B8"
         />
       </svg>
-      {show && <NotificationEvent variant="neutral">
-        Скопировано.
+      {show && <NotificationEvent variant="success">
+        IP-адрес сервера скопирован.
       </NotificationEvent>}
     </div>
   );

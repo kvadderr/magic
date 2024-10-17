@@ -7,7 +7,8 @@ import {useEffect, useState} from "react";
 export function Promocode() {
     const {activeType} = useDepositContext();
     const t = useTranslations('Deposit');
-    const [show, set] = useState(false);
+    const [show, setShow] = useState(false);
+    const [value, set] = useState<string>();
 
     useEffect(() => {
         if (!show) return;
@@ -24,12 +25,13 @@ export function Promocode() {
             <label className={c.label}>
                 <span>{t('promo_code')}</span>
                 <input
+                    onChange={ev => set(ev.currentTarget.value)}
                     className={c.input}
                     placeholder={t('promo_code_input')}
                     type="text"
                 />
             </label>
-            <button onClick={() => set(true)} disabled={activeType === undefined} className={c.button}>
+            <button onClick={() => setShow(true)} disabled={!value} className={c.button}>
                 {t('access')}
             </button>
             {show && <NotificationEvent variant="success">

@@ -1,9 +1,10 @@
 'use client';
 import { useDepositContext } from '@/app/[locale]/deposit/deposit-provider';
-import { createRef, Fragment, RefObject } from 'react';
+import { createRef } from 'react';
 import c from './style.module.scss';
 import { useTranslations } from 'next-intl';
-import HorizontalScroll from 'react-scroll-horizontal';
+import {Splide, SplideSlide, SplideTrack} from "@splidejs/react-splide";
+import '@splidejs/react-splide/css/core';
 
 export const ChooseType = () => {
   const t = useTranslations('Deposit');
@@ -11,25 +12,27 @@ export const ChooseType = () => {
   const { keys, setActiveTab, activeTab } = useDepositContext();
 
   return (
-    <ul className={c.container} ref={ref}>
-      <HorizontalScroll pageLock={true} className={c["scroll-container"]}>
-        <li
-          className={activeTab === '' ? c.active : ''}
-          onClick={() => setActiveTab('')}
-        >
-          {t('all')}
-        </li>
-        {keys.map((el, ind) => (
-          <Fragment key={ind}>
-            <li
-              className={activeTab === el ? c.active : ''}
-              onClick={() => setActiveTab(el)}
+      <Splide hasTrack={false} options={{wheel: true, arrows: false, pagination: false, perPage: 4, perMove: 1}} className={c.container}>
+        <SplideTrack>
+          <SplideSlide>
+            <button
+              className={(activeTab === '' ? c.active : '') + " " + c.item}
+              onClick={() => setActiveTab('')}
             >
-              {t(el)}
-            </li>
-          </Fragment>
-        ))}
-      </HorizontalScroll>
-    </ul>
+              {t('all')}
+            </button>
+          </SplideSlide>
+          {keys.map((el, ind) => (
+            <SplideSlide key={ind}>
+              <button
+                className={(activeTab === el ? c.active : '') + " " + c.item}
+                onClick={() => setActiveTab(el)}
+              >
+                {t(el)}
+              </button>
+            </SplideSlide>
+          ))}
+        </SplideTrack>
+      </Splide>
   );
 };

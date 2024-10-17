@@ -2,7 +2,7 @@
   margin-bottom: 32px;
 }
 .title {
-  margin: 0;
+  margin: 12px 0 0 !important;
 }
 
 .content {
@@ -23,11 +23,16 @@
 }
 
 .select-content {
-  display: flex;
+  display: grid;
+  grid-template-columns: calc(100% - 113px - 20px) 113px;
   align-items: center;
   gap: 20px;
 
   &--mobile {
+    width: 100%;
+    & > div {
+      width: 100%;
+    }
     display: flex;
     flex-flow: column-reverse;
     align-items: center;

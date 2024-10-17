@@ -81,7 +81,7 @@ export default async function DepositPage({params: {locale}}: {params: {locale: 
         },
         {
           title: 'dash',
-          method: 'Криптовалюты',
+          method: 'Крипта',
           icon: DashIMG,
         },
         {
