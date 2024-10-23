@@ -3,6 +3,7 @@ import { useDepositContext } from '@/app/[locale]/deposit/deposit-provider';
 import { createRef } from 'react';
 import c from './style.module.scss';
 import { useTranslations } from 'next-intl';
+// @ts-ignore
 import {Splide, SplideSlide, SplideTrack} from "@splidejs/react-splide";
 import '@splidejs/react-splide/css/core';
 

@@ -14,7 +14,7 @@ export function Promocode() {
         if (!show) return;
 
         const hideTimer = setTimeout(() => {
-            set(false);
+            setShow(false);
         }, 3000);
 
         return () => clearTimeout(hideTimer);
