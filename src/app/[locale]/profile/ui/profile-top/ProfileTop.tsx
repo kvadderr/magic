@@ -82,7 +82,9 @@ export const ProfileTop = ({ tab }: { tab?: 'inventory' | 'detail' }) => {
             style={{ display: 'flex', alignItems: 'flex-end' }}
           >
             <div className="logo">
-              <img src={user?.avatar} alt="" className='avatarInProfile' />
+              <Link href={`https://steamcommunity.com/profiles/${user?.steamId}`} target="_blank">
+                <img src={user?.avatar} alt="" className='avatarInProfile' />
+              </Link>
             </div>
             <div
               style={{
