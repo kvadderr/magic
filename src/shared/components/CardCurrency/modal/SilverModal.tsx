@@ -5,24 +5,24 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useBodyScrollModal } from '@/shared/hooks/useBodyScrollModal';
-import { SilverPackage } from '@/shared/components/CardCurrency/modal/SilverPackage';
+import {useBodyScrollModal} from '@/shared/hooks/useBodyScrollModal';
+import {SilverPackage} from '@/shared/components/CardCurrency/modal/SilverPackage';
 import Image from 'next/image';
-import { CurrencyApi } from '@/api/currency/currency.api';
-import { CloseIcon, CoinIcon, EqualsIcon, RubbleIcon } from '@/shared/assets';
-import { useTranslations } from 'next-intl';
-import { StoreApi } from '@/api/store/store.api';
-import { Simulate } from 'react-dom/test-utils';
+import {CurrencyApi} from '@/api/currency/currency.api';
+import {CloseIcon, CoinIcon, EqualsIcon, RubbleIcon} from '@/shared/assets';
+import {useTranslations} from 'next-intl';
+import {StoreApi} from '@/api/store/store.api';
+import {Simulate} from 'react-dom/test-utils';
 import select = Simulate.select;
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
-import { StarIcon } from '@/shared/assets/img';
+import {StarIcon} from '@/shared/assets/img';
 
 export interface BuySilverModalProps {
   onClose: Dispatch<SetStateAction<boolean>>;
   item: Product;
 }
 
-export const SilverModal = ({ onClose, item }: BuySilverModalProps) => {
+export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
   const ref = createRef<HTMLDivElement>();
   useOutsideClick(ref, onClose);
   const t = useTranslations('Card.Silver');
@@ -53,7 +53,7 @@ export const SilverModal = ({ onClose, item }: BuySilverModalProps) => {
   };
 
   const getPriceFC = async (id: number, amount: number) => {
-    const { data } = await StoreApi.getPrice(id, amount);
+    const {data} = await StoreApi.getPrice(id, amount);
     return {
       finalPrice: data.finalPrice,
       type: data.type,
@@ -72,7 +72,7 @@ export const SilverModal = ({ onClose, item }: BuySilverModalProps) => {
 
   const handlerRubsInput = (value: any) => {
     setSelectedPack(undefined);
-    CurrencyApi.getCurrency({ id: item.id, rubs: value })
+    CurrencyApi.getCurrency({id: item.id, rubs: value})
       .then((response) => {
         setCoinInput(response.data.amount);
       })
@@ -135,7 +135,7 @@ export const SilverModal = ({ onClose, item }: BuySilverModalProps) => {
                 onClose(false);
               }}
             >
-              <CloseIcon />
+              <CloseIcon/>
             </div>
           </div>
           <div>
@@ -166,9 +166,16 @@ export const SilverModal = ({ onClose, item }: BuySilverModalProps) => {
                     value={rubInput}
                     onChange={(e) => handlerRubsInput(e.target.value)}
                   />
-                  <RubbleIcon />
+                  <Image style={{
+                    width: "18px",
+                    height: "18px",
+                    top: "50%",
+                    right: "12px",
+                    transform: "translateY(-50%)",
+                    position: "absolute"
+                  }} width={18} height={18} src={StarIcon} alt=""/>
                 </div>
-                <EqualsIcon />
+                <EqualsIcon/>
                 <div
                   className={`${selectedPack ? 'inputSumWrapDisabled' : 'inputSumWrap'}`}
                 >
@@ -181,7 +188,7 @@ export const SilverModal = ({ onClose, item }: BuySilverModalProps) => {
                       handlerSilverInput(e.target.value);
                     }}
                   />
-                  <CoinIcon />
+                  <CoinIcon/>
                 </div>
               </div>
             </div>
@@ -190,21 +197,19 @@ export const SilverModal = ({ onClose, item }: BuySilverModalProps) => {
             className={`btn buySilverBtn ${Number(rubInput) > 0 ? 'lightBtn' : 'blackBtn'}`}
             onClick={handlerButton}
             disabled={Number(rubInput) === 0}
-          >
+          > Купить за {rubInput || 0}
             <Image
-                src={StarIcon}
-                alt=""
-                width={24}
-                height={24}
-                style={{
-                  display: 'flex',
-                  width: '8px',
-                  height: '8px',
-                  marginRight: "5px",
-                  marginLeft: "5px"
-                }}
+              src={StarIcon}
+              alt=""
+              width={24}
+              height={24}
+              style={{
+                display: 'flex',
+                width: '8px',
+                height: '8px',
+                marginLeft: "5px"
+              }}
             />
-            {rubInput || 0}
           </button>
         </div>
       </div>
