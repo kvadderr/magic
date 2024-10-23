@@ -36,7 +36,7 @@ const ServerSelectionModal: React.FC<ServerSelectionModalProps> = ({
       }
     };
 
-    fetchServers();
+    void fetchServers();
   }, [token]);
 
   const handleServerSelect = (id: number) => {

@@ -20,7 +20,6 @@ export const Inventory = ({
   const [selectedGift, setSelectedGift] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const t = useTranslations("Profile");
-  console.log(allGiftsByLevel);
   const handleButtonClick = (userGift: any) => {
     setSelectedGift(userGift);
     setModalOpen(true);

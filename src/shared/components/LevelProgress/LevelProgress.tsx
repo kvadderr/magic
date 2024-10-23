@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC } from 'react';
+import React, {CSSProperties, FC, useEffect} from 'react';
 import {useTranslations} from "next-intl";
 
 interface ILevelProgressProps {
@@ -35,8 +35,9 @@ const containerStyles = {
 } as CSSProperties;
 
 export const LevelProgress: FC<ILevelProgressProps> = (props) => {
-  const t = useTranslations("LevelProgress");
   const { onClick, currentLevel, progress, nextLevelExp, experience, variant = "large" } = props;
+  const t = useTranslations("LevelProgress");
+
   return (
     <div style={containerStyles}>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
@@ -48,7 +49,7 @@ export const LevelProgress: FC<ILevelProgressProps> = (props) => {
           {t("level")} {currentLevel}
         </span>
         <div className={`progress-bar ${variant}`}>
-          <div className="progress" style={{ width: `${progress}%` }} />
+          <div className="progress" style={{ width: `${progress <= 0 ? 0 : progress}%` }} />
           <span
             className={`progress-text ${variant === "small" && "progress-text--under"}`}
             style={variant === "small" ? smallProgressTextRightStyles : progressTextRightStyles }
