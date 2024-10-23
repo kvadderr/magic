@@ -9,13 +9,14 @@ import {useBodyScrollModal} from '@/shared/hooks/useBodyScrollModal';
 import {SilverPackage} from '@/shared/components/CardCurrency/modal/SilverPackage';
 import Image from 'next/image';
 import {CurrencyApi} from '@/api/currency/currency.api';
-import {CloseIcon, CoinIcon, EqualsIcon, RubbleIcon} from '@/shared/assets';
+import {CloseIcon, CoinIcon, EqualsIcon} from '@/shared/assets';
 import {useTranslations} from 'next-intl';
 import {StoreApi} from '@/api/store/store.api';
 import {Simulate} from 'react-dom/test-utils';
 import select = Simulate.select;
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
 import {StarIcon} from '@/shared/assets/img';
+import {handleSteamLogin} from "@/shared/hooks/handleSteamLogin";
 
 export interface BuySilverModalProps {
   onClose: Dispatch<SetStateAction<boolean>>;
@@ -24,6 +25,7 @@ export interface BuySilverModalProps {
 
 export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
   const ref = createRef<HTMLDivElement>();
+  const [userToken, setUserToken] = useState<string>();
   useOutsideClick(ref, onClose);
   const t = useTranslations('Card.Silver');
   useBodyScrollModal();
@@ -38,6 +40,7 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
     if (!token) {
       return;
     }
+    setUserToken(token);
     const res = await StoreApi.buyProduct(token, {
       productId: item.id,
       amount: 1,
@@ -46,10 +49,11 @@ export const SilverModal = ({onClose, item}: BuySilverModalProps) => {
   };
 
   const handlerButton = () => {
+    if (!userToken) return handleSteamLogin();
     setRubInput('');
     setCoinInput('');
     onClose(false);
-    sendData();
+    void sendData();
   };
 
   const getPriceFC = async (id: number, amount: number) => {

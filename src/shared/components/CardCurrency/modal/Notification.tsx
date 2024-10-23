@@ -17,6 +17,7 @@ import { AlertInfoIcon, CloseIcon } from '@/shared/assets';
 import { useLocale, useTranslations } from 'next-intl';
 import { InformationApi } from '@/api/information/information.api';
 import useOutsideClick from '@/shared/hooks/useOutsideClick';
+import {handleSteamLogin} from "@/shared/hooks/handleSteamLogin";
 
 const NotificationModal = ({
   onClose,
@@ -34,6 +35,10 @@ const NotificationModal = ({
   useEffect(() => {
     asyncData();
   }, []);
+
+  const handleSubmit = () => {
+    if (!localStorage.getItem("accessToken")) return handleSteamLogin();
+  }
 
   const t = useTranslations('Card.Notification');
   const locale = useLocale();
@@ -56,7 +61,7 @@ const NotificationModal = ({
           </div>
           <div className="description">{t('Modal.description')}</div>
           <p className="copyText">{t('Modal.copy_label')}</p>
-          <button className="btn lightBtn codeBtn">{t('Modal.button')}</button>
+          <button onClick={() => handleSubmit()} className="btn lightBtn codeBtn">{t('Modal.button')}</button>
 
           <div className="boxButtons">
             {// @ts-ignore

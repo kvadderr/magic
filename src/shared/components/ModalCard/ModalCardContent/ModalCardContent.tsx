@@ -16,6 +16,7 @@ import useOutsideClick from "@/shared/hooks/useOutsideClick";
 import {useLocale, useTranslations} from "next-intl";
 import Image from "next/image";
 import {StarIcon} from "@/shared/assets/img";
+import {handleSteamLogin} from "@/shared/hooks/handleSteamLogin";
 
 export const ModalCardContent = ({
                                      product,
@@ -35,8 +36,7 @@ export const ModalCardContent = ({
     const sendData = async () => {
         const token = localStorage.getItem("accessToken");
         if (!token) {
-            alert(t("token_unknown"));
-            return;
+            return handleSteamLogin();
         }
 
         try {
