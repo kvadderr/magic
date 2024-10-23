@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, {createRef, useEffect, useState} from 'react';
 import { UserApi } from '@/api/user/user.api';
 import { Gift } from '@/api/user/types';
 import { User } from '@/api/user/types';
@@ -7,6 +7,7 @@ import { baseURL } from '@/api/instance/instance';
 import './level-reward.scss';
 import { LevelProgress } from '@/shared/components/LevelProgress/LevelProgress';
 import {useTranslations} from "next-intl";
+import useOutsideClick from "@/shared/hooks/useOutsideClick";
 
 interface LevelRewardModalProps {
   closeModal: () => void;
@@ -23,12 +24,13 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
   userId,
   balance,
 }) => {
+  const ref = createRef<HTMLDivElement>();
   const t = useTranslations('LevelProgress.Modal');
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [userGifts, setUserGifts] = useState<{ giftId: number }[]>([]);
   const [steamId, setSteamId] = useState<string | null>(null);
   const experiencePerRub = 5; // Опыт за 1 рубль
-
+  useOutsideClick(ref, closeModal);
   // Расчет опыта на основе баланса
   const experienceGained = balance * experiencePerRub;
 
@@ -94,7 +96,7 @@ const LevelRewardModal: React.FC<LevelRewardModalProps> = ({
 
   return (
     <div className="level-reward__overlay">
-      <div className="level-reward__modal">
+      <div className="level-reward__modal" ref={ref}>
         <div className="level-reward__heading">
           <button onClick={closeModal} className="level-reward__close">
             <svg

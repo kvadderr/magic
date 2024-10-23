@@ -5,6 +5,7 @@ import './transfer-modal.scss';
 import { v4 } from 'uuid';
 import { RubbleIcon } from '@/shared/assets';
 import {useTranslations} from "next-intl";
+import useOutsideClick from "@/shared/hooks/useOutsideClick";
 
 interface TransferModalProps {
   onClose: () => void;
@@ -24,6 +25,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
   const [recipient, setRecipient] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const ref = createRef<HTMLDivElement>();
+  useOutsideClick(ref, onClose);
 
   const handleTransfer = async () => {
     setError(null); // Сбрасываем ошибки перед началом передачи
@@ -65,7 +67,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
         className="modalContent mountedStyle modalContentActive undefined"
       >
         <div className="modalBackground"></div>
-        <div className="selectServerModal">
+        <div className="selectServerModal" ref={ref}>
           <div className="modalHeader">
             <h3 className="modalHeaderTitle">{t("transfer_title")}</h3>
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
